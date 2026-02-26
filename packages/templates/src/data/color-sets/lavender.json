@@ -1,0 +1,13 @@
+{
+	"id": "lavender",
+	"name": "ラベンダー",
+	"colors": {
+		"background": "#faf5ff",
+		"surface": "#f3e8ff",
+		"textPrimary": "#1e1b4b",
+		"textSecondary": "#3b0764",
+		"textMuted": "#c4b5fd",
+		"accent": "#7c3aed",
+		"accentSecondary": "#a855f7"
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"id": "mint",
+	"name": "ミント",
+	"colors": {
+		"background": "#f0fdf4",
+		"surface": "#dcfce7",
+		"textPrimary": "#14532d",
+		"textSecondary": "#166534",
+		"textMuted": "#86efac",
+		"accent": "#059669",
+		"accentSecondary": "#0d9488"
+	}
+}

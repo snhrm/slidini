@@ -3,14 +3,22 @@ import { DEFAULT_COLOR_SET_COLORS } from "@slidini/core"
 
 import darkSlate from "./data/color-sets/dark-slate.json"
 import forestGreen from "./data/color-sets/forest-green.json"
+import lavender from "./data/color-sets/lavender.json"
 import lightClean from "./data/color-sets/light-clean.json"
 import midnightBlue from "./data/color-sets/midnight-blue.json"
+import mint from "./data/color-sets/mint.json"
 import monochrome from "./data/color-sets/monochrome.json"
+import oceanBreeze from "./data/color-sets/ocean-breeze.json"
+import sakura from "./data/color-sets/sakura.json"
 import warmSunset from "./data/color-sets/warm-sunset.json"
 
 export const COLOR_SETS: ColorSet[] = [
 	darkSlate,
 	lightClean,
+	sakura,
+	oceanBreeze,
+	lavender,
+	mint,
 	midnightBlue,
 	warmSunset,
 	forestGreen,

@@ -1,0 +1,13 @@
+{
+	"id": "sakura",
+	"name": "サクラ",
+	"colors": {
+		"background": "#fff1f2",
+		"surface": "#ffe4e6",
+		"textPrimary": "#1c1917",
+		"textSecondary": "#44403c",
+		"textMuted": "#a8a29e",
+		"accent": "#e11d48",
+		"accentSecondary": "#db2777"
+	}
+}

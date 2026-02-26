@@ -29,23 +29,25 @@ export function ElementList() {
 				{elements.length === 0 && (
 					<p className="text-[10px] text-gray-500 px-1 py-2">要素がありません</p>
 				)}
-				{[...elements].sort((a, b) => b.zIndex - a.zIndex).map((el) => (
-					<button
-						type="button"
-						key={el.id}
-						onClick={() => setSelectedElementId(el.id)}
-						className={`w-full text-left px-2 py-1 rounded text-xs transition-colors truncate ${
-							selectedElementId === el.id
-								? "bg-blue-600 text-white"
-								: "text-gray-300 hover:bg-gray-800"
-						}`}
-					>
-						<span className="text-gray-500 mr-1.5">{TYPE_LABELS[el.type] ?? el.type}</span>
-						{el.type === "text" && "content" in el
-							? (el.content as string).slice(0, 20).replace(/[#*_\n]/g, "")
-							: el.id.slice(0, 16)}
-					</button>
-				))}
+				{[...elements]
+					.sort((a, b) => b.zIndex - a.zIndex)
+					.map((el) => (
+						<button
+							type="button"
+							key={el.id}
+							onClick={() => setSelectedElementId(el.id)}
+							className={`w-full text-left px-2 py-1 rounded text-xs transition-colors truncate ${
+								selectedElementId === el.id
+									? "bg-blue-600 text-white"
+									: "text-gray-300 hover:bg-gray-800"
+							}`}
+						>
+							<span className="text-gray-500 mr-1.5">{TYPE_LABELS[el.type] ?? el.type}</span>
+							{el.type === "text" && "content" in el
+								? (el.content as string).slice(0, 20).replace(/[#*_\n]/g, "")
+								: el.id.slice(0, 16)}
+						</button>
+					))}
 			</div>
 		</div>
 	)

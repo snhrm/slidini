@@ -20,9 +20,7 @@ export function SlideList() {
 	return (
 		<div className="h-36 bg-gray-900 border-t border-gray-700 flex flex-col pb-3">
 			<div className="px-2 py-1 border-b border-gray-700 flex items-center justify-between shrink-0">
-				<span className="text-xs text-gray-400 font-medium">
-					スライド ({slides.length})
-				</span>
+				<span className="text-xs text-gray-400 font-medium">スライド ({slides.length})</span>
 				<button
 					type="button"
 					onClick={openTemplatePicker}

@@ -1,12 +1,52 @@
 import type { TextElement as TextElementType } from "@slidini/core"
 import { motion } from "framer-motion"
+import type { ComponentPropsWithoutRef } from "react"
 import Markdown from "react-markdown"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 import remarkGfm from "remark-gfm"
 import { useAnimation } from "../hooks/useAnimation"
 
 type Props = {
 	element: TextElementType
 	currentStep: number
+}
+
+function CodeBlock({ className, children, ...rest }: ComponentPropsWithoutRef<"code">) {
+	const match = /language-(\w+)/.exec(className || "")
+	const code = String(children).replace(/\n$/, "")
+
+	if (match) {
+		return (
+			<SyntaxHighlighter
+				style={vscDarkPlus}
+				language={match[1]}
+				PreTag="div"
+				customStyle={{
+					margin: 0,
+					padding: 0,
+					background: "transparent",
+					fontSize: "inherit",
+					lineHeight: "inherit",
+				}}
+				codeTagProps={{
+					style: {
+						fontFamily: "inherit",
+						fontSize: "inherit",
+						lineHeight: "inherit",
+					},
+				}}
+			>
+				{code}
+			</SyntaxHighlighter>
+		)
+	}
+
+	return (
+		<code className={className} {...rest}>
+			{children}
+		</code>
+	)
 }
 
 export function TextElement({ element, currentStep }: Props) {
@@ -33,7 +73,9 @@ export function TextElement({ element, currentStep }: Props) {
 				wordBreak: "break-word",
 			}}
 		>
-			<Markdown remarkPlugins={[remarkGfm]}>{element.content}</Markdown>
+			<Markdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlock }}>
+				{element.content}
+			</Markdown>
 		</motion.div>
 	)
 }

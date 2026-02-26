@@ -15,6 +15,7 @@
     "@slidini/core": "workspace:*",
     "framer-motion": "^12.4.7",
     "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.0",
     "recharts": "^3.7.0",
     "remark-gfm": "^4.0.1"
   },
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
