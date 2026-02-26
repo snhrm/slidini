@@ -279,6 +279,7 @@ export function Presentation({
 					position: "relative",
 					width: meta.width,
 					height: meta.height,
+					flexShrink: 0,
 					...(needs3D ? { perspective: 1200 } : {}),
 				}}
 			>
