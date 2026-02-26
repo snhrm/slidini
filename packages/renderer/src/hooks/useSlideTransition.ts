@@ -80,32 +80,32 @@ const transitionVariants: Record<SlideTransitionType, TransitionVariant> = {
 		animate: { clipPath: "inset(0 0 0% 0)" },
 		exit: { clipPath: "inset(100% 0 0 0)" },
 	},
-	// 3D Cube transitions
+	// 3D Cube transitions (no opacity — 3D rotation handles visibility)
 	"cube-left": {
-		initial: { rotateY: 90, opacity: 0 },
-		animate: { rotateY: 0, opacity: 1 },
-		exit: { rotateY: -90, opacity: 0 },
+		initial: { rotateY: 90 },
+		animate: { rotateY: 0 },
+		exit: { rotateY: -90 },
 	},
 	"cube-right": {
-		initial: { rotateY: -90, opacity: 0 },
-		animate: { rotateY: 0, opacity: 1 },
-		exit: { rotateY: 90, opacity: 0 },
+		initial: { rotateY: -90 },
+		animate: { rotateY: 0 },
+		exit: { rotateY: 90 },
 	},
 	"cube-up": {
-		initial: { rotateX: -90, opacity: 0 },
-		animate: { rotateX: 0, opacity: 1 },
-		exit: { rotateX: 90, opacity: 0 },
+		initial: { rotateX: -90 },
+		animate: { rotateX: 0 },
+		exit: { rotateX: 90 },
 	},
 	"cube-down": {
-		initial: { rotateX: 90, opacity: 0 },
-		animate: { rotateX: 0, opacity: 1 },
-		exit: { rotateX: -90, opacity: 0 },
+		initial: { rotateX: 90 },
+		animate: { rotateX: 0 },
+		exit: { rotateX: -90 },
 	},
 	// Page turn (book-like fold from left edge)
 	"page-turn": {
-		initial: { rotateY: -90, opacity: 0 },
-		animate: { rotateY: 0, opacity: 1 },
-		exit: { rotateY: 90, opacity: 0 },
+		initial: { rotateY: -90 },
+		animate: { rotateY: 0 },
+		exit: { rotateY: 90 },
 	},
 	// Portal (circular reveal)
 	portal: {
@@ -139,6 +139,24 @@ export function is3DTransition(type: SlideTransitionType): boolean {
 
 export function isSyncTransition(type: SlideTransitionType): boolean {
 	return TRANSITIONS_SYNC.has(type)
+}
+
+// Transform origins for cube faces: [entering, exiting]
+const CUBE_ORIGINS: Partial<Record<SlideTransitionType, [string, string]>> = {
+	"cube-left": ["left center", "right center"],
+	"cube-right": ["right center", "left center"],
+	"cube-up": ["center top", "center bottom"],
+	"cube-down": ["center bottom", "center top"],
+	"page-turn": ["left center", "left center"],
+}
+
+export function getCubeTransformOrigin(
+	type: SlideTransitionType,
+	isPresent: boolean,
+): string | undefined {
+	const origins = CUBE_ORIGINS[type]
+	if (!origins) return undefined
+	return isPresent ? origins[0] : origins[1]
 }
 
 export function useSlideTransition(transition: SlideTransition) {

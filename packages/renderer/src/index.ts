@@ -8,6 +8,7 @@ export { ImageElement } from "./components/ImageElement"
 export { VideoElement } from "./components/VideoElement"
 export { useAnimation, getMaxStepIndex } from "./hooks/useAnimation"
 export {
+	getCubeTransformOrigin,
 	is3DTransition,
 	isSyncTransition,
 	useSlideTransition,

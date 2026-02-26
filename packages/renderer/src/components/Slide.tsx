@@ -5,10 +5,14 @@ import type {
 	SlideShape,
 	Slide as SlideType,
 } from "@slidini/core"
-import { motion } from "framer-motion"
+import { motion, usePresence } from "framer-motion"
 import type React from "react"
 import { useMemo } from "react"
-import { is3DTransition, useSlideTransition } from "../hooks/useSlideTransition"
+import {
+	getCubeTransformOrigin,
+	is3DTransition,
+	useSlideTransition,
+} from "../hooks/useSlideTransition"
 import { SlideElement } from "./SlideElement"
 
 type Props = {
@@ -79,7 +83,8 @@ export function Slide({
 }: Props) {
 	const transitionProps = useSlideTransition(slide.transition)
 	const is3D = is3DTransition(slide.transition.type)
-	const isPageTurn = slide.transition.type === "page-turn"
+	const [isPresent] = usePresence()
+	const cubeOrigin = getCubeTransformOrigin(slide.transition.type, isPresent)
 
 	const handleBackgroundClick = () => {
 		if (mode === "edit" && onElementSelect) {
@@ -108,7 +113,7 @@ export function Slide({
 				...backgroundToStyle(slide.background),
 				...shapeStyle,
 				...(is3D ? { backfaceVisibility: "hidden" as const } : {}),
-				...(isPageTurn ? { transformOrigin: "left center" } : {}),
+				...(cubeOrigin ? { transformOrigin: cubeOrigin } : {}),
 			}}
 		>
 			{sortedElements.map((element) => (

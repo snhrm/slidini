@@ -280,7 +280,9 @@ export function Presentation({
 					width: meta.width,
 					height: meta.height,
 					flexShrink: 0,
-					...(needs3D ? { perspective: 1200 } : {}),
+					...(needs3D
+						? { perspective: 1200, transformStyle: "preserve-3d" as const }
+						: {}),
 				}}
 			>
 				{renderOverlayLayer(bgOverlay, 0)}

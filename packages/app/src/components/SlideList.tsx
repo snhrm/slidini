@@ -1,4 +1,5 @@
 import { Slide } from "@slidini/renderer"
+import { useEffect, useRef } from "react"
 import { useShallow } from "zustand/react/shallow"
 import { usePresentationStore } from "../store/presentation"
 
@@ -16,6 +17,15 @@ export function SlideList() {
 		)
 
 	const THUMB_HEIGHT = 72
+	const scrollRef = useRef<HTMLDivElement>(null)
+	const itemRefs = useRef<Map<number, HTMLButtonElement>>(new Map())
+
+	useEffect(() => {
+		const el = itemRefs.current.get(currentSlideIndex)
+		if (el && scrollRef.current) {
+			el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })
+		}
+	}, [currentSlideIndex])
 
 	return (
 		<div className="h-36 bg-gray-900 border-t border-gray-700 flex flex-col pb-3">
@@ -29,11 +39,18 @@ export function SlideList() {
 					+追加
 				</button>
 			</div>
-			<div className="flex-1 overflow-x-auto overflow-y-hidden flex items-center gap-1.5 px-1.5">
+			<div
+				ref={scrollRef}
+				className="flex-1 overflow-x-auto overflow-y-hidden flex items-center gap-1.5 px-1.5"
+			>
 				{slides.map((slide, index) => (
 					<button
 						type="button"
 						key={slide.id}
+						ref={(el) => {
+							if (el) itemRefs.current.set(index, el)
+							else itemRefs.current.delete(index)
+						}}
 						onClick={() => setCurrentSlideIndex(index)}
 						className={`shrink-0 cursor-pointer rounded overflow-hidden border-2 transition-colors ${
 							index === currentSlideIndex
