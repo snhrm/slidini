@@ -280,6 +280,8 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 		meta,
 		applySlideColorSet,
 		clearSlideColorSet,
+		autoplayConfig,
+		updateAutoplayConfig,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			slide: s.presentation.slides.find((sl) => sl.id === slideId),
@@ -289,6 +291,8 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 			updateMeta: s.updateMeta,
 			applySlideColorSet: s.applySlideColorSet,
 			clearSlideColorSet: s.clearSlideColorSet,
+			autoplayConfig: s.autoplayConfig,
+			updateAutoplayConfig: s.updateAutoplayConfig,
 		})),
 	)
 	if (!slide) return null
@@ -535,6 +539,35 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 						className="w-full px-2 py-1 text-sm bg-gray-800 text-white rounded border border-gray-600"
 					/>
 				</div>
+			</div>
+
+			<div>
+				<SectionTitle>オートプレイ</SectionTitle>
+			</div>
+
+			<div>
+				<Label>表示間隔 ({autoplayConfig.interval}秒)</Label>
+				<input
+					type="range"
+					min={1}
+					max={30}
+					step={1}
+					value={autoplayConfig.interval}
+					onChange={(e) => updateAutoplayConfig({ interval: Number(e.target.value) })}
+					className="w-full"
+				/>
+			</div>
+
+			<div>
+				<label className="flex items-center gap-2 cursor-pointer">
+					<input
+						type="checkbox"
+						checked={autoplayConfig.loop}
+						onChange={(e) => updateAutoplayConfig({ loop: e.target.checked })}
+						className="rounded"
+					/>
+					<span className="text-xs text-gray-300">ループ再生</span>
+				</label>
 			</div>
 		</>
 	)
