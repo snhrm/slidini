@@ -1,0 +1,45 @@
+{
+  "id": "section-divider",
+  "name": "セクション区切り",
+  "description": "グラデーション背景でセクション名を表示",
+  "category": "basic",
+  "slide": {
+    "background": {
+      "type": "gradient",
+      "gradient": {
+        "kind": "linear",
+        "angle": 135,
+        "stops": [
+          { "color": "#667eea", "position": 0 },
+          { "color": "#764ba2", "position": 100 }
+        ]
+      }
+    },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+    "elements": [
+      {
+        "type": "text",
+        "colorRole": "textPrimary",
+        "position": { "x": 160, "y": 420 },
+        "size": { "width": 1600, "height": 240 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 1,
+        "content": "## セクション名",
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 60,
+          "fontFamily": "sans-serif",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.5,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      }
+    ]
+  }
+}

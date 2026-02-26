@@ -1,0 +1,13 @@
+{
+  "id": "monochrome",
+  "name": "モノクロ",
+  "colors": {
+    "background": "#18181b",
+    "surface": "#27272a",
+    "textPrimary": "#fafafa",
+    "textSecondary": "#d4d4d8",
+    "textMuted": "#71717a",
+    "accent": "#a1a1aa",
+    "accentSecondary": "#52525b"
+  }
+}

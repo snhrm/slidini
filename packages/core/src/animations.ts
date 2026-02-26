@@ -1,0 +1,46 @@
+import type { Animation, AnimationType } from "./types"
+
+export const ANIMATION_TYPES = [
+	"fade-in",
+	"fade-out",
+	"slide-in-left",
+	"slide-in-right",
+	"slide-in-top",
+	"slide-in-bottom",
+	"slide-out-left",
+	"slide-out-right",
+	"slide-out-top",
+	"slide-out-bottom",
+	"rotate-in",
+	"rotate-out",
+	"scale-in",
+	"scale-out",
+] as const satisfies readonly AnimationType[]
+
+export const ANIMATION_LABELS: Record<AnimationType, string> = {
+	"fade-in": "フェードイン",
+	"fade-out": "フェードアウト",
+	"slide-in-left": "左からスライド",
+	"slide-in-right": "右からスライド",
+	"slide-in-top": "上からスライド",
+	"slide-in-bottom": "下からスライド",
+	"slide-out-left": "左へスライド",
+	"slide-out-right": "右へスライド",
+	"slide-out-top": "上へスライド",
+	"slide-out-bottom": "下へスライド",
+	"rotate-in": "回転イン",
+	"rotate-out": "回転アウト",
+	"scale-in": "拡大イン",
+	"scale-out": "縮小アウト",
+}
+
+export function createDefaultAnimation(type: AnimationType = "fade-in"): Animation {
+	return {
+		type,
+		duration: 0.5,
+		delay: 0,
+		easing: "ease-out",
+		trigger: "onEnter",
+		stepIndex: 0,
+	}
+}

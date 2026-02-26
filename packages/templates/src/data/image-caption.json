@@ -1,0 +1,47 @@
+{
+  "id": "image-caption",
+  "name": "画像+キャプション",
+  "description": "画像プレースホルダーとキャプション",
+  "category": "media",
+  "backgroundColorRole": "background",
+  "slide": {
+    "background": { "type": "color", "value": "#0f172a" },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+    "elements": [
+      {
+        "type": "image",
+        "position": { "x": 260, "y": 60 },
+        "size": { "width": 1400, "height": 800 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 1,
+        "src": "",
+        "fit": "contain",
+        "animations": []
+      },
+      {
+        "type": "text",
+        "colorRole": "textMuted",
+        "position": { "x": 260, "y": 900 },
+        "size": { "width": 1400, "height": 120 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 2,
+        "content": "キャプションを入力",
+        "style": {
+          "color": "#94a3b8",
+          "fontSize": 24,
+          "fontFamily": "sans-serif",
+          "fontWeight": "normal",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.5,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      }
+    ]
+  }
+}

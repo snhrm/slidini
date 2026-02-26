@@ -1,0 +1,59 @@
+{
+  "id": "quote",
+  "name": "引用",
+  "description": "引用テキストと出典を表示",
+  "category": "content",
+  "backgroundColorRole": "background",
+  "slide": {
+    "background": { "type": "color", "value": "#1e293b" },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+    "elements": [
+      {
+        "type": "text",
+        "colorRole": "textSecondary",
+        "position": { "x": 240, "y": 280 },
+        "size": { "width": 1440, "height": 360 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 1,
+        "content": "> 引用テキストを入力",
+        "style": {
+          "color": "#e2e8f0",
+          "fontSize": 40,
+          "fontFamily": "sans-serif",
+          "fontWeight": "normal",
+          "fontStyle": "italic",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.8,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      },
+      {
+        "type": "text",
+        "colorRole": "textMuted",
+        "position": { "x": 240, "y": 680 },
+        "size": { "width": 1440, "height": 100 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 2,
+        "content": "— 出典元",
+        "style": {
+          "color": "#64748b",
+          "fontSize": 28,
+          "fontFamily": "sans-serif",
+          "fontWeight": "normal",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.5,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      }
+    ]
+  }
+}

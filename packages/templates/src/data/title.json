@@ -1,0 +1,36 @@
+{
+  "id": "title",
+  "name": "タイトル",
+  "description": "大きなタイトルを中央に配置",
+  "category": "basic",
+  "backgroundColorRole": "background",
+  "slide": {
+    "background": { "type": "color", "value": "#1e293b" },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+    "elements": [
+      {
+        "type": "text",
+        "colorRole": "textPrimary",
+        "position": { "x": 160, "y": 390 },
+        "size": { "width": 1600, "height": 300 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 1,
+        "content": "# タイトルを入力",
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 72,
+          "fontFamily": "sans-serif",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.5,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      }
+    ]
+  }
+}

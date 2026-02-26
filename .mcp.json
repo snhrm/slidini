@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "slidini": {
+      "command": "/Users/snhrm/.bun/bin/bun",
+      "args": ["run", "packages/mcp/src/index.ts"]
+    }
+  }
+}

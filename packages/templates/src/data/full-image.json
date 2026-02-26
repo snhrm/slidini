@@ -1,0 +1,46 @@
+{
+  "id": "full-image",
+  "name": "全面画像",
+  "description": "全面画像にオーバーレイテキスト",
+  "category": "media",
+  "slide": {
+    "background": { "type": "color", "value": "#000000" },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+    "elements": [
+      {
+        "type": "image",
+        "position": { "x": 0, "y": 0 },
+        "size": { "width": 1920, "height": 1080 },
+        "rotation": 0,
+        "opacity": 0.6,
+        "zIndex": 1,
+        "src": "",
+        "fit": "cover",
+        "animations": []
+      },
+      {
+        "type": "text",
+        "colorRole": "textPrimary",
+        "position": { "x": 160, "y": 420 },
+        "size": { "width": 1600, "height": 240 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 2,
+        "content": "# テキストを入力",
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 64,
+          "fontFamily": "sans-serif",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.5,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      }
+    ]
+  }
+}

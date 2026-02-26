@@ -1,0 +1,13 @@
+{
+  "id": "warm-sunset",
+  "name": "ウォームサンセット",
+  "colors": {
+    "background": "#1c1917",
+    "surface": "#292524",
+    "textPrimary": "#fef3c7",
+    "textSecondary": "#fcd34d",
+    "textMuted": "#a16207",
+    "accent": "#f59e0b",
+    "accentSecondary": "#ef4444"
+  }
+}

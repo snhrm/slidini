@@ -1,0 +1,13 @@
+{
+  "id": "dark-slate",
+  "name": "ダークスレート",
+  "colors": {
+    "background": "#1e293b",
+    "surface": "#334155",
+    "textPrimary": "#ffffff",
+    "textSecondary": "#e2e8f0",
+    "textMuted": "#94a3b8",
+    "accent": "#667eea",
+    "accentSecondary": "#764ba2"
+  }
+}

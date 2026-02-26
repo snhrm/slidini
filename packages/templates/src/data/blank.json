@@ -1,0 +1,12 @@
+{
+  "id": "blank",
+  "name": "空白",
+  "description": "要素なしの空白スライド",
+  "category": "basic",
+  "backgroundColorRole": "background",
+  "slide": {
+    "background": { "type": "color", "value": "#1e293b" },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+    "elements": []
+  }
+}

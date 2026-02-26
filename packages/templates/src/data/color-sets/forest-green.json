@@ -1,0 +1,13 @@
+{
+  "id": "forest-green",
+  "name": "フォレストグリーン",
+  "colors": {
+    "background": "#052e16",
+    "surface": "#14532d",
+    "textPrimary": "#f0fdf4",
+    "textSecondary": "#bbf7d0",
+    "textMuted": "#4ade80",
+    "accent": "#22c55e",
+    "accentSecondary": "#06b6d4"
+  }
+}

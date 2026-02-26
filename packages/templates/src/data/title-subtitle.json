@@ -1,0 +1,59 @@
+{
+  "id": "title-subtitle",
+  "name": "タイトル+サブタイトル",
+  "description": "タイトルとサブタイトルを中央に配置",
+  "category": "basic",
+  "backgroundColorRole": "background",
+  "slide": {
+    "background": { "type": "color", "value": "#1e293b" },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+    "elements": [
+      {
+        "type": "text",
+        "colorRole": "textPrimary",
+        "position": { "x": 160, "y": 330 },
+        "size": { "width": 1600, "height": 250 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 1,
+        "content": "# タイトルを入力",
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 72,
+          "fontFamily": "sans-serif",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.5,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      },
+      {
+        "type": "text",
+        "colorRole": "textMuted",
+        "position": { "x": 320, "y": 580 },
+        "size": { "width": 1280, "height": 120 },
+        "rotation": 0,
+        "opacity": 1,
+        "zIndex": 2,
+        "content": "サブタイトルを入力",
+        "style": {
+          "color": "#94a3b8",
+          "fontSize": 36,
+          "fontFamily": "sans-serif",
+          "fontWeight": "normal",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
+          "lineHeight": 1.5,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": []
+      }
+    ]
+  }
+}
