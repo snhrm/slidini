@@ -1,7 +1,7 @@
 {
-  "id": "two-column",
-  "name": "2カラム",
-  "description": "タイトルと左右2つのテキストエリア",
+  "id": "bullet-list",
+  "name": "箇条書き",
+  "description": "タイトルと箇条書きリスト",
   "category": "content",
   "backgroundColorRole": "background",
   "slide": {
@@ -12,7 +12,7 @@
         "type": "text",
         "colorRole": "textPrimary",
         "position": { "x": 120, "y": 60 },
-        "size": { "width": 1680, "height": 120 },
+        "size": { "width": 1680, "height": 140 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 1,
@@ -25,7 +25,7 @@
           "fontStyle": "normal",
           "textDecoration": "none",
           "textAlign": "left",
-          "lineHeight": 1.4,
+          "lineHeight": 1.5,
           "backgroundColor": null,
           "padding": 0
         },
@@ -34,8 +34,8 @@
       {
         "type": "text",
         "colorRole": "accent",
-        "position": { "x": 120, "y": 175 },
-        "size": { "width": 120, "height": 5 },
+        "position": { "x": 120, "y": 190 },
+        "size": { "width": 200, "height": 6 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 2,
@@ -57,48 +57,23 @@
       {
         "type": "text",
         "colorRole": "textSecondary",
-        "bgColorRole": "surface",
-        "position": { "x": 120, "y": 230 },
-        "size": { "width": 810, "height": 740 },
+        "position": { "x": 120, "y": 240 },
+        "size": { "width": 1680, "height": 760 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 3,
-        "content": "### 左カラム\n\n左側のコンテンツを入力",
+        "content": "- ポイント1の内容を記述\n- ポイント2の内容を記述\n- ポイント3の内容を記述\n- ポイント4の内容を記述\n- ポイント5の内容を記述",
         "style": {
           "color": "#cbd5e1",
-          "fontSize": 28,
+          "fontSize": 32,
           "fontFamily": "sans-serif",
           "fontWeight": "normal",
           "fontStyle": "normal",
           "textDecoration": "none",
           "textAlign": "left",
-          "lineHeight": 1.6,
-          "backgroundColor": "#1e293b",
-          "padding": 32
-        },
-        "animations": []
-      },
-      {
-        "type": "text",
-        "colorRole": "textSecondary",
-        "bgColorRole": "surface",
-        "position": { "x": 990, "y": 230 },
-        "size": { "width": 810, "height": 740 },
-        "rotation": 0,
-        "opacity": 1,
-        "zIndex": 4,
-        "content": "### 右カラム\n\n右側のコンテンツを入力",
-        "style": {
-          "color": "#cbd5e1",
-          "fontSize": 28,
-          "fontFamily": "sans-serif",
-          "fontWeight": "normal",
-          "fontStyle": "normal",
-          "textDecoration": "none",
-          "textAlign": "left",
-          "lineHeight": 1.6,
-          "backgroundColor": "#1e293b",
-          "padding": 32
+          "lineHeight": 2.0,
+          "backgroundColor": null,
+          "padding": 0
         },
         "animations": []
       }

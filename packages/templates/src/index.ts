@@ -3,11 +3,16 @@ import { DEFAULT_COLOR_SET_COLORS, generateId } from "@slidini/core"
 import type { SlideTemplate, SlideTemplateData, SlideTemplateElement } from "./types"
 
 import blank from "./data/blank.json"
+import bulletList from "./data/bullet-list.json"
 import comparison from "./data/comparison.json"
 import fullImage from "./data/full-image.json"
 import imageCaption from "./data/image-caption.json"
 import quote from "./data/quote.json"
 import sectionDivider from "./data/section-divider.json"
+import stats from "./data/stats.json"
+import thankYou from "./data/thank-you.json"
+import threeColumn from "./data/three-column.json"
+import timeline from "./data/timeline.json"
 import titleBody from "./data/title-body.json"
 import titleSubtitle from "./data/title-subtitle.json"
 import title from "./data/title.json"
@@ -19,11 +24,16 @@ export const SLIDE_TEMPLATES: SlideTemplate[] = [
 	sectionDivider,
 	blank,
 	titleBody,
+	bulletList,
 	twoColumn,
+	threeColumn,
+	stats,
+	timeline,
 	quote,
 	comparison,
 	imageCaption,
 	fullImage,
+	thankYou,
 ] as SlideTemplate[]
 
 export function getSlideTemplate(id: string): SlideTemplate | undefined {

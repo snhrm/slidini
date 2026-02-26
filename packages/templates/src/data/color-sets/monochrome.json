@@ -2,12 +2,12 @@
   "id": "monochrome",
   "name": "モノクロ",
   "colors": {
-    "background": "#18181b",
-    "surface": "#27272a",
+    "background": "#09090b",
+    "surface": "#18181b",
     "textPrimary": "#fafafa",
-    "textSecondary": "#d4d4d8",
-    "textMuted": "#71717a",
-    "accent": "#a1a1aa",
-    "accentSecondary": "#52525b"
+    "textSecondary": "#a1a1aa",
+    "textMuted": "#52525b",
+    "accent": "#e4e4e7",
+    "accentSecondary": "#71717a"
   }
 }

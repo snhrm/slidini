@@ -5,7 +5,7 @@
   "category": "basic",
   "backgroundColorRole": "background",
   "slide": {
-    "background": { "type": "color", "value": "#1e293b" },
+    "background": { "type": "color", "value": "#0f172a" },
     "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
     "elements": []
   }

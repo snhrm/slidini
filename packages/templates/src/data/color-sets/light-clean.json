@@ -2,12 +2,12 @@
   "id": "light-clean",
   "name": "ライトクリーン",
   "colors": {
-    "background": "#ffffff",
-    "surface": "#f1f5f9",
-    "textPrimary": "#1e293b",
-    "textSecondary": "#475569",
-    "textMuted": "#94a3b8",
-    "accent": "#3b82f6",
-    "accentSecondary": "#8b5cf6"
+    "background": "#fafaf9",
+    "surface": "#f5f5f4",
+    "textPrimary": "#1c1917",
+    "textSecondary": "#44403c",
+    "textMuted": "#a8a29e",
+    "accent": "#2563eb",
+    "accentSecondary": "#7c3aed"
   }
 }

@@ -2,12 +2,12 @@
   "id": "forest-green",
   "name": "フォレストグリーン",
   "colors": {
-    "background": "#052e16",
-    "surface": "#14532d",
-    "textPrimary": "#f0fdf4",
-    "textSecondary": "#bbf7d0",
-    "textMuted": "#4ade80",
-    "accent": "#22c55e",
-    "accentSecondary": "#06b6d4"
+    "background": "#022c22",
+    "surface": "#064e3b",
+    "textPrimary": "#ecfdf5",
+    "textSecondary": "#a7f3d0",
+    "textMuted": "#059669",
+    "accent": "#34d399",
+    "accentSecondary": "#2dd4bf"
   }
 }

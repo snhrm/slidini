@@ -28,7 +28,7 @@
         "zIndex": 2,
         "content": "# テキストを入力",
         "style": {
-          "color": "#ffffff",
+          "color": "#f8fafc",
           "fontSize": 64,
           "fontFamily": "sans-serif",
           "fontWeight": "bold",

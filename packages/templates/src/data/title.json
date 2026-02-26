@@ -3,15 +3,24 @@
   "name": "タイトル",
   "description": "大きなタイトルを中央に配置",
   "category": "basic",
-  "backgroundColorRole": "background",
   "slide": {
-    "background": { "type": "color", "value": "#1e293b" },
+    "background": {
+      "type": "gradient",
+      "gradient": {
+        "kind": "linear",
+        "angle": 135,
+        "stops": [
+          { "color": "#6366f1", "position": 0 },
+          { "color": "#ec4899", "position": 100 }
+        ]
+      }
+    },
     "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
     "elements": [
       {
         "type": "text",
         "colorRole": "textPrimary",
-        "position": { "x": 160, "y": 390 },
+        "position": { "x": 160, "y": 360 },
         "size": { "width": 1600, "height": 300 },
         "rotation": 0,
         "opacity": 1,
@@ -25,11 +34,38 @@
           "fontStyle": "normal",
           "textDecoration": "none",
           "textAlign": "center",
+          "lineHeight": 1.4,
+          "backgroundColor": null,
+          "padding": 0
+        },
+        "animations": [
+          { "type": "fade-in", "duration": 0.6, "delay": 0.1, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
+      },
+      {
+        "type": "text",
+        "colorRole": "textPrimary",
+        "position": { "x": 360, "y": 660 },
+        "size": { "width": 1200, "height": 80 },
+        "rotation": 0,
+        "opacity": 0.7,
+        "zIndex": 2,
+        "content": "サブタイトルを入力",
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 32,
+          "fontFamily": "sans-serif",
+          "fontWeight": "normal",
+          "fontStyle": "normal",
+          "textDecoration": "none",
+          "textAlign": "center",
           "lineHeight": 1.5,
           "backgroundColor": null,
           "padding": 0
         },
-        "animations": []
+        "animations": [
+          { "type": "fade-in", "duration": 0.5, "delay": 0.4, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
       }
     ]
   }

@@ -15,10 +15,14 @@ export function SlideList() {
 			})),
 		)
 
+	const THUMB_HEIGHT = 72
+
 	return (
-		<div className="w-48 bg-gray-900 border-r border-gray-700 flex flex-col">
-			<div className="px-2 py-1.5 border-b border-gray-700 flex items-center justify-between">
-				<span className="text-xs text-gray-400 font-medium">スライド ({slides.length})</span>
+		<div className="h-36 bg-gray-900 border-t border-gray-700 flex flex-col pb-3">
+			<div className="px-2 py-1 border-b border-gray-700 flex items-center justify-between shrink-0">
+				<span className="text-xs text-gray-400 font-medium">
+					スライド ({slides.length})
+				</span>
 				<button
 					type="button"
 					onClick={openTemplatePicker}
@@ -27,13 +31,13 @@ export function SlideList() {
 					+追加
 				</button>
 			</div>
-			<div className="flex-1 overflow-y-auto p-1.5 space-y-1.5">
+			<div className="flex-1 overflow-x-auto overflow-y-hidden flex items-center gap-1.5 px-1.5">
 				{slides.map((slide, index) => (
 					<button
 						type="button"
 						key={slide.id}
 						onClick={() => setCurrentSlideIndex(index)}
-						className={`cursor-pointer rounded overflow-hidden border-2 transition-colors w-full text-left ${
+						className={`shrink-0 cursor-pointer rounded overflow-hidden border-2 transition-colors ${
 							index === currentSlideIndex
 								? "border-blue-500"
 								: "border-transparent hover:border-gray-600"
@@ -41,14 +45,17 @@ export function SlideList() {
 					>
 						<div
 							className="relative overflow-hidden"
-							style={{ aspectRatio: `${meta.width}/${meta.height}` }}
+							style={{
+								width: THUMB_HEIGHT * (meta.width / meta.height),
+								height: THUMB_HEIGHT,
+							}}
 						>
 							<div
 								style={{
 									position: "absolute",
 									top: 0,
 									left: 0,
-									transform: `scale(${176 / meta.width})`,
+									transform: `scale(${THUMB_HEIGHT / meta.height})`,
 									transformOrigin: "top left",
 									width: meta.width,
 									height: meta.height,
@@ -58,7 +65,7 @@ export function SlideList() {
 								<Slide slide={slide} meta={meta} currentStep={0} mode="view" scale={1} />
 							</div>
 						</div>
-						<div className="flex items-center justify-between px-1.5 py-0.5 bg-gray-800">
+						<div className="flex items-center justify-between px-1.5 bg-gray-800">
 							<span className="text-[10px] text-gray-400">{index + 1}</span>
 							{slides.length > 1 && (
 								<button

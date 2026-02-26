@@ -1,31 +1,31 @@
 {
-  "id": "section-divider",
-  "name": "セクション区切り",
-  "description": "グラデーション背景でセクション名を表示",
+  "id": "thank-you",
+  "name": "ありがとう",
+  "description": "プレゼンの締めくくりスライド",
   "category": "basic",
   "slide": {
     "background": {
       "type": "gradient",
       "gradient": {
         "kind": "linear",
-        "angle": 160,
+        "angle": 135,
         "stops": [
           { "color": "#6366f1", "position": 0 },
           { "color": "#ec4899", "position": 100 }
         ]
       }
     },
-    "transition": { "type": "zoom", "duration": 0.5, "easing": "ease-out" },
+    "transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
     "elements": [
       {
         "type": "text",
         "colorRole": "textPrimary",
-        "position": { "x": 160, "y": 380 },
+        "position": { "x": 160, "y": 340 },
         "size": { "width": 1600, "height": 200 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 1,
-        "content": "## セクション名",
+        "content": "# ありがとうございました",
         "style": {
           "color": "#ffffff",
           "fontSize": 64,
@@ -39,20 +39,20 @@
           "padding": 0
         },
         "animations": [
-          { "type": "fade-in", "duration": 0.5, "delay": 0.1, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+          { "type": "fade-in", "duration": 0.6, "delay": 0.1, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
         ]
       },
       {
         "type": "text",
-        "position": { "x": 560, "y": 590 },
-        "size": { "width": 800, "height": 60 },
+        "position": { "x": 360, "y": 560 },
+        "size": { "width": 1200, "height": 80 },
         "rotation": 0,
-        "opacity": 0.6,
+        "opacity": 0.7,
         "zIndex": 2,
-        "content": "セクションの説明を入力",
+        "content": "ご質問やフィードバックをお待ちしています",
         "style": {
           "color": "#ffffff",
-          "fontSize": 24,
+          "fontSize": 28,
           "fontFamily": "sans-serif",
           "fontWeight": "normal",
           "fontStyle": "normal",
@@ -62,7 +62,9 @@
           "backgroundColor": null,
           "padding": 0
         },
-        "animations": []
+        "animations": [
+          { "type": "fade-in", "duration": 0.5, "delay": 0.4, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
       }
     ]
   }

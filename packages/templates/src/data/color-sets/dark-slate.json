@@ -2,12 +2,12 @@
   "id": "dark-slate",
   "name": "ダークスレート",
   "colors": {
-    "background": "#1e293b",
-    "surface": "#334155",
-    "textPrimary": "#ffffff",
-    "textSecondary": "#e2e8f0",
-    "textMuted": "#94a3b8",
-    "accent": "#667eea",
-    "accentSecondary": "#764ba2"
+    "background": "#0f172a",
+    "surface": "#1e293b",
+    "textPrimary": "#f8fafc",
+    "textSecondary": "#cbd5e1",
+    "textMuted": "#64748b",
+    "accent": "#6366f1",
+    "accentSecondary": "#ec4899"
   }
 }
