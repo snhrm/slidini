@@ -474,8 +474,6 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 					<option value="rectangle">四角形</option>
 					<option value="circle">円形</option>
 					<option value="rounded">角丸</option>
-					<option value="hexagon">六角形</option>
-					<option value="diamond">ダイヤモンド</option>
 				</select>
 			</div>
 

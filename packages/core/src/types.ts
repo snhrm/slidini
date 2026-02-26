@@ -19,7 +19,7 @@ export type PresentationMeta = {
 
 // ===== スライド =====
 
-export type SlideShape = "rectangle" | "circle" | "rounded" | "hexagon" | "diamond"
+export type SlideShape = "rectangle" | "circle" | "rounded"
 
 export type Slide = {
 	id: string

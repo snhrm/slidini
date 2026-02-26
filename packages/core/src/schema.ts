@@ -54,7 +54,7 @@ const slideTransitionTypeSchema = z.enum([
 	"portal",
 ])
 
-const slideShapeSchema = z.enum(["rectangle", "circle", "rounded", "hexagon", "diamond"])
+const slideShapeSchema = z.enum(["rectangle", "circle", "rounded"])
 
 const slideTransitionSchema = z.object({
 	type: slideTransitionTypeSchema,
