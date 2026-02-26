@@ -18,6 +18,7 @@ export type {
 	PresentationMeta,
 	Slide,
 	SlideElement,
+	SlideShape,
 	SlideTransition,
 	SlideTransitionType,
 	TextElement,

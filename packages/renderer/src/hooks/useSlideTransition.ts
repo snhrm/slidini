@@ -80,10 +80,69 @@ const transitionVariants: Record<SlideTransitionType, TransitionVariant> = {
 		animate: { clipPath: "inset(0 0 0% 0)" },
 		exit: { clipPath: "inset(100% 0 0 0)" },
 	},
+	// 3D Cube transitions
+	"cube-left": {
+		initial: { rotateY: 90, opacity: 0 },
+		animate: { rotateY: 0, opacity: 1 },
+		exit: { rotateY: -90, opacity: 0 },
+	},
+	"cube-right": {
+		initial: { rotateY: -90, opacity: 0 },
+		animate: { rotateY: 0, opacity: 1 },
+		exit: { rotateY: 90, opacity: 0 },
+	},
+	"cube-up": {
+		initial: { rotateX: -90, opacity: 0 },
+		animate: { rotateX: 0, opacity: 1 },
+		exit: { rotateX: 90, opacity: 0 },
+	},
+	"cube-down": {
+		initial: { rotateX: 90, opacity: 0 },
+		animate: { rotateX: 0, opacity: 1 },
+		exit: { rotateX: -90, opacity: 0 },
+	},
+	// Page turn (book-like fold from left edge)
+	"page-turn": {
+		initial: { rotateY: -90, opacity: 0 },
+		animate: { rotateY: 0, opacity: 1 },
+		exit: { rotateY: 90, opacity: 0 },
+	},
+	// Portal (circular reveal)
+	portal: {
+		initial: { clipPath: "circle(0% at 50% 50%)" },
+		animate: { clipPath: "circle(75% at 50% 50%)" },
+		exit: { clipPath: "circle(0% at 50% 50%)" },
+	},
+}
+
+// Transitions that need 3D perspective on the parent container
+const TRANSITIONS_3D = new Set<SlideTransitionType>([
+	"cube-left",
+	"cube-right",
+	"cube-up",
+	"cube-down",
+	"page-turn",
+])
+
+// Transitions that need both slides visible simultaneously
+const TRANSITIONS_SYNC = new Set<SlideTransitionType>([
+	"cube-left",
+	"cube-right",
+	"cube-up",
+	"cube-down",
+	"page-turn",
+])
+
+export function is3DTransition(type: SlideTransitionType): boolean {
+	return TRANSITIONS_3D.has(type)
+}
+
+export function isSyncTransition(type: SlideTransitionType): boolean {
+	return TRANSITIONS_SYNC.has(type)
 }
 
 export function useSlideTransition(transition: SlideTransition) {
-	const variants = transitionVariants[transition.type]
+	const variants = transitionVariants[transition.type] ?? transitionVariants.none
 	return {
 		initial: variants.initial,
 		animate: variants.animate,

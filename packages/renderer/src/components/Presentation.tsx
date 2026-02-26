@@ -6,6 +6,7 @@ import type {
 } from "@slidini/core"
 import { AnimatePresence } from "framer-motion"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { is3DTransition, isSyncTransition } from "../hooks/useSlideTransition"
 import { Slide } from "./Slide"
 import { SlideElement } from "./SlideElement"
 
@@ -255,6 +256,9 @@ export function Presentation({
 	// Single / Autoplay mode
 	if (!currentSlideData) return null
 
+	const needs3D = is3DTransition(currentSlideData.transition.type)
+	const needsSync = isSyncTransition(currentSlideData.transition.type)
+
 	return (
 		<div
 			ref={containerRef}
@@ -275,11 +279,12 @@ export function Presentation({
 					position: "relative",
 					width: meta.width,
 					height: meta.height,
+					...(needs3D ? { perspective: 1200 } : {}),
 				}}
 			>
 				{renderOverlayLayer(bgOverlay, 0)}
 
-				<AnimatePresence mode="wait">
+				<AnimatePresence mode={needsSync ? "sync" : "wait"}>
 					<Slide
 						key={currentSlideData.id}
 						slide={currentSlideData}
@@ -287,6 +292,7 @@ export function Presentation({
 						currentStep={currentStep}
 						mode={mode}
 						scale={scale}
+						useAbsolutePosition={needsSync}
 						selectedElementId={selectedElementId}
 						onElementSelect={onElementSelect}
 						onElementUpdate={onElementUpdate}

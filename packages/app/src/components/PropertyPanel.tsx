@@ -4,6 +4,7 @@ import type {
 	ChartStyle,
 	ChartType,
 	SlideElement,
+	SlideShape,
 	SlideTransitionType,
 	TextElement,
 	TextStyle,
@@ -276,6 +277,7 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 		slide,
 		updateSlideBackground,
 		updateSlideTransition,
+		updateSlideShape,
 		updateMeta,
 		meta,
 		applySlideColorSet,
@@ -288,6 +290,7 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 			meta: s.presentation.meta,
 			updateSlideBackground: s.updateSlideBackground,
 			updateSlideTransition: s.updateSlideTransition,
+			updateSlideShape: s.updateSlideShape,
 			updateMeta: s.updateMeta,
 			applySlideColorSet: s.applySlideColorSet,
 			clearSlideColorSet: s.clearSlideColorSet,
@@ -459,6 +462,24 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 			</div>
 
 			<div>
+				<Label>スライド形状</Label>
+				<select
+					value={slide.shape ?? "rectangle"}
+					onChange={(e) => {
+						const val = e.target.value as SlideShape
+						updateSlideShape(slideId, val === "rectangle" ? undefined : val)
+					}}
+					className="w-full px-2 py-1 text-sm bg-gray-800 text-white rounded border border-gray-600"
+				>
+					<option value="rectangle">四角形</option>
+					<option value="circle">円形</option>
+					<option value="rounded">角丸</option>
+					<option value="hexagon">六角形</option>
+					<option value="diamond">ダイヤモンド</option>
+				</select>
+			</div>
+
+			<div>
 				<Label>トランジション</Label>
 				<select
 					value={slide.transition.type}
@@ -470,21 +491,39 @@ const SlideProperties = memo(function SlideProperties({ slideId }: { slideId: st
 					}
 					className="w-full px-2 py-1 text-sm bg-gray-800 text-white rounded border border-gray-600"
 				>
-					<option value="none">なし</option>
-					<option value="fade">フェード</option>
-					<option value="slide-left">左スライド</option>
-					<option value="slide-right">右スライド</option>
-					<option value="slide-up">上スライド</option>
-					<option value="slide-down">下スライド</option>
-					<option value="zoom">ズーム</option>
-					<option value="flip-x">フリップ(横)</option>
-					<option value="flip-y">フリップ(縦)</option>
-					<option value="rotate">回転</option>
-					<option value="scale-fade">スケールフェード</option>
-					<option value="wipe-left">ワイプ(左)</option>
-					<option value="wipe-right">ワイプ(右)</option>
-					<option value="wipe-up">ワイプ(上)</option>
-					<option value="wipe-down">ワイプ(下)</option>
+					<optgroup label="基本">
+						<option value="none">なし</option>
+						<option value="fade">フェード</option>
+						<option value="zoom">ズーム</option>
+						<option value="rotate">回転</option>
+						<option value="scale-fade">スケールフェード</option>
+					</optgroup>
+					<optgroup label="スライド">
+						<option value="slide-left">左スライド</option>
+						<option value="slide-right">右スライド</option>
+						<option value="slide-up">上スライド</option>
+						<option value="slide-down">下スライド</option>
+					</optgroup>
+					<optgroup label="フリップ">
+						<option value="flip-x">フリップ(横)</option>
+						<option value="flip-y">フリップ(縦)</option>
+					</optgroup>
+					<optgroup label="ワイプ">
+						<option value="wipe-left">ワイプ(左)</option>
+						<option value="wipe-right">ワイプ(右)</option>
+						<option value="wipe-up">ワイプ(上)</option>
+						<option value="wipe-down">ワイプ(下)</option>
+					</optgroup>
+					<optgroup label="3D キューブ">
+						<option value="cube-left">キューブ(左)</option>
+						<option value="cube-right">キューブ(右)</option>
+						<option value="cube-up">キューブ(上)</option>
+						<option value="cube-down">キューブ(下)</option>
+					</optgroup>
+					<optgroup label="ユニーク">
+						<option value="page-turn">ページめくり</option>
+						<option value="portal">ポータル</option>
+					</optgroup>
 				</select>
 			</div>
 

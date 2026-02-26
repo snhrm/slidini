@@ -15,6 +15,16 @@ export const ANIMATION_TYPES = [
 	"rotate-out",
 	"scale-in",
 	"scale-out",
+	"bounce-in",
+	"bounce-out",
+	"elastic-in",
+	"elastic-out",
+	"flip-in",
+	"flip-out",
+	"drop-in",
+	"drop-out",
+	"float",
+	"pulse",
 ] as const satisfies readonly AnimationType[]
 
 export const ANIMATION_LABELS: Record<AnimationType, string> = {
@@ -32,6 +42,16 @@ export const ANIMATION_LABELS: Record<AnimationType, string> = {
 	"rotate-out": "回転アウト",
 	"scale-in": "拡大イン",
 	"scale-out": "縮小アウト",
+	"bounce-in": "バウンスイン",
+	"bounce-out": "バウンスアウト",
+	"elastic-in": "エラスティックイン",
+	"elastic-out": "エラスティックアウト",
+	"flip-in": "フリップイン",
+	"flip-out": "フリップアウト",
+	"drop-in": "ドロップイン",
+	"drop-out": "ドロップアウト",
+	float: "フロート（浮遊）",
+	pulse: "パルス（脈動）",
 }
 
 export function createDefaultAnimation(type: AnimationType = "fade-in"): Animation {
