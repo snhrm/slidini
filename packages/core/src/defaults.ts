@@ -56,7 +56,7 @@ export function createDefaultTextStyle(overrides?: Partial<TextStyle>): TextStyl
 	return {
 		color: "#ffffff",
 		fontSize: 32,
-		fontFamily: "sans-serif",
+		fontFamily: "Noto Sans JP",
 		fontWeight: "normal",
 		fontStyle: "normal",
 		textDecoration: "none",
@@ -122,7 +122,7 @@ export function createDefaultChartStyle(overrides?: Partial<ChartStyle>): ChartS
 	return {
 		backgroundColor: null,
 		fontSize: 14,
-		fontFamily: "sans-serif",
+		fontFamily: "Noto Sans JP",
 		textColor: "#94a3b8",
 		gridColor: "rgba(148, 163, 184, 0.2)",
 		showLegend: true,

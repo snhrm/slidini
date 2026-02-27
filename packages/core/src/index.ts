@@ -51,5 +51,8 @@ export {
 	generateId,
 } from "./defaults"
 
+export { AVAILABLE_FONTS, buildGoogleFontsUrl } from "./fonts"
+export type { FontCategory, FontDefinition } from "./fonts"
+
 export { parsePresentation, presentationSchema } from "./schema"
 export type { ParseResult } from "./schema"

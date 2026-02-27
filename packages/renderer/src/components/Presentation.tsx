@@ -1,11 +1,12 @@
 import type {
 	AutoplayConfig,
 	Presentation as PresentationType,
-	Slide as SlideType,
 	SlideElement as SlideElementType,
+	Slide as SlideType,
 	ViewMode,
 } from "@slidini/core"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useFontLoader } from "../hooks/useFontLoader"
 import { is3DTransition } from "../hooks/useSlideTransition"
 import { Slide } from "./Slide"
 import { SlideElement } from "./SlideElement"
@@ -40,6 +41,7 @@ export function Presentation({
 	onElementSelect,
 	onElementUpdate,
 }: PresentationProps) {
+	useFontLoader(data)
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [scale, setScale] = useState(1)
 	const autoplayTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -302,9 +304,7 @@ export function Presentation({
 					width: meta.width,
 					height: meta.height,
 					flexShrink: 0,
-					...(needs3D
-						? { perspective: 1200, transformStyle: "preserve-3d" as const }
-						: {}),
+					...(needs3D ? { perspective: 1200, transformStyle: "preserve-3d" as const } : {}),
 				}}
 			>
 				{renderOverlayLayer(bgOverlay, 0)}

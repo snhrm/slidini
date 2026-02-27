@@ -3,13 +3,19 @@ import type {
 	ChartElement,
 	ChartStyle,
 	ChartType,
+	FontCategory,
 	SlideElement,
 	SlideShape,
 	SlideTransitionType,
 	TextElement,
 	TextStyle,
 } from "@slidini/core"
-import { ANIMATION_LABELS, ANIMATION_TYPES, createDefaultAnimation } from "@slidini/core"
+import {
+	ANIMATION_LABELS,
+	ANIMATION_TYPES,
+	AVAILABLE_FONTS,
+	createDefaultAnimation,
+} from "@slidini/core"
 import { COLOR_SETS } from "@slidini/templates"
 import { memo } from "react"
 import { useShallow } from "zustand/react/shallow"
@@ -804,12 +810,22 @@ const TextProperties = memo(function TextProperties({
 			</div>
 			<div>
 				<Label>フォントファミリー</Label>
-				<input
-					type="text"
+				<select
 					value={element.style.fontFamily}
 					onChange={(e) => updateStyle({ fontFamily: e.target.value })}
+					style={{ fontFamily: element.style.fontFamily }}
 					className="w-full px-2 py-1 text-sm bg-gray-800 text-white rounded border border-gray-600"
-				/>
+				>
+					{(["ゴシック体", "明朝体", "見出し・デザイン向き"] as FontCategory[]).map((cat) => (
+						<optgroup key={cat} label={cat}>
+							{AVAILABLE_FONTS.filter((f) => f.category === cat).map((f) => (
+								<option key={f.family} value={f.family} style={{ fontFamily: f.family }}>
+									{f.family}
+								</option>
+							))}
+						</optgroup>
+					))}
+				</select>
 			</div>
 			<div className="flex gap-2">
 				<div className="flex-1">

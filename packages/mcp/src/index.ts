@@ -1,6 +1,8 @@
 #!/usr/bin/env bun
 import { readFileSync, writeFileSync } from "node:fs"
 import { resolve } from "node:path"
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import {
 	type Background,
 	type Presentation,
@@ -22,8 +24,6 @@ import {
 	getSlideTemplate,
 	resolveOldColors,
 } from "@slidini/templates"
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod"
 
 // ===== Helpers =====
@@ -331,6 +331,7 @@ Args:
   - color (string, optional): Text color hex (default: "#ffffff")
   - text_align (string, optional): "left" | "center" | "right" (default: "left")
   - font_weight (string, optional): "normal" | "bold" (default: "normal")
+  - font_family (string, optional): Font family name (default: "Noto Sans JP"). Available: "Noto Sans JP", "Zen Kaku Gothic New", "M PLUS 1p", "M PLUS Rounded 1c", "BIZ UDPGothic", "Noto Serif JP", "Shippori Mincho", "Zen Antique", "Dela Gothic One", "Reggae One", "Rampart One", "Kiwi Maru"
 
 Returns: The new element's id.`,
 		inputSchema: {
@@ -345,6 +346,7 @@ Returns: The new element's id.`,
 			color: z.string().optional().describe("Text color hex"),
 			text_align: z.enum(["left", "center", "right"]).optional().describe("Text alignment"),
 			font_weight: z.enum(["normal", "bold"]).optional().describe("Font weight"),
+			font_family: z.string().optional().describe("Font family name"),
 		},
 		annotations: {
 			readOnlyHint: false,
@@ -365,6 +367,7 @@ Returns: The new element's id.`,
 		color,
 		text_align,
 		font_weight,
+		font_family,
 	}) => {
 		try {
 			const presentation = readPresentation(file_path)
@@ -380,6 +383,7 @@ Returns: The new element's id.`,
 					...(color !== undefined ? { color } : {}),
 					...(text_align !== undefined ? { textAlign: text_align } : {}),
 					...(font_weight !== undefined ? { fontWeight: font_weight } : {}),
+					...(font_family !== undefined ? { fontFamily: font_family } : {}),
 				}),
 			})
 			slide.elements.push(element)
@@ -547,6 +551,7 @@ Args:
   - color (string, optional): Text color (text only)
   - text_align (string, optional): Text alignment (text only)
   - font_weight (string, optional): Font weight (text only)
+  - font_family (string, optional): Font family name (text only)
   - src (string, optional): Image/video source URL or data URI
 
 Returns: Confirmation of the update.`,
@@ -569,6 +574,7 @@ Returns: Confirmation of the update.`,
 				.optional()
 				.describe("Text alignment (text only)"),
 			font_weight: z.enum(["normal", "bold"]).optional().describe("Font weight (text only)"),
+			font_family: z.string().optional().describe("Font family name (text only)"),
 			src: z.string().optional().describe("Image/video source URL or data URI"),
 		},
 		annotations: {
@@ -614,6 +620,7 @@ Returns: Confirmation of the update.`,
 				if (params.color !== undefined) element.style.color = params.color
 				if (params.text_align !== undefined) element.style.textAlign = params.text_align
 				if (params.font_weight !== undefined) element.style.fontWeight = params.font_weight
+				if (params.font_family !== undefined) element.style.fontFamily = params.font_family
 			}
 
 			// Image/Video source
@@ -1388,7 +1395,7 @@ Args:
   - file_path (string): Path to the .slide.json file
   - layer (string): "background" or "foreground"
   - element_id (string): ID of the overlay element
-  - content, x, y, width, height, rotation, opacity, z_index, font_size, color, text_align, font_weight, src (all optional)
+  - content, x, y, width, height, rotation, opacity, z_index, font_size, color, text_align, font_weight, font_family, src (all optional)
 
 Returns: Confirmation with the updated element ID.`,
 		inputSchema: {
@@ -1407,6 +1414,7 @@ Returns: Confirmation with the updated element ID.`,
 			color: z.string().optional().describe("Text color"),
 			text_align: z.enum(["left", "center", "right"]).optional().describe("Text alignment"),
 			font_weight: z.enum(["normal", "bold"]).optional().describe("Font weight"),
+			font_family: z.string().optional().describe("Font family name"),
 			src: z.string().optional().describe("Image src"),
 		},
 		annotations: {
@@ -1446,6 +1454,7 @@ Returns: Confirmation with the updated element ID.`,
 				if (updates.color != null) element.style.color = updates.color
 				if (updates.text_align != null) element.style.textAlign = updates.text_align
 				if (updates.font_weight != null) element.style.fontWeight = updates.font_weight
+				if (updates.font_family != null) element.style.fontFamily = updates.font_family
 			}
 			if (element.type === "image" && updates.src != null) {
 				element.src = updates.src

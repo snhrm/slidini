@@ -7,6 +7,7 @@ export { TextElement } from "./components/TextElement"
 export { ImageElement } from "./components/ImageElement"
 export { VideoElement } from "./components/VideoElement"
 export { useAnimation, getMaxStepIndex } from "./hooks/useAnimation"
+export { useFontLoader } from "./hooks/useFontLoader"
 export {
 	getCubeTransformOrigin,
 	is3DTransition,
