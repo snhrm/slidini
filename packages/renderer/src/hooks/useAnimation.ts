@@ -30,6 +30,99 @@ const variantMap: Record<AnimationType, Variants> = {
 		hidden: { scale: 1, opacity: 1 },
 		visible: { scale: 0, opacity: 0 },
 	},
+	// Spring-based entrance
+	"bounce-in": {
+		hidden: { scale: 0, opacity: 0 },
+		visible: {
+			scale: 1,
+			opacity: 1,
+			transition: { type: "spring", stiffness: 400, damping: 15 },
+		},
+	},
+	"bounce-out": {
+		hidden: { scale: 1, opacity: 1 },
+		visible: {
+			scale: 0,
+			opacity: 0,
+			transition: { type: "spring", stiffness: 400, damping: 15 },
+		},
+	},
+	"elastic-in": {
+		hidden: { scale: 0, opacity: 0 },
+		visible: {
+			scale: 1,
+			opacity: 1,
+			transition: { type: "spring", stiffness: 200, damping: 8 },
+		},
+	},
+	"elastic-out": {
+		hidden: { scale: 1, opacity: 1 },
+		visible: {
+			scale: 0,
+			opacity: 0,
+			transition: { type: "spring", stiffness: 200, damping: 8 },
+		},
+	},
+	// 3D flip
+	"flip-in": {
+		hidden: { rotateY: -90, opacity: 0 },
+		visible: { rotateY: 0, opacity: 1 },
+	},
+	"flip-out": {
+		hidden: { rotateY: 0, opacity: 1 },
+		visible: { rotateY: 90, opacity: 0 },
+	},
+	// Drop (from above with spring bounce)
+	"drop-in": {
+		hidden: { y: "-100%", opacity: 0 },
+		visible: {
+			y: 0,
+			opacity: 1,
+			transition: { type: "spring", stiffness: 300, damping: 20 },
+		},
+	},
+	"drop-out": {
+		hidden: { y: 0, opacity: 1 },
+		visible: {
+			y: "100%",
+			opacity: 0,
+			transition: { type: "spring", stiffness: 300, damping: 20 },
+		},
+	},
+	// Continuous: float (gentle hovering)
+	float: {
+		hidden: { y: 0, opacity: 0 },
+		visible: {
+			y: [0, -20, 0],
+			opacity: 1,
+			transition: {
+				y: {
+					repeat: Number.POSITIVE_INFINITY,
+					repeatType: "loop",
+					duration: 3,
+					ease: "easeInOut",
+				},
+				opacity: { duration: 0.5 },
+			},
+		},
+	},
+	// Continuous: pulse (breathing scale)
+	pulse: {
+		hidden: { scale: 1, opacity: 0 },
+		visible: {
+			scale: [1, 1.06, 1],
+			opacity: 1,
+			transition: {
+				scale: {
+					repeat: Number.POSITIVE_INFINITY,
+					repeatType: "loop",
+					duration: 2,
+					ease: "easeInOut",
+				},
+				opacity: { duration: 0.5 },
+			},
+		},
+	},
 }
 
 type AnimationProps = {

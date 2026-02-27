@@ -46,7 +46,15 @@ const slideTransitionTypeSchema = z.enum([
 	"wipe-right",
 	"wipe-up",
 	"wipe-down",
+	"cube-left",
+	"cube-right",
+	"cube-up",
+	"cube-down",
+	"page-turn",
+	"portal",
 ])
+
+const slideShapeSchema = z.enum(["rectangle", "circle", "rounded"])
 
 const slideTransitionSchema = z.object({
 	type: slideTransitionTypeSchema,
@@ -154,6 +162,7 @@ const slideElementSchema = z.discriminatedUnion("type", [
 
 const slideSchema = z.object({
 	id: z.string(),
+	shape: slideShapeSchema.optional(),
 	background: backgroundSchema,
 	transition: slideTransitionSchema,
 	elements: z.array(slideElementSchema),

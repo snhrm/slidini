@@ -1,0 +1,285 @@
+{
+	"meta": {
+		"schemaVersion": 1,
+		"title": "トランジション全種テスト",
+		"width": 1920,
+		"height": 1080,
+		"createdAt": "2026-02-27T00:00:00.000Z",
+		"updatedAt": "2026-02-27T00:00:00.000Z"
+	},
+	"slides": [
+		{
+			"id": "tr-none",
+			"background": { "type": "color", "value": "#1e293b" },
+			"transition": { "type": "none", "duration": 0, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-none-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# none\nトランジションなし",
+				"style": { "color": "#e2e8f0", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-fade",
+			"background": { "type": "color", "value": "#312e81" },
+			"transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-fade-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# fade\nフェード",
+				"style": { "color": "#e0e7ff", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-slide-left",
+			"background": { "type": "color", "value": "#064e3b" },
+			"transition": { "type": "slide-left", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-sl-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# slide-left\n左スライド",
+				"style": { "color": "#d1fae5", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-slide-right",
+			"background": { "type": "color", "value": "#713f12" },
+			"transition": { "type": "slide-right", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-sr-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# slide-right\n右スライド",
+				"style": { "color": "#fef3c7", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-slide-up",
+			"background": { "type": "color", "value": "#4c1d95" },
+			"transition": { "type": "slide-up", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-su-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# slide-up\n上スライド",
+				"style": { "color": "#ede9fe", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-slide-down",
+			"background": { "type": "color", "value": "#7f1d1d" },
+			"transition": { "type": "slide-down", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-sd-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# slide-down\n下スライド",
+				"style": { "color": "#fee2e2", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-zoom",
+			"background": { "type": "color", "value": "#0c4a6e" },
+			"transition": { "type": "zoom", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-zoom-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# zoom\nズーム",
+				"style": { "color": "#bae6fd", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-flip-x",
+			"background": { "type": "color", "value": "#166534" },
+			"transition": { "type": "flip-x", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-fx-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# flip-x\n横フリップ",
+				"style": { "color": "#bbf7d0", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-flip-y",
+			"background": { "type": "color", "value": "#9a3412" },
+			"transition": { "type": "flip-y", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-fy-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# flip-y\n縦フリップ",
+				"style": { "color": "#fed7aa", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-rotate",
+			"background": { "type": "color", "value": "#831843" },
+			"transition": { "type": "rotate", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-rot-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# rotate\n回転",
+				"style": { "color": "#fce7f3", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-scale-fade",
+			"background": { "type": "color", "value": "#1e3a5f" },
+			"transition": { "type": "scale-fade", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-sf-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# scale-fade\nスケールフェード",
+				"style": { "color": "#dbeafe", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-wipe-left",
+			"background": { "type": "color", "value": "#3f3f46" },
+			"transition": { "type": "wipe-left", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-wl-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# wipe-left\n左ワイプ",
+				"style": { "color": "#fafafa", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-wipe-right",
+			"background": { "type": "color", "value": "#44403c" },
+			"transition": { "type": "wipe-right", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-wr-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# wipe-right\n右ワイプ",
+				"style": { "color": "#fafaf9", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-wipe-up",
+			"background": { "type": "color", "value": "#365314" },
+			"transition": { "type": "wipe-up", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-wu-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# wipe-up\n上ワイプ",
+				"style": { "color": "#ecfccb", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-wipe-down",
+			"background": { "type": "color", "value": "#78350f" },
+			"transition": { "type": "wipe-down", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-wd-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# wipe-down\n下ワイプ",
+				"style": { "color": "#fef3c7", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-cube-left",
+			"background": { "type": "color", "value": "#1e1b4b" },
+			"transition": { "type": "cube-left", "duration": 0.7, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-cl-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# cube-left\nキューブ左 (3D)",
+				"style": { "color": "#c7d2fe", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-cube-right",
+			"background": { "type": "color", "value": "#0f766e" },
+			"transition": { "type": "cube-right", "duration": 0.7, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-cr-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# cube-right\nキューブ右 (3D)",
+				"style": { "color": "#ccfbf1", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-cube-up",
+			"background": { "type": "color", "value": "#4a1942" },
+			"transition": { "type": "cube-up", "duration": 0.7, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-cu-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# cube-up\nキューブ上 (3D)",
+				"style": { "color": "#f5d0fe", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-cube-down",
+			"background": { "type": "color", "value": "#1c1917" },
+			"transition": { "type": "cube-down", "duration": 0.7, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-cd-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# cube-down\nキューブ下 (3D)",
+				"style": { "color": "#e7e5e4", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-page-turn",
+			"background": { "type": "color", "value": "#3b0764" },
+			"transition": { "type": "page-turn", "duration": 0.8, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-pt-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# page-turn\nページめくり (3D)",
+				"style": { "color": "#e9d5ff", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "tr-portal",
+			"background": { "type": "color", "value": "#0f172a" },
+			"transition": { "type": "portal", "duration": 0.8, "easing": "ease-out" },
+			"elements": [{
+				"id": "tr-po-t", "type": "text",
+				"position": { "x": 460, "y": 420 }, "size": { "width": 1000, "height": 240 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# portal\nポータル（円形展開）",
+				"style": { "color": "#e2e8f0", "fontSize": 64, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.4, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		}
+	]
+}

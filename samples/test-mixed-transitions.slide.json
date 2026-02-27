@@ -1,0 +1,118 @@
+{
+	"meta": {
+		"schemaVersion": 1,
+		"title": "3D↔2Dトランジション混在テスト",
+		"width": 1920,
+		"height": 1080,
+		"createdAt": "2026-02-27T00:00:00.000Z",
+		"updatedAt": "2026-02-27T00:00:00.000Z"
+	},
+	"slides": [
+		{
+			"id": "mix-fade",
+			"background": { "type": "color", "value": "#1e293b" },
+			"transition": { "type": "fade", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-fade-t", "type": "text",
+				"position": { "x": 360, "y": 380 }, "size": { "width": 1200, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 1. fade（2D）\n次: cube-left（3D）\n2D→3Dの切替テスト",
+				"style": { "color": "#e2e8f0", "fontSize": 48, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "mix-cube",
+			"background": { "type": "color", "value": "#1e1b4b" },
+			"transition": { "type": "cube-left", "duration": 0.7, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-cube-t", "type": "text",
+				"position": { "x": 360, "y": 380 }, "size": { "width": 1200, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 2. cube-left（3D）\n次: portal（2D）\n3D→2Dの切替テスト",
+				"style": { "color": "#c7d2fe", "fontSize": 48, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "mix-portal",
+			"background": { "type": "color", "value": "#0f172a" },
+			"transition": { "type": "portal", "duration": 0.8, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-portal-t", "type": "text",
+				"position": { "x": 360, "y": 380 }, "size": { "width": 1200, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 3. portal（2D）\n次: page-turn（3D）\n2D→3Dの切替テスト",
+				"style": { "color": "#e2e8f0", "fontSize": 48, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "mix-pageturn",
+			"background": { "type": "color", "value": "#3b0764" },
+			"transition": { "type": "page-turn", "duration": 0.8, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-pt-t", "type": "text",
+				"position": { "x": 360, "y": 380 }, "size": { "width": 1200, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 4. page-turn（3D）\n次: slide-left（2D）\n3D→2Dの切替テスト",
+				"style": { "color": "#e9d5ff", "fontSize": 48, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "mix-slide",
+			"background": { "type": "color", "value": "#064e3b" },
+			"transition": { "type": "slide-left", "duration": 0.5, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-sl-t", "type": "text",
+				"position": { "x": 360, "y": 380 }, "size": { "width": 1200, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 5. slide-left（2D）\n次: cube-right（3D）\n2D→3Dの切替テスト",
+				"style": { "color": "#d1fae5", "fontSize": 48, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "mix-cube-r",
+			"shape": "circle",
+			"background": { "type": "color", "value": "#0f766e" },
+			"transition": { "type": "cube-right", "duration": 0.7, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-cr-t", "type": "text",
+				"position": { "x": 460, "y": 380 }, "size": { "width": 1000, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 6. cube-right + circle\n3D × 形状の組み合わせ\n次: wipe-left（2D）",
+				"style": { "color": "#ccfbf1", "fontSize": 44, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "mix-wipe",
+			"background": { "type": "color", "value": "#3f3f46" },
+			"transition": { "type": "wipe-left", "duration": 0.6, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-wl-t", "type": "text",
+				"position": { "x": 360, "y": 380 }, "size": { "width": 1200, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 7. wipe-left（2D）\n次: cube-up（3D）\n2D→3Dの切替テスト",
+				"style": { "color": "#fafafa", "fontSize": 48, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		},
+		{
+			"id": "mix-cube-u",
+			"shape": "rounded",
+			"background": { "type": "color", "value": "#4a1942" },
+			"transition": { "type": "cube-up", "duration": 0.7, "easing": "ease-out" },
+			"elements": [{
+				"id": "mix-cu-t", "type": "text",
+				"position": { "x": 360, "y": 380 }, "size": { "width": 1200, "height": 320 },
+				"rotation": 0, "opacity": 1, "zIndex": 1,
+				"content": "# 8. cube-up + rounded\n3D × 形状の組み合わせ\n次: fade で最初に戻れる",
+				"style": { "color": "#f5d0fe", "fontSize": 44, "fontFamily": "sans-serif", "fontWeight": "bold", "fontStyle": "normal", "textDecoration": "none", "textAlign": "center", "lineHeight": 1.5, "backgroundColor": null, "padding": 0 },
+				"animations": []
+			}]
+		}
+	]
+}

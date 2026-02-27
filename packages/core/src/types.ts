@@ -19,8 +19,11 @@ export type PresentationMeta = {
 
 // ===== スライド =====
 
+export type SlideShape = "rectangle" | "circle" | "rounded"
+
 export type Slide = {
 	id: string
+	shape?: SlideShape
 	background: Background
 	transition: SlideTransition
 	elements: SlideElement[]
@@ -67,6 +70,12 @@ export type SlideTransitionType =
 	| "wipe-right"
 	| "wipe-up"
 	| "wipe-down"
+	| "cube-left"
+	| "cube-right"
+	| "cube-up"
+	| "cube-down"
+	| "page-turn"
+	| "portal"
 
 // ===== チャート =====
 
@@ -174,6 +183,16 @@ export type AnimationType =
 	| "rotate-out"
 	| "scale-in"
 	| "scale-out"
+	| "bounce-in"
+	| "bounce-out"
+	| "elastic-in"
+	| "elastic-out"
+	| "flip-in"
+	| "flip-out"
+	| "drop-in"
+	| "drop-out"
+	| "float"
+	| "pulse"
 
 // ===== カラーセット =====
 

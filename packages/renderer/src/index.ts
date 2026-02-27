@@ -7,4 +7,9 @@ export { TextElement } from "./components/TextElement"
 export { ImageElement } from "./components/ImageElement"
 export { VideoElement } from "./components/VideoElement"
 export { useAnimation, getMaxStepIndex } from "./hooks/useAnimation"
-export { useSlideTransition } from "./hooks/useSlideTransition"
+export {
+	getCubeTransformOrigin,
+	is3DTransition,
+	isSyncTransition,
+	useSlideTransition,
+} from "./hooks/useSlideTransition"

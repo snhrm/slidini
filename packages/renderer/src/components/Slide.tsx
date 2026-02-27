@@ -2,12 +2,17 @@ import type {
 	Background,
 	PresentationMeta,
 	SlideElement as SlideElementType,
+	SlideShape,
 	Slide as SlideType,
 } from "@slidini/core"
 import { motion } from "framer-motion"
 import type React from "react"
 import { useMemo } from "react"
-import { useSlideTransition } from "../hooks/useSlideTransition"
+import {
+	getCubeTransformOrigin,
+	is3DTransition,
+	useSlideTransition,
+} from "../hooks/useSlideTransition"
 import { SlideElement } from "./SlideElement"
 
 type Props = {
@@ -16,6 +21,8 @@ type Props = {
 	currentStep: number
 	mode: "edit" | "view"
 	scale: number
+	useAbsolutePosition?: boolean
+	isExiting?: boolean
 	selectedElementId?: string | null
 	onElementSelect?: (elementId: string | null) => void
 	onElementUpdate?: (
@@ -47,17 +54,38 @@ function backgroundToStyle(bg: Background): React.CSSProperties {
 	}
 }
 
+function getShapeStyle(
+	shape: SlideShape | undefined,
+	width: number,
+	height: number,
+): React.CSSProperties {
+	switch (shape) {
+		case "circle": {
+			const r = Math.min(width, height) / 2
+			return { clipPath: `circle(${r}px at ${width / 2}px ${height / 2}px)` }
+		}
+		case "rounded":
+			return { borderRadius: 48 }
+		default:
+			return {}
+	}
+}
+
 export function Slide({
 	slide,
 	meta,
 	currentStep,
 	mode,
 	scale,
+	useAbsolutePosition,
+	isExiting,
 	selectedElementId,
 	onElementSelect,
 	onElementUpdate,
 }: Props) {
 	const transitionProps = useSlideTransition(slide.transition)
+	const is3D = is3DTransition(slide.transition.type)
+	const cubeOrigin = getCubeTransformOrigin(slide.transition.type, !isExiting)
 
 	const handleBackgroundClick = () => {
 		if (mode === "edit" && onElementSelect) {
@@ -70,17 +98,25 @@ export function Slide({
 		[slide.elements],
 	)
 
+	const shapeStyle = getShapeStyle(slide.shape, meta.width, meta.height)
+
 	return (
 		<motion.div
 			key={slide.id}
-			{...transitionProps}
+			initial={isExiting ? transitionProps.animate : transitionProps.initial}
+			animate={isExiting ? transitionProps.exit : transitionProps.animate}
+			transition={transitionProps.transition}
 			onClick={handleBackgroundClick}
 			style={{
-				position: "relative",
+				position: useAbsolutePosition ? "absolute" : "relative",
+				...(useAbsolutePosition ? { top: 0, left: 0, zIndex: 1 } : {}),
 				width: meta.width,
 				height: meta.height,
 				overflow: "hidden",
 				...backgroundToStyle(slide.background),
+				...shapeStyle,
+				...(is3D ? { backfaceVisibility: "hidden" as const } : {}),
+				...(cubeOrigin ? { transformOrigin: cubeOrigin } : {}),
 			}}
 		>
 			{sortedElements.map((element) => (

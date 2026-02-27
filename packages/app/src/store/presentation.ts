@@ -4,6 +4,7 @@ import {
 	type Background,
 	type Presentation,
 	type SlideElement,
+	type SlideShape,
 	type SlideTransition,
 	type ViewMode,
 	createDefaultAutoplayConfig,
@@ -66,6 +67,7 @@ type PresentationStore = {
 	reorderSlides: (fromIndex: number, toIndex: number) => void
 	updateSlideBackground: (slideId: string, background: Background) => void
 	updateSlideTransition: (slideId: string, transition: SlideTransition) => void
+	updateSlideShape: (slideId: string, shape: SlideShape | undefined) => void
 
 	// 要素操作
 	addElement: (slideId: string, element: SlideElement) => void
@@ -318,6 +320,18 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 			presentation: {
 				...s.presentation,
 				slides: s.presentation.slides.map((sl) => (sl.id === slideId ? { ...sl, transition } : sl)),
+				meta: {
+					...s.presentation.meta,
+					updatedAt: new Date().toISOString(),
+				},
+			},
+		})),
+
+	updateSlideShape: (slideId, shape) =>
+		set((s) => ({
+			presentation: {
+				...s.presentation,
+				slides: s.presentation.slides.map((sl) => (sl.id === slideId ? { ...sl, shape } : sl)),
 				meta: {
 					...s.presentation.meta,
 					updatedAt: new Date().toISOString(),

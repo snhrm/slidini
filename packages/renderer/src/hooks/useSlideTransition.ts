@@ -80,10 +80,87 @@ const transitionVariants: Record<SlideTransitionType, TransitionVariant> = {
 		animate: { clipPath: "inset(0 0 0% 0)" },
 		exit: { clipPath: "inset(100% 0 0 0)" },
 	},
+	// 3D Cube transitions (use 91° so backfaceVisibility:hidden hides the face)
+	"cube-left": {
+		initial: { rotateY: 91 },
+		animate: { rotateY: 0 },
+		exit: { rotateY: -91 },
+	},
+	"cube-right": {
+		initial: { rotateY: -91 },
+		animate: { rotateY: 0 },
+		exit: { rotateY: 91 },
+	},
+	"cube-up": {
+		initial: { rotateX: -91 },
+		animate: { rotateX: 0 },
+		exit: { rotateX: 91 },
+	},
+	"cube-down": {
+		initial: { rotateX: 91 },
+		animate: { rotateX: 0 },
+		exit: { rotateX: -91 },
+	},
+	// Page turn (book-like fold from left edge)
+	"page-turn": {
+		initial: { rotateY: -91 },
+		animate: { rotateY: 0 },
+		exit: { rotateY: 91 },
+	},
+	// Portal (circular reveal)
+	portal: {
+		initial: { clipPath: "circle(0% at 50% 50%)" },
+		animate: { clipPath: "circle(75% at 50% 50%)" },
+		exit: { clipPath: "circle(0% at 50% 50%)" },
+	},
+}
+
+// Transitions that need 3D perspective on the parent container
+const TRANSITIONS_3D = new Set<SlideTransitionType>([
+	"cube-left",
+	"cube-right",
+	"cube-up",
+	"cube-down",
+	"page-turn",
+])
+
+// Transitions that need both slides visible simultaneously
+const TRANSITIONS_SYNC = new Set<SlideTransitionType>([
+	"cube-left",
+	"cube-right",
+	"cube-up",
+	"cube-down",
+	"page-turn",
+])
+
+export function is3DTransition(type: SlideTransitionType): boolean {
+	return TRANSITIONS_3D.has(type)
+}
+
+export function isSyncTransition(type: SlideTransitionType): boolean {
+	return TRANSITIONS_SYNC.has(type)
+}
+
+// Transform origins for cube faces: [entering, exiting]
+const CUBE_ORIGINS: Partial<Record<SlideTransitionType, [string, string]>> = {
+	"cube-left": ["left center", "right center"],
+	"cube-right": ["right center", "left center"],
+	"cube-up": ["center top", "center bottom"],
+	"cube-down": ["center bottom", "center top"],
+	"page-turn": ["left center", "left center"],
+}
+
+export function getCubeTransformOrigin(
+	type: SlideTransitionType,
+	isPresent: boolean,
+): string | undefined {
+	const origins = CUBE_ORIGINS[type]
+	if (!origins) return undefined
+	return isPresent ? origins[0] : origins[1]
 }
 
 export function useSlideTransition(transition: SlideTransition) {
-	const variants = transitionVariants[transition.type]
+	const variants = transitionVariants[transition.type] ?? transitionVariants.none
 	return {
 		initial: variants.initial,
 		animate: variants.animate,
