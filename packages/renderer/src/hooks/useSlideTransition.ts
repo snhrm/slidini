@@ -80,32 +80,32 @@ const transitionVariants: Record<SlideTransitionType, TransitionVariant> = {
 		animate: { clipPath: "inset(0 0 0% 0)" },
 		exit: { clipPath: "inset(100% 0 0 0)" },
 	},
-	// 3D Cube transitions (no opacity — 3D rotation handles visibility)
+	// 3D Cube transitions (use 91° so backfaceVisibility:hidden hides the face)
 	"cube-left": {
-		initial: { rotateY: 90 },
+		initial: { rotateY: 91 },
 		animate: { rotateY: 0 },
-		exit: { rotateY: -90 },
+		exit: { rotateY: -91 },
 	},
 	"cube-right": {
-		initial: { rotateY: -90 },
+		initial: { rotateY: -91 },
 		animate: { rotateY: 0 },
-		exit: { rotateY: 90 },
+		exit: { rotateY: 91 },
 	},
 	"cube-up": {
-		initial: { rotateX: -90 },
+		initial: { rotateX: -91 },
 		animate: { rotateX: 0 },
-		exit: { rotateX: 90 },
+		exit: { rotateX: 91 },
 	},
 	"cube-down": {
-		initial: { rotateX: 90 },
+		initial: { rotateX: 91 },
 		animate: { rotateX: 0 },
-		exit: { rotateX: -90 },
+		exit: { rotateX: -91 },
 	},
 	// Page turn (book-like fold from left edge)
 	"page-turn": {
-		initial: { rotateY: -90 },
+		initial: { rotateY: -91 },
 		animate: { rotateY: 0 },
-		exit: { rotateY: 90 },
+		exit: { rotateY: 91 },
 	},
 	// Portal (circular reveal)
 	portal: {

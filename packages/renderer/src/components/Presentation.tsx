@@ -1,12 +1,12 @@
 import type {
 	AutoplayConfig,
 	Presentation as PresentationType,
+	Slide as SlideType,
 	SlideElement as SlideElementType,
 	ViewMode,
 } from "@slidini/core"
-import { AnimatePresence } from "framer-motion"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { is3DTransition, isSyncTransition } from "../hooks/useSlideTransition"
+import { is3DTransition } from "../hooks/useSlideTransition"
 import { Slide } from "./Slide"
 import { SlideElement } from "./SlideElement"
 
@@ -253,11 +253,33 @@ export function Presentation({
 		)
 	}
 
+	// Manage exiting slide manually (replaces AnimatePresence)
+	const [exitingSlide, setExitingSlide] = useState<SlideType | null>(null)
+	const prevSlideIdRef = useRef(currentSlideData?.id)
+
+	useEffect(() => {
+		if (!currentSlideData || prevSlideIdRef.current === currentSlideData.id) return
+		const prevId = prevSlideIdRef.current
+		prevSlideIdRef.current = currentSlideData.id
+		if (prevId) {
+			const prev = slides.find((s) => s.id === prevId)
+			if (prev) setExitingSlide(prev)
+		}
+	}, [currentSlideData, slides])
+
+	useEffect(() => {
+		if (!exitingSlide) return
+		const duration = exitingSlide.transition.duration
+		const timer = setTimeout(() => setExitingSlide(null), duration * 1000 + 100)
+		return () => clearTimeout(timer)
+	}, [exitingSlide])
+
 	// Single / Autoplay mode
 	if (!currentSlideData) return null
 
-	const needs3D = is3DTransition(currentSlideData.transition.type)
-	const needsSync = isSyncTransition(currentSlideData.transition.type)
+	const needs3D =
+		is3DTransition(currentSlideData.transition.type) ||
+		(exitingSlide ? is3DTransition(exitingSlide.transition.type) : false)
 
 	return (
 		<div
@@ -287,20 +309,31 @@ export function Presentation({
 			>
 				{renderOverlayLayer(bgOverlay, 0)}
 
-				<AnimatePresence mode={needsSync ? "sync" : "wait"}>
+				{exitingSlide && (
 					<Slide
-						key={currentSlideData.id}
-						slide={currentSlideData}
+						key={`exit-${exitingSlide.id}`}
+						slide={exitingSlide}
 						meta={meta}
 						currentStep={currentStep}
 						mode={mode}
 						scale={scale}
-						useAbsolutePosition={needsSync}
-						selectedElementId={selectedElementId}
-						onElementSelect={onElementSelect}
-						onElementUpdate={onElementUpdate}
+						useAbsolutePosition
+						isExiting
 					/>
-				</AnimatePresence>
+				)}
+
+				<Slide
+					key={currentSlideData.id}
+					slide={currentSlideData}
+					meta={meta}
+					currentStep={currentStep}
+					mode={mode}
+					scale={scale}
+					useAbsolutePosition
+					selectedElementId={selectedElementId}
+					onElementSelect={onElementSelect}
+					onElementUpdate={onElementUpdate}
+				/>
 
 				{renderOverlayLayer(fgOverlay, 2)}
 			</div>

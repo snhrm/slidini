@@ -5,7 +5,7 @@ import type {
 	SlideShape,
 	Slide as SlideType,
 } from "@slidini/core"
-import { motion, usePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import type React from "react"
 import { useMemo } from "react"
 import {
@@ -22,6 +22,7 @@ type Props = {
 	mode: "edit" | "view"
 	scale: number
 	useAbsolutePosition?: boolean
+	isExiting?: boolean
 	selectedElementId?: string | null
 	onElementSelect?: (elementId: string | null) => void
 	onElementUpdate?: (
@@ -77,14 +78,14 @@ export function Slide({
 	mode,
 	scale,
 	useAbsolutePosition,
+	isExiting,
 	selectedElementId,
 	onElementSelect,
 	onElementUpdate,
 }: Props) {
 	const transitionProps = useSlideTransition(slide.transition)
 	const is3D = is3DTransition(slide.transition.type)
-	const [isPresent] = usePresence()
-	const cubeOrigin = getCubeTransformOrigin(slide.transition.type, isPresent)
+	const cubeOrigin = getCubeTransformOrigin(slide.transition.type, !isExiting)
 
 	const handleBackgroundClick = () => {
 		if (mode === "edit" && onElementSelect) {
@@ -102,11 +103,13 @@ export function Slide({
 	return (
 		<motion.div
 			key={slide.id}
-			{...transitionProps}
+			initial={isExiting ? transitionProps.animate : transitionProps.initial}
+			animate={isExiting ? transitionProps.exit : transitionProps.animate}
+			transition={transitionProps.transition}
 			onClick={handleBackgroundClick}
 			style={{
 				position: useAbsolutePosition ? "absolute" : "relative",
-				...(useAbsolutePosition ? { top: 0, left: 0 } : {}),
+				...(useAbsolutePosition ? { top: 0, left: 0, zIndex: 1 } : {}),
 				width: meta.width,
 				height: meta.height,
 				overflow: "hidden",
