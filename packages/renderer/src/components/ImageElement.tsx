@@ -5,10 +5,11 @@ import { useAnimation } from "../hooks/useAnimation"
 type Props = {
 	element: ImageElementType
 	currentStep: number
+	isExiting?: boolean
 }
 
-export function ImageElement({ element, currentStep }: Props) {
-	const animationProps = useAnimation(element.animations, currentStep)
+export function ImageElement({ element, currentStep, isExiting }: Props) {
+	const animationProps = useAnimation(element.animations, currentStep, isExiting)
 
 	const fitStyle: Record<string, React.CSSProperties["objectFit"]> = {
 		cover: "cover",

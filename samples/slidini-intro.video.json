@@ -1,0 +1,81 @@
+{
+	"input": "./slidini-intro.slide.json",
+	"voicevox": {
+		"url": "http://localhost:50021",
+		"speaker": 8,
+		"speed": 1.2
+	},
+	"fps": 30,
+	"defaultSlideDuration": 5,
+	"slides": [
+		{
+			"slideIndex": 0,
+			"narration": "Slidini。AIネイティブなスライド作成アプリです。React、Vite、Zustand、Framer Motion、そしてMCPを組み合わせて構築されています。",
+			"duration": null
+		},
+		{
+			"slideIndex": 1,
+			"narration": "コンセプトは、AIにプレゼンを任せて、あなたはストーリーに集中すること。ドット・スライド・JSONひとつで完結する、新しいスライド体験を提供します。",
+			"duration": null
+		},
+		{
+			"slideIndex": 2,
+			"narration": "アーキテクチャはモノレポ構成です。core、renderer、templates、app、mcpの5パッケージで構成され、コアは型定義とZodスキーマ、レンダラーはReactとFramer Motionで描画を担当します。",
+			"duration": null
+		},
+		{
+			"slideIndex": 3,
+			"narration": "直感的なエディタ画面です。テキスト、画像、動画、チャートの4種類の要素を自由に配置でき、Markdownでリッチなテキスト表現が可能です。",
+			"duration": null
+		},
+		{
+			"slideIndex": 4,
+			"narration": "タイポグラフィにもこだわっています。ゴシック体、明朝体、丸ゴシック、デザイン書体など、Google Fontsから厳選した日本語フォントを14種類搭載しています。",
+			"duration": null
+		},
+		{
+			"slideIndex": 5,
+			"narration": "ここからは表現力についてご紹介します。トランジション、チャート、アニメーション、オーバーレイなど、豊富な演出機能を備えています。",
+			"duration": null
+		},
+		{
+			"slideIndex": 6,
+			"narration": "16種のトランジションを搭載しています。フェードやズームなどの基本から、上下左右4方向のスライド、ワイプ、フリップ、さらにキューブやページターン、ポータルといった3D系まで揃っています。",
+			"duration": null
+		},
+		{
+			"slideIndex": 7,
+			"narration": "チャート要素でデータを視覚的に表現できます。棒グラフ、折れ線グラフ、円グラフ、ドーナツチャート、エリアチャート、レーダーチャートの6種類に対応しています。",
+			"duration": null
+		},
+		{
+			"slideIndex": 8,
+			"narration": "AI連携機能です。Model Context Protocolにより、AIがスライドを自在に操ることができます。",
+			"duration": null
+		},
+		{
+			"slideIndex": 9,
+			"narration": "MCPツールは19個搭載しています。スライドの作成、編集、削除から、テキスト、画像、チャートの操作、テンプレート適用、カラーセット管理まで、幅広い操作をAIが実行できます。",
+			"duration": null
+		},
+		{
+			"slideIndex": 10,
+			"narration": "AIと人間の協業ワークフローです。まずAIがMCP経由でスライド構成を一括作成し、次にエディタで人間が微調整し、最後にAIが仕上げのブラッシュアップを行います。",
+			"duration": null
+		},
+		{
+			"slideIndex": 11,
+			"narration": "bun run devで始められます。スライド作成の未来は、もう始まっています。ご視聴ありがとうございました。",
+			"duration": null
+		}
+	],
+	"bgm": [
+		{
+			"src": "/Users/snhrm/Documents/ati/music/ai-news.wav",
+			"volume": 0.3,
+			"loop": true,
+			"fadeIn": 2,
+			"fadeOut": 3
+		}
+	]
+}

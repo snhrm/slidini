@@ -10,6 +10,7 @@ type Props = {
 	currentStep: number
 	mode: "edit" | "view"
 	scale: number
+	isExiting?: boolean
 	isSelected?: boolean
 	onSelect?: (elementId: string | null) => void
 	onElementUpdate?: (
@@ -34,6 +35,7 @@ export const SlideElement = memo(function SlideElement({
 	currentStep,
 	mode,
 	scale,
+	isExiting,
 	isSelected,
 	onSelect,
 	onElementUpdate,
@@ -154,10 +156,18 @@ export const SlideElement = memo(function SlideElement({
 				outlineOffset: mode === "edit" && isSelected ? 2 : undefined,
 			}}
 		>
-			{element.type === "text" && <TextElement element={element} currentStep={currentStep} />}
-			{element.type === "image" && <ImageElement element={element} currentStep={currentStep} />}
-			{element.type === "video" && <VideoElement element={element} currentStep={currentStep} />}
-			{element.type === "chart" && <ChartElement element={element} currentStep={currentStep} />}
+			{element.type === "text" && (
+				<TextElement element={element} currentStep={currentStep} isExiting={isExiting} />
+			)}
+			{element.type === "image" && (
+				<ImageElement element={element} currentStep={currentStep} isExiting={isExiting} />
+			)}
+			{element.type === "video" && (
+				<VideoElement element={element} currentStep={currentStep} isExiting={isExiting} />
+			)}
+			{element.type === "chart" && (
+				<ChartElement element={element} currentStep={currentStep} isExiting={isExiting} />
+			)}
 
 			{mode === "edit" && (
 				<div

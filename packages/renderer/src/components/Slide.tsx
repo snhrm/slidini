@@ -126,6 +126,7 @@ export function Slide({
 					currentStep={currentStep}
 					mode={mode}
 					scale={scale}
+					isExiting={isExiting}
 					isSelected={selectedElementId === element.id}
 					onSelect={onElementSelect}
 					onElementUpdate={onElementUpdate}

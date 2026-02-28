@@ -10,6 +10,7 @@ import { useAnimation } from "../hooks/useAnimation"
 type Props = {
 	element: TextElementType
 	currentStep: number
+	isExiting?: boolean
 }
 
 function CodeBlock({ className, children, ...rest }: ComponentPropsWithoutRef<"code">) {
@@ -49,8 +50,8 @@ function CodeBlock({ className, children, ...rest }: ComponentPropsWithoutRef<"c
 	)
 }
 
-export function TextElement({ element, currentStep }: Props) {
-	const animationProps = useAnimation(element.animations, currentStep)
+export function TextElement({ element, currentStep, isExiting }: Props) {
+	const animationProps = useAnimation(element.animations, currentStep, isExiting)
 	const { style } = element
 
 	return (
