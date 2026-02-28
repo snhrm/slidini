@@ -1,6 +1,8 @@
 # @slidini/mcp
 
-`.slide.json` ファイルをLLM（Claude等）から操作するためのMCPサーバー。stdioトランスポートで動作。
+`.slide.json` / `.video.json` ファイルをLLM（Claude等）から操作するためのMCPサーバー。stdioトランスポートで動作。
+
+ファイルはプロジェクトディレクトリ（`projects/{name}/`）に自動的に整理される。
 
 ## 起動
 
@@ -23,13 +25,22 @@ bun run packages/mcp/src/index.ts
 }
 ```
 
-## ツール一覧（23ツール）
+## ファイル構成
+
+```
+src/
+  index.ts          # サーバー起動 + ヘルパー関数
+  slide-tools.ts    # スライド操作ツール (23 個)
+  video-tools.ts    # 動画設定ツール (5 個)
+```
+
+## ツール一覧（28 ツール）
 
 ### プレゼンテーション管理
 
 | ツール | 説明 |
 |--------|------|
-| `slide_create_presentation` | 新規 `.slide.json` を作成 |
+| `slide_create_presentation` | プロジェクトディレクトリを作成し `.slide.json` を生成 |
 | `slide_read_presentation` | プレゼンテーションJSON読み込み |
 | `slide_list_slides` | スライド一覧（要素数付き） |
 | `slide_update_meta` | メタ情報（タイトル、サイズ等）更新 |
@@ -73,9 +84,27 @@ bun run packages/mcp/src/index.ts
 | `slide_remove_overlay_element` | オーバーレイ要素削除 |
 | `slide_update_overlay_element` | オーバーレイ要素更新 |
 
+### 動画設定操作（5 ツール）
+
+| ツール | 説明 |
+|--------|------|
+| `slide_create_video_config` | プロジェクトディレクトリに `.video.json` を作成 |
+| `slide_read_video_config` | `.video.json` 読み込み |
+| `slide_update_video_config` | トップレベル設定を更新 (fps, VOICEVOX 等) |
+| `slide_set_slide_narration` | スライドごとのナレーション / 音声ファイルを設定 |
+| `slide_set_bgm` | BGM 設定を一括置き換え |
+
+**ルール:**
+- `slide_set_slide_narration`: MCP からは `narration` と `audio_file` は排他（同時指定エラー）
+- `slide_set_slide_narration`: 既存の `slideIndex` エントリを上書き、なければ追加
+- `slide_set_slide_narration`: ナレーションテキストは VOICEVOX 用にカタカナ表記必須（英語・技術用語）
+- `slide_set_bgm`: `bgm` 配列を丸ごと置き換え
+- 動画エクスポート時、VOICEVOX で生成した音声は `audioFile` としてプロジェクトディレクトリに保存・video.json に追記される
+
 ## 依存関係
 
 - `@slidini/core` — 型定義・バリデーション
 - `@slidini/templates` — テンプレート・カラーセット
+- `@slidini/video-export` — 動画設定スキーマ
 - `@modelcontextprotocol/sdk` — MCPプロトコル
 - `zod` — 入力バリデーション

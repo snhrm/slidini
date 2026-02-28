@@ -1,24 +1,48 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このファイルは Claude Code (claude.ai/code) がこのリポジトリで作業する際のガイドラインです。
 
-## Commands
+## コマンド
 
 ```bash
-bun run dev          # Vite dev server (app)
-bun run build        # Production build (app)
-bun run typecheck    # Type-check all packages
-bun run check        # Biome lint + format check
-bun run format       # Biome auto-format (writes changes)
+bun run dev          # Vite 開発サーバー（app）
+bun run build        # プロダクションビルド（app）
+bun run typecheck    # 全パッケージの型チェック
+bun run check        # Biome lint + format チェック
+bun run format       # Biome 自動フォーマット（ファイル書き換え）
+bun test             # 全テスト実行（bun test）
 ```
 
-MCP server: `bun run --filter @slidini/mcp start`
+MCP サーバー: `bun run --filter @slidini/mcp start`
 
-No test framework is configured.
+## コード変更時の必須チェック
 
-## Architecture
+コードを変更した場合、以下を必ず実行して問題がないことを確認すること:
 
-Bun workspace monorepo with 5 packages:
+```bash
+bun run check        # Biome lint + format チェック
+bun test             # テスト実行
+bun run typecheck    # 型チェック
+```
+
+lint/format エラーがあれば `bun run format` で自動修正できる。テストや型チェックのエラーは手動で修正すること。
+
+## テスト
+
+- テストランナー: `bun test`（Jest 互換 API）
+- React コンポーネントテスト: `@testing-library/react` + `happy-dom`
+- テストファイル配置: `packages/<pkg>/src/__tests__/*.test.ts(x)`
+- 設定: `bunfig.toml`（happy-dom プリロード）
+
+```bash
+bun test                    # 全テスト実行
+bun test packages/core      # パッケージ単位で実行
+bun test --coverage         # カバレッジ付き実行
+```
+
+## アーキテクチャ
+
+Bun ワークスペースモノレポ（6 パッケージ）:
 
 ```
 app ──> renderer ──> core
@@ -26,34 +50,38 @@ app ──> renderer ──> core
  ├──> templates ──────┘
  │                    ▲
 mcp ──> templates ────┘
- └──> core
+ ├──> core
+ │
+video-export ──> renderer ──> core
 ```
 
-- **core** (`@slidini/core`): Types, Zod schemas, defaults. Framework-free, depends only on `zod`. Exports `parsePresentation()` for validation, `generateId(prefix)` for ID generation, factory functions like `createDefaultSlide()`.
-- **renderer** (`@slidini/renderer`): React slide renderer using Framer Motion. **No Tailwind** — all inline styles. Designed for future extraction as a standalone npm package. Uses `ResizeObserver` + CSS `transform: scale()` for viewport fitting.
-- **templates** (`@slidini/templates`): 10 slide template JSONs + 6 color set presets. Templates use `colorRole`/`bgColorRole` for semantic color mapping. Color sets use immediate hex-to-hex replacement via `applyColorSetToSlide()`.
-- **app** (`@slidini/app`): Editor UI with Vite + React + Tailwind + Zustand. Single Zustand store (`usePresentationStore`) manages all state.
-- **mcp** (`@slidini/mcp`): MCP server (stdio transport, 19 tools) for AI-driven `.slide.json` file manipulation.
+- **core** (`@slidini/core`): 型定義、Zod スキーマ、デフォルト値。フレームワーク非依存、`zod` のみに依存。`parsePresentation()` でバリデーション、`generateId(prefix)` で ID 生成、`createDefaultSlide()` 等のファクトリ関数をエクスポート。
+- **renderer** (`@slidini/renderer`): Framer Motion を使用した React スライドレンダラー。**Tailwind 不使用** — 全てインラインスタイル。将来的にスタンドアロン npm パッケージとして切り出し予定。`ResizeObserver` + CSS `transform: scale()` でビューポートフィッティング。
+- **templates** (`@slidini/templates`): 10 種のスライドテンプレート JSON + 6 種のカラーセットプリセット。テンプレートは `colorRole`/`bgColorRole` でセマンティックカラーマッピング。カラーセットは `applyColorSetToSlide()` で hex→hex の即時置換。
+- **video-export** (`@slidini/video-export`): スライドから動画（MP4）を生成。Puppeteer + timeweb でフレーム単位キャプチャ。`.video.json` 設定ファイルで FPS、スライドごとのナレーション（VOICEVOX 音声合成）、BGM を管理。
+- **app** (`@slidini/app`): Vite + React + Tailwind + Zustand によるエディタ UI。単一の Zustand ストア（`usePresentationStore`）で全状態を管理。
+- **mcp** (`@slidini/mcp`): MCP サーバー（stdio トランスポート）。AI による `.slide.json` / `.video.json` ファイル操作用。スライドツール（`slide_*`）と動画設定ツール（`slide_create_video_config` 等）を提供。
 
-## Code Style (Biome-enforced)
+## コードスタイル（Biome 強制）
 
-- **Tabs** for indentation
-- **No trailing semicolons** (`semicolons: "asNeeded"`)
-- Line width: 100
-- Imports auto-organized by Biome
-- Use `import type { ... }` for type-only imports
+- **タブ**でインデント
+- **セミコロンなし**（`semicolons: "asNeeded"`）
+- 行幅: 100
+- import は Biome が自動整理
+- 型のみの import には `import type { ... }` を使用
 
-## Conventions
+## 規約
 
-- All workspace packages expose source directly via `"main": "./src/index.ts"` — no build step needed for cross-package imports
-- Zustand selectors always use `useShallow` from `zustand/react/shallow`
-- `noUncheckedIndexedAccess: true` — array access returns `T | undefined`
-- All positions/sizes are absolute pixels (1920x1080 default canvas)
-- Presentation data stored as `.slide.json` files, images/videos embedded as Base64 data URIs
-- `updatedAt` must be set via `new Date().toISOString()` on every mutation
-- MCP tool names use `slide_` prefix with `snake_case`
+- 全ワークスペースパッケージは `"main": "./src/index.ts"` でソースを直接公開 — パッケージ間 import にビルド不要
+- Zustand セレクタは常に `zustand/react/shallow` の `useShallow` を使用
+- `noUncheckedIndexedAccess: true` — 配列アクセスは `T | undefined` を返す
+- 全ての位置・サイズは絶対ピクセル（デフォルトキャンバス 1920x1080）
+- プレゼンテーションデータは `.slide.json` ファイルとして保存、画像・動画は Base64 データ URI で埋め込み
+- 動画エクスポート設定は `.video.json` ファイルとして保存（入力元 `.slide.json`、FPS、ナレーション、BGM 等）
+- `updatedAt` はミューテーションごとに `new Date().toISOString()` で設定すること
+- MCP ツール名は `slide_` プレフィックス + `snake_case`
 
-## Data Model
+## データモデル
 
 ```
 Presentation
@@ -61,11 +89,18 @@ Presentation
 └── slides: Slide[]
     ├── id, background (color|image|gradient), transition, colorSetId?
     └── elements: (TextElement | ImageElement | VideoElement)[]
-        └── Common: id, position, size, rotation, opacity, zIndex, animations[]
+        └── 共通: id, position, size, rotation, opacity, zIndex, animations[]
+
+VideoConfig (.video.json)
+├── input: 入力 .slide.json ファイル名
+├── fps, defaultSlideDuration
+├── voicevox: { speaker, speed, pitch, volume }
+├── slides: [{ slideIndex, narration?, audioFile?, duration? }]
+└── bgm: [{ src, volume?, loop?, fadeIn?, fadeOut? }]
 ```
 
-Text content uses Markdown (rendered via react-markdown + remark-gfm).
+テキストコンテンツは Markdown（react-markdown + remark-gfm で描画）。
 
-## Language
+## 言語
 
-Project documentation and UI text are in Japanese. Code (variable names, comments) is in English.
+プロジェクトドキュメントと UI テキストは日本語。コード（変数名、コメント）は英語。

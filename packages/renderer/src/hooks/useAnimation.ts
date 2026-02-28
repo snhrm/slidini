@@ -137,8 +137,10 @@ const EMPTY: Record<string, never> = {}
 export function useAnimation(
 	animations: Animation[],
 	currentStep: number,
+	skipAnimation?: boolean,
 ): AnimationProps | Record<string, never> {
 	return useMemo((): AnimationProps | Record<string, never> => {
+		if (skipAnimation) return EMPTY
 		const enterAnimation = animations.find((a) => a.trigger === "onEnter")
 		if (!enterAnimation) return EMPTY
 
@@ -157,7 +159,7 @@ export function useAnimation(
 				ease: toFramerEasing(enterAnimation.easing),
 			},
 		}
-	}, [animations, currentStep])
+	}, [animations, currentStep, skipAnimation])
 }
 
 export function getMaxStepIndex(animations: Animation[]): number {

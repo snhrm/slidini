@@ -5,10 +5,11 @@ import { useAnimation } from "../hooks/useAnimation"
 type Props = {
 	element: VideoElementType
 	currentStep: number
+	isExiting?: boolean
 }
 
-export function VideoElement({ element, currentStep }: Props) {
-	const animationProps = useAnimation(element.animations, currentStep)
+export function VideoElement({ element, currentStep, isExiting }: Props) {
+	const animationProps = useAnimation(element.animations, currentStep, isExiting)
 
 	return (
 		<motion.div {...animationProps} style={{ width: "100%", height: "100%" }}>

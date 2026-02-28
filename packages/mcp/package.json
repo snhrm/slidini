@@ -11,6 +11,7 @@
   "dependencies": {
     "@slidini/core": "workspace:*",
     "@slidini/templates": "workspace:*",
+    "@slidini/video-export": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.6.1",
     "zod": "^3.24.2"
   },

@@ -27,10 +27,11 @@ import { useAnimation } from "../hooks/useAnimation"
 type Props = {
 	element: ChartElementType
 	currentStep: number
+	isExiting?: boolean
 }
 
-export function ChartElement({ element, currentStep }: Props) {
-	const animationProps = useAnimation(element.animations, currentStep)
+export function ChartElement({ element, currentStep, isExiting }: Props) {
+	const animationProps = useAnimation(element.animations, currentStep, isExiting)
 	const { style, chartType, categories, series } = element
 
 	const tickStyle = {
