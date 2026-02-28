@@ -11,7 +11,8 @@ if (cli.fpsOverride != null) {
 	config.fps = cli.fpsOverride
 }
 
-const configDir = path.dirname(path.resolve(cli.configPath))
+const configPath = path.resolve(cli.configPath)
+const configDir = path.dirname(configPath)
 const outputPath = cli.output ?? cli.configPath.replace(/\.video\.json$/, ".mp4")
 
-await renderVideo(config, configDir, outputPath)
+await renderVideo(config, configDir, configPath, outputPath)

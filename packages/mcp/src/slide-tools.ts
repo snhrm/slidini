@@ -26,7 +26,7 @@ import {
 	findSlideByIndex,
 	ok,
 	readPresentation,
-	resolveSlideFile,
+	resolveProjectFile,
 	writePresentation,
 } from "./index"
 
@@ -37,17 +37,21 @@ export function registerSlideTools(server: McpServer): void {
 		"slide_create_presentation",
 		{
 			title: "Create Presentation",
-			description: `Create a new .slide.json presentation file with default content.
+			description: `Create a new .slide.json presentation file with default content inside a project directory.
+
+A project directory is automatically created to contain the .slide.json and all related files (video config, narration audio, BGM, etc.).
+
+Example: name="my-talk" → creates projects/my-talk/my-talk.slide.json
 
 Args:
-  - file_path (string): Path to the .slide.json file to create
+  - name (string): Project name (used as directory name and file name stem)
   - title (string, optional): Presentation title (default: "無題のプレゼンテーション")
   - width (number, optional): Slide width in px (default: 1920)
   - height (number, optional): Slide height in px (default: 1080)
 
-Returns: JSON summary of the created presentation.`,
+Returns: JSON summary of the created presentation including the project directory path.`,
 			inputSchema: {
-				file_path: z.string().describe("Path to the .slide.json file to create"),
+				name: z.string().describe("Project name (used as directory name and file name stem)"),
 				title: z.string().optional().describe("Presentation title"),
 				width: z.number().int().min(1).optional().describe("Slide width in px"),
 				height: z.number().int().min(1).optional().describe("Slide height in px"),
@@ -59,17 +63,20 @@ Returns: JSON summary of the created presentation.`,
 				openWorldHint: false,
 			},
 		},
-		async ({ file_path, title, width, height }) => {
+		async ({ name, title, width, height }) => {
 			try {
+				const file_path = `${name}/${name}.slide.json`
 				const presentation = createDefaultPresentation()
 				if (title !== undefined) presentation.meta.title = title
 				if (width !== undefined) presentation.meta.width = width
 				if (height !== undefined) presentation.meta.height = height
 				writePresentation(file_path, presentation)
+				const projectDir = resolveProjectFile(name)
 				return ok(
 					JSON.stringify(
 						{
-							file: resolveSlideFile(file_path),
+							file: resolveProjectFile(file_path),
+							projectDir,
 							title: presentation.meta.title,
 							width: presentation.meta.width,
 							height: presentation.meta.height,

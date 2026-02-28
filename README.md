@@ -50,6 +50,7 @@ slidini/
 │   ├── app/             # エディタ UI（Vite + React + Tailwind + Zustand）
 │   ├── mcp/             # MCP サーバー（AI からの .slide.json / .video.json 操作）
 │   └── video-export/    # 動画エクスポート CLI（Puppeteer + FFmpeg）
+├── projects/            # プロジェクトディレクトリ（MCP が自動生成）
 ├── samples/             # サンプルファイル
 ├── plan/                # 設計ドキュメント
 ├── biome.json
@@ -78,7 +79,25 @@ video-export
 | [templates](packages/templates/) | スライドテンプレート JSON + カラーセットプリセット |
 | [app](packages/app/) | Tailwind + Zustand によるエディタ UI |
 | [mcp](packages/mcp/) | MCP サーバー (28 ツール) で AI エージェントにスライド操作 API を提供 |
-| [video-export](packages/video-export/) | Puppeteer フレームキャプチャ + FFmpeg で MP4 動画生成 |
+| [video-export](packages/video-export/) | Puppeteer フレームキャプチャ + FFmpeg + VOICEVOX で MP4 動画生成 |
+
+## プロジェクトディレクトリ
+
+MCP でプレゼンテーションを作成すると、`projects/` 配下にプロジェクトディレクトリが自動生成される。
+スライド、動画設定、ナレーション音声、BGM など関連ファイルはすべて同一ディレクトリに格納される。
+
+```
+projects/
+  my-talk/
+    my-talk.slide.json       # スライドデータ
+    my-talk.video.json       # 動画エクスポート設定
+    narration-000.wav        # VOICEVOX 生成ナレーション
+    narration-001.wav
+    bgm.mp3                  # BGM ファイル
+    my-talk.mp4              # 出力動画
+```
+
+動画エクスポート時にナレーションを VOICEVOX で合成すると、WAV ファイルがプロジェクトディレクトリに保存され、`.video.json` に `audioFile` パスが自動追記される。2 回目以降のレンダリングでは既存の音声ファイルが再利用される。
 
 ## `.slide.json` フォーマット例
 

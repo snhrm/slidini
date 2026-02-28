@@ -9,16 +9,12 @@ import { registerVideoTools } from "./video-tools"
 
 // ===== Helpers =====
 
-export function resolveSlideFile(filePath: string): string {
-	return isAbsolute(filePath) ? filePath : resolve("slide", filePath)
-}
-
-export function resolveVideoFile(filePath: string): string {
-	return isAbsolute(filePath) ? filePath : resolve("video", filePath)
+export function resolveProjectFile(filePath: string): string {
+	return isAbsolute(filePath) ? filePath : resolve("projects", filePath)
 }
 
 export function readPresentation(filePath: string): Presentation {
-	const absPath = resolveSlideFile(filePath)
+	const absPath = resolveProjectFile(filePath)
 	const raw = readFileSync(absPath, "utf-8")
 	const data = JSON.parse(raw)
 	const result = parsePresentation(data)
@@ -31,7 +27,7 @@ export function readPresentation(filePath: string): Presentation {
 }
 
 export function writePresentation(filePath: string, presentation: Presentation): void {
-	const absPath = resolveSlideFile(filePath)
+	const absPath = resolveProjectFile(filePath)
 	mkdirSync(dirname(absPath), { recursive: true })
 	presentation.meta.updatedAt = new Date().toISOString()
 	writeFileSync(absPath, JSON.stringify(presentation, null, 2), "utf-8")

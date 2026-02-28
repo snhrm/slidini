@@ -1,5 +1,4 @@
 import fs from "node:fs"
-import os from "node:os"
 import path from "node:path"
 import { type Presentation, parsePresentation } from "@slidini/core"
 import type { ResolvedBgm } from "./audio/ffmpeg"
@@ -69,6 +68,7 @@ function resolveBgms(
 export async function renderVideo(
 	config: VideoConfig,
 	configDir: string,
+	configPath: string,
 	outputPath: string,
 ): Promise<void> {
 	const inputPath = path.resolve(configDir, config.input)
@@ -88,86 +88,83 @@ export async function renderVideo(
 	const presentation = result.data as Presentation
 	console.log(`  Slides: ${presentation.slides.length}`)
 
-	// Create temp directory
-	const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "slidini-export-"))
-	console.log(`  Temp:   ${tempDir}`)
+	// Phase 1: Audio preparation
+	console.log("\n[Phase 1] Preparing audio...")
+	const audioPlan = await prepareAudio(presentation, config, configDir)
+	console.log(`  Total duration: ${(audioPlan.totalDurationMs / 1000).toFixed(1)}s`)
+
+	// Write back config if audioFile paths were added
+	if (audioPlan.configUpdated) {
+		fs.writeFileSync(configPath, `${JSON.stringify(config, null, "\t")}\n`, "utf-8")
+		console.log(`  Updated config: ${configPath}`)
+	}
+
+	// Resolve BGM time ranges
+	const resolvedBgms = resolveBgms(
+		config.bgm,
+		audioPlan.slideDurations,
+		audioPlan.totalDurationMs,
+		configDir,
+	)
+	if (resolvedBgms.length > 0) {
+		console.log(`  BGM tracks: ${resolvedBgms.length}`)
+	}
+
+	// Build slide timing for ExportPlayer
+	const slideTiming = presentation.slides.map((slide, i) => ({
+		durationMs: audioPlan.slideDurations[i] ?? config.defaultSlideDuration * 1000,
+		steps: getMaxStepForSlide(slide),
+	}))
+
+	const exportConfig = {
+		presentation,
+		slideTiming,
+	}
+
+	// Phase 2: Frame capture
+	console.log("\n[Phase 2] Capturing frames...")
+	const { server, port } = await startViteServer()
 
 	try {
-		// Phase 1: Audio preparation
-		console.log("\n[Phase 1] Preparing audio...")
-		const audioPlan = await prepareAudio(presentation, config, configDir, tempDir)
-		console.log(`  Total duration: ${(audioPlan.totalDurationMs / 1000).toFixed(1)}s`)
-
-		// Resolve BGM time ranges
-		const resolvedBgms = resolveBgms(
-			config.bgm,
-			audioPlan.slideDurations,
-			audioPlan.totalDurationMs,
-			configDir,
-		)
-		if (resolvedBgms.length > 0) {
-			console.log(`  BGM tracks: ${resolvedBgms.length}`)
-		}
-
-		// Build slide timing for ExportPlayer
-		const slideTiming = presentation.slides.map((slide, i) => ({
-			durationMs: audioPlan.slideDurations[i] ?? config.defaultSlideDuration * 1000,
-			steps: getMaxStepForSlide(slide),
-		}))
-
-		const exportConfig = {
-			presentation,
-			slideTiming,
-		}
-
-		// Phase 2: Frame capture
-		console.log("\n[Phase 2] Capturing frames...")
-		const { server, port } = await startViteServer()
+		const { width, height } = presentation.meta
+		const exportBrowser = await launchBrowser(port, exportConfig, width, height)
 
 		try {
-			const { width, height } = presentation.meta
-			const exportBrowser = await launchBrowser(port, exportConfig, width, height)
+			// Spawn FFmpeg
+			const ffmpeg = spawnFFmpeg(
+				config.fps,
+				audioPlan.slideAudios,
+				resolvedBgms,
+				audioPlan.totalDurationMs,
+				outputPath,
+			)
 
-			try {
-				// Spawn FFmpeg
-				const ffmpeg = spawnFFmpeg(
-					config.fps,
-					audioPlan.slideAudios,
-					resolvedBgms,
-					audioPlan.totalDurationMs,
-					outputPath,
-				)
+			// Capture frames and pipe to FFmpeg
+			const totalFrames = Math.ceil(audioPlan.totalDurationMs / (1000 / config.fps))
+			console.log(`  Total frames: ${totalFrames}`)
 
-				// Capture frames and pipe to FFmpeg
-				const totalFrames = Math.ceil(audioPlan.totalDurationMs / (1000 / config.fps))
-				console.log(`  Total frames: ${totalFrames}`)
+			await captureFrames(
+				exportBrowser.page,
+				ffmpeg.stdin,
+				config.fps,
+				audioPlan.totalDurationMs,
+				({ frame, totalFrames }) => {
+					const pct = ((frame / totalFrames) * 100).toFixed(1)
+					process.stdout.write(`\r  Progress: ${frame}/${totalFrames} (${pct}%)`)
+				},
+			)
 
-				await captureFrames(
-					exportBrowser.page,
-					ffmpeg.stdin,
-					config.fps,
-					audioPlan.totalDurationMs,
-					({ frame, totalFrames }) => {
-						const pct = ((frame / totalFrames) * 100).toFixed(1)
-						process.stdout.write(`\r  Progress: ${frame}/${totalFrames} (${pct}%)`)
-					},
-				)
-
-				// Close FFmpeg stdin and wait for encoding to finish
-				ffmpeg.stdin.end()
-				console.log("\n\n[Phase 3] Encoding video...")
-				await ffmpeg.done
-			} finally {
-				await exportBrowser.close()
-			}
+			// Close FFmpeg stdin and wait for encoding to finish
+			ffmpeg.stdin.end()
+			console.log("\n\n[Phase 3] Encoding video...")
+			await ffmpeg.done
 		} finally {
-			await server.close()
+			await exportBrowser.close()
 		}
-
-		const outputSize = fs.statSync(outputPath).size
-		console.log(`\nDone! Output: ${outputPath} (${(outputSize / 1024 / 1024).toFixed(1)} MB)`)
 	} finally {
-		// Cleanup temp directory
-		fs.rmSync(tempDir, { recursive: true, force: true })
+		await server.close()
 	}
+
+	const outputSize = fs.statSync(outputPath).size
+	console.log(`\nDone! Output: ${outputPath} (${(outputSize / 1024 / 1024).toFixed(1)} MB)`)
 }

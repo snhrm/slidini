@@ -9,16 +9,12 @@ const voicevoxConfigSchema = z.object({
 	speed: z.number().min(0.1).max(5).default(1.0),
 })
 
-const slideConfigSchema = z
-	.object({
-		slideIndex: z.number().int().min(0),
-		narration: z.string().optional(),
-		audioFile: z.string().optional(),
-		duration: z.number().min(0).nullable().default(null),
-	})
-	.refine((s) => !(s.narration && s.audioFile), {
-		message: "narration and audioFile are mutually exclusive",
-	})
+const slideConfigSchema = z.object({
+	slideIndex: z.number().int().min(0),
+	narration: z.string().optional(),
+	audioFile: z.string().optional(),
+	duration: z.number().min(0).nullable().default(null),
+})
 
 const bgmSlideRangeSchema = z.object({
 	fromSlide: z.number().int().min(0).optional(),

@@ -3,10 +3,10 @@ import { dirname } from "node:path"
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { type VideoConfig, parseVideoConfig } from "@slidini/video-export/src/config"
 import { z } from "zod"
-import { err, ok, resolveVideoFile } from "./index"
+import { err, ok, resolveProjectFile } from "./index"
 
 function readVideoConfig(filePath: string): VideoConfig {
-	const absPath = resolveVideoFile(filePath)
+	const absPath = resolveProjectFile(filePath)
 	const raw = readFileSync(absPath, "utf-8")
 	const data = JSON.parse(raw)
 	const result = parseVideoConfig(data)
@@ -17,7 +17,7 @@ function readVideoConfig(filePath: string): VideoConfig {
 }
 
 function writeVideoConfig(filePath: string, config: VideoConfig): void {
-	const absPath = resolveVideoFile(filePath)
+	const absPath = resolveProjectFile(filePath)
 	mkdirSync(dirname(absPath), { recursive: true })
 	writeFileSync(absPath, `${JSON.stringify(config, null, "\t")}\n`, "utf-8")
 }
@@ -29,18 +29,24 @@ export function registerVideoTools(server: McpServer): void {
 		"slide_create_video_config",
 		{
 			title: "Create Video Config",
-			description: `Create a new .video.json file for video export configuration.
+			description: `Create a new .video.json file for video export configuration inside the project directory.
+
+The .video.json is created in the same project directory as the .slide.json file.
+Example: file_path="my-talk/my-talk.video.json", input="my-talk.slide.json"
+(input is relative to the .video.json file, so just the filename is sufficient)
 
 Args:
-  - file_path (string): Path to the .video.json file to create
-  - input (string): Path to the source .slide.json file (relative to .video.json)
+  - file_path (string): Path to the .video.json file (e.g. "my-talk/my-talk.video.json")
+  - input (string): Source .slide.json filename relative to the .video.json (e.g. "my-talk.slide.json")
   - fps (number, optional): Frames per second (default: 30)
   - default_slide_duration (number, optional): Default duration per slide in seconds (default: 5)
 
 Returns: JSON summary of the created config.`,
 			inputSchema: {
-				file_path: z.string().describe("Path to the .video.json file to create"),
-				input: z.string().describe("Path to the source .slide.json file"),
+				file_path: z
+					.string()
+					.describe("Path to the .video.json file (e.g. 'my-talk/my-talk.video.json')"),
+				input: z.string().describe("Source .slide.json filename relative to .video.json"),
 				fps: z.number().int().min(1).optional().describe("Frames per second (default: 30)"),
 				default_slide_duration: z
 					.number()
@@ -68,7 +74,7 @@ Returns: JSON summary of the created config.`,
 				return ok(
 					JSON.stringify(
 						{
-							file: resolveVideoFile(file_path),
+							file: resolveProjectFile(file_path),
 							input: config.input,
 							fps: config.fps,
 							defaultSlideDuration: config.defaultSlideDuration,
@@ -209,10 +215,27 @@ Returns: Updated config summary.`,
 			title: "Set Slide Narration",
 			description: `Set narration for a specific slide in the video config. Overwrites existing entry for the slide index, or adds a new one.
 
+IMPORTANT: Narration text is synthesized by VOICEVOX (Japanese TTS engine). All English words, technical terms, and abbreviations MUST be written in katakana pronunciation. Examples:
+  - "React" → "リアクト"
+  - "JavaScript" → "ジャバスクリプト"
+  - "TypeScript" → "タイプスクリプト"
+  - "API" → "エーピーアイ"
+  - "CSS" → "シーエスエス"
+  - "HTML" → "エイチティーエムエル"
+  - "GitHub" → "ギットハブ"
+  - "npm" → "エヌピーエム"
+  - "CLI" → "シーエルアイ"
+  - "UI" → "ユーアイ"
+  - "JSON" → "ジェイソン"
+  - "Vite" → "ヴィート"
+  - "Next.js" → "ネクストジェイエス"
+  - "Tailwind" → "テイルウィンド"
+Do NOT leave any alphabetic words as-is in the narration text.
+
 Args:
   - file_path (string): Path to the .video.json file
   - slide_index (number): 0-based slide index
-  - narration (string, optional): Narration text (mutually exclusive with audio_file)
+  - narration (string, optional): Narration text in Japanese with katakana for foreign words (mutually exclusive with audio_file)
   - audio_file (string, optional): Path to audio file (mutually exclusive with narration)
   - duration (number|null, optional): Override slide duration in seconds (null = auto)
 
