@@ -1,4 +1,6 @@
 import fs from "node:fs"
+import { parsePresentation } from "@slidini/core"
+import type { PlayerConfig } from "@slidini/core"
 import { z } from "zod"
 
 // ===== Zod Schemas =====
@@ -66,8 +68,42 @@ export function parseVideoConfig(data: unknown): VideoConfigParseResult {
 	return { success: false, error: result.error }
 }
 
+export function playerConfigToVideoConfig(playback: PlayerConfig, input: string): VideoConfig {
+	return {
+		input,
+		fps: 30,
+		defaultSlideDuration: playback.defaultSlideDuration,
+		slides: playback.slides.map((s) => ({
+			slideIndex: s.slideIndex,
+			...(s.narration !== undefined ? { narration: s.narration } : {}),
+			...(s.audioFile !== undefined ? { audioFile: s.audioFile } : {}),
+			duration: s.duration ?? null,
+		})),
+		bgm: playback.bgm.map((b) => ({
+			src: b.src,
+			volume: b.volume,
+			loop: b.loop,
+			fadeIn: b.fadeIn,
+			fadeOut: b.fadeOut,
+			...(b.fromSlide !== undefined ? { fromSlide: b.fromSlide } : {}),
+			...(b.toSlide !== undefined ? { toSlide: b.toSlide } : {}),
+		})),
+	}
+}
+
 export function loadVideoConfig(filePath: string): VideoConfig {
 	const raw = JSON.parse(fs.readFileSync(filePath, "utf-8"))
+
+	// If it's a .slide.json with playback field, extract config from it
+	if (filePath.endsWith(".slide.json")) {
+		const presResult = parsePresentation(raw)
+		if (presResult.success && presResult.data.playback) {
+			return playerConfigToVideoConfig(presResult.data.playback, filePath)
+		}
+		console.error("No playback config found in .slide.json")
+		process.exit(1)
+	}
+
 	const result = parseVideoConfig(raw)
 	if (!result.success) {
 		console.error("Invalid .video.json:", result.error.issues)

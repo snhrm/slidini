@@ -8,24 +8,63 @@ export function downloadJson(content: string, filename: string): void {
 	URL.revokeObjectURL(url)
 }
 
-export function openJsonFile(): Promise<string> {
+export type DirectoryResult = {
+	jsonFiles: { name: string; content: string }[]
+	mediaFiles: Map<string, string> // filename -> data URI
+}
+
+const AUDIO_EXTENSIONS = [".wav", ".mp3", ".ogg", ".m4a", ".aac", ".flac", ".webm"]
+
+function isAudioFile(name: string): boolean {
+	const lower = name.toLowerCase()
+	return AUDIO_EXTENSIONS.some((ext) => lower.endsWith(ext))
+}
+
+export function openDirectory(): Promise<DirectoryResult> {
 	return new Promise((resolve, reject) => {
 		const input = document.createElement("input")
 		input.type = "file"
-		input.accept = ".json,.slide.json"
-		input.onchange = () => {
-			const file = input.files?.[0]
+		input.webkitdirectory = true
+		input.onchange = async () => {
+			const files = input.files
 			input.remove()
-			if (!file) {
-				reject(new Error("No file selected"))
+			if (!files || files.length === 0) {
+				reject(new Error("No directory selected"))
 				return
 			}
-			const reader = new FileReader()
-			reader.onload = () => resolve(reader.result as string)
-			reader.onerror = () => reject(reader.error)
-			reader.readAsText(file)
+			const jsonFiles: DirectoryResult["jsonFiles"] = []
+			const mediaFiles = new Map<string, string>()
+			const fileArray = Array.from(files)
+
+			for (const file of fileArray) {
+				if (file.name.endsWith(".json")) {
+					try {
+						const content = await readFileAsText(file)
+						jsonFiles.push({ name: file.name, content })
+					} catch {
+						// skip
+					}
+				} else if (isAudioFile(file.name)) {
+					try {
+						const dataUri = await fileToBase64(file)
+						mediaFiles.set(file.name, dataUri)
+					} catch {
+						// skip
+					}
+				}
+			}
+			resolve({ jsonFiles, mediaFiles })
 		}
 		input.click()
+	})
+}
+
+function readFileAsText(file: File): Promise<string> {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader()
+		reader.onload = () => resolve(reader.result as string)
+		reader.onerror = () => reject(reader.error)
+		reader.readAsText(file)
 	})
 }
 

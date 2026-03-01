@@ -1,10 +1,13 @@
 // ===== プレゼンテーション =====
 
+import type { PlayerConfig } from "./playback"
+
 export type Presentation = {
 	meta: PresentationMeta
 	slides: Slide[]
 	overlayBackgroundElements?: SlideElement[]
 	overlayForegroundElements?: SlideElement[]
+	playback?: PlayerConfig
 }
 
 export type PresentationMeta = {

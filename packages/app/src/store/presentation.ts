@@ -2,15 +2,17 @@ import {
 	type AutoplayConfig,
 	type AutoplayState,
 	type Background,
+	type BgmPlaybackConfig,
+	type PlayerConfig,
 	type Presentation,
 	type SlideElement,
 	type SlideShape,
 	type SlideTransition,
 	type ViewMode,
 	createDefaultAutoplayConfig,
+	createDefaultPlayerConfig,
 	createDefaultPresentation,
 	createDefaultSlide,
-	generateId,
 	parsePresentation,
 } from "@slidini/core"
 import {
@@ -83,9 +85,20 @@ type PresentationStore = {
 	) => void
 	removeOverlayElement: (layer: "background" | "foreground", elementId: string) => void
 
+	// プレイヤー
+	isPlayerMode: boolean
+	setIsPlayerMode: (isPlayer: boolean) => void
+	updateSlideNarration: (slideIndex: number, narration: string) => void
+	updateSlideAudioFile: (slideIndex: number, audioFile: string | null) => void
+	updateSlideDuration: (slideIndex: number, duration: number | null) => void
+	addBgm: (bgm: BgmPlaybackConfig) => void
+	updateBgm: (index: number, updates: Partial<BgmPlaybackConfig>) => void
+	removeBgm: (index: number) => void
+
 	// JSON入出力
 	exportJson: () => string
 	importJson: (json: string) => boolean
+	importData: (data: { presentation?: Presentation; playerConfig?: PlayerConfig }) => void
 
 	// 通知
 	notification: string | null
@@ -435,6 +448,100 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 			}
 		}),
 
+	isPlayerMode: false,
+
+	setIsPlayerMode: (isPlayer) => set({ isPlayerMode: isPlayer }),
+
+	updateSlideNarration: (slideIndex, narration) =>
+		set((s) => {
+			const config = s.presentation.playback ?? createDefaultPlayerConfig()
+			const existing = config.slides.find((sc) => sc.slideIndex === slideIndex)
+			const slides = existing
+				? config.slides.map((sc) => (sc.slideIndex === slideIndex ? { ...sc, narration } : sc))
+				: [...config.slides, { slideIndex, narration }]
+			return {
+				presentation: {
+					...s.presentation,
+					playback: { ...config, slides },
+					meta: { ...s.presentation.meta, updatedAt: new Date().toISOString() },
+				},
+			}
+		}),
+
+	updateSlideAudioFile: (slideIndex, audioFile) =>
+		set((s) => {
+			const config = s.presentation.playback ?? createDefaultPlayerConfig()
+			const existing = config.slides.find((sc) => sc.slideIndex === slideIndex)
+			const slides = existing
+				? config.slides.map((sc) =>
+						sc.slideIndex === slideIndex ? { ...sc, audioFile: audioFile ?? undefined } : sc,
+					)
+				: [...config.slides, { slideIndex, audioFile: audioFile ?? undefined }]
+			return {
+				presentation: {
+					...s.presentation,
+					playback: { ...config, slides },
+					meta: { ...s.presentation.meta, updatedAt: new Date().toISOString() },
+				},
+			}
+		}),
+
+	updateSlideDuration: (slideIndex, duration) =>
+		set((s) => {
+			const config = s.presentation.playback ?? createDefaultPlayerConfig()
+			const existing = config.slides.find((sc) => sc.slideIndex === slideIndex)
+			const slides = existing
+				? config.slides.map((sc) => (sc.slideIndex === slideIndex ? { ...sc, duration } : sc))
+				: [...config.slides, { slideIndex, duration }]
+			return {
+				presentation: {
+					...s.presentation,
+					playback: { ...config, slides },
+					meta: { ...s.presentation.meta, updatedAt: new Date().toISOString() },
+				},
+			}
+		}),
+
+	addBgm: (bgm) =>
+		set((s) => {
+			const config = s.presentation.playback ?? createDefaultPlayerConfig()
+			return {
+				presentation: {
+					...s.presentation,
+					playback: { ...config, bgm: [...config.bgm, bgm] },
+					meta: { ...s.presentation.meta, updatedAt: new Date().toISOString() },
+				},
+			}
+		}),
+
+	updateBgm: (index, updates) =>
+		set((s) => {
+			if (!s.presentation.playback) return s
+			const bgm = s.presentation.playback.bgm.map((b, i) =>
+				i === index ? { ...b, ...updates } : b,
+			)
+			return {
+				presentation: {
+					...s.presentation,
+					playback: { ...s.presentation.playback, bgm },
+					meta: { ...s.presentation.meta, updatedAt: new Date().toISOString() },
+				},
+			}
+		}),
+
+	removeBgm: (index) =>
+		set((s) => {
+			if (!s.presentation.playback) return s
+			const bgm = s.presentation.playback.bgm.filter((_, i) => i !== index)
+			return {
+				presentation: {
+					...s.presentation,
+					playback: { ...s.presentation.playback, bgm },
+					meta: { ...s.presentation.meta, updatedAt: new Date().toISOString() },
+				},
+			}
+		}),
+
 	notification: null,
 
 	setNotification: (message) => {
@@ -468,5 +575,21 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 			console.error("JSON parse error:", e)
 			return false
 		}
+	},
+
+	importData: ({ presentation, playerConfig }) => {
+		const updates: Partial<PresentationStore> = {}
+		if (presentation) {
+			updates.presentation = presentation
+			updates.currentSlideIndex = 0
+			updates.currentStep = 0
+			updates.selectedElementId = null
+		}
+		if (playerConfig) {
+			const pres = updates.presentation ?? get().presentation
+			updates.presentation = { ...pres, playback: playerConfig }
+			updates.isPlayerMode = true
+		}
+		set(updates)
 	},
 }))

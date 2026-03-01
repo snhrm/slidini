@@ -1,2561 +1,2648 @@
 {
-  "meta": {
-    "schemaVersion": 1,
-    "title": "Slidini - AIネイティブなスライド作成アプリ",
-    "width": 1920,
-    "height": 1080,
-    "colorSetId": "light-clean",
-    "createdAt": "2026-02-27T12:00:00.000Z",
-    "updatedAt": "2026-02-27T11:34:49.715Z"
-  },
-  "overlayForegroundElements": [
-    {
-      "type": "text",
-      "id": "overlay-fg-brand",
-      "position": {
-        "x": 1580,
-        "y": 1030
-      },
-      "size": {
-        "width": 300,
-        "height": 40
-      },
-      "rotation": 0,
-      "opacity": 0.3,
-      "zIndex": 10,
-      "content": "Made with **Slidini**",
-      "style": {
-        "color": "#94a3b8",
-        "fontSize": 18,
-        "fontFamily": "Zen Kaku Gothic New",
-        "fontWeight": "normal",
-        "fontStyle": "normal",
-        "textDecoration": "none",
-        "textAlign": "right",
-        "lineHeight": 1.5,
-        "backgroundColor": null,
-        "padding": 0
-      },
-      "animations": []
-    }
-  ],
-  "slides": [
-    {
-      "id": "slide-c01-cover",
-      "background": {
-        "type": "gradient",
-        "gradient": {
-          "kind": "radial",
-          "angle": 0,
-          "stops": [
-            {
-              "color": "#2563eb",
-              "position": 0
-            },
-            {
-              "color": "#7c3aed",
-              "position": 60
-            },
-            {
-              "color": "#c4b5fd",
-              "position": 100
-            }
-          ]
-        }
-      },
-      "transition": {
-        "type": "fade",
-        "duration": 0.6,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "text",
-          "id": "text-c01-glow-bar",
-          "position": {
-            "x": 610,
-            "y": 310
-          },
-          "size": {
-            "width": 700,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 0.8,
-          "zIndex": 1,
-          "content": "",
-          "style": {
-            "color": "#60a5fa",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1,
-            "backgroundColor": "#60a5fa",
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "slide-in-left",
-              "duration": 0.8,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c01-title",
-          "position": {
-            "x": 160,
-            "y": 340
-          },
-          "size": {
-            "width": 1600,
-            "height": 180
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "Slidini",
-          "style": {
-            "color": "#ffffff",
-            "fontSize": 96,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.3,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.7,
-              "delay": 0.2,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c01-subtitle",
-          "position": {
-            "x": 360,
-            "y": 530
-          },
-          "size": {
-            "width": 1200,
-            "height": 80
-          },
-          "rotation": 0,
-          "opacity": 0.85,
-          "zIndex": 2,
-          "content": "AI ネイティブなスライド作成アプリ",
-          "style": {
-            "color": "#e0e7ff",
-            "fontSize": 32,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.6,
-              "delay": 0.6,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c01-glow-bar2",
-          "position": {
-            "x": 610,
-            "y": 630
-          },
-          "size": {
-            "width": 700,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 0.8,
-          "zIndex": 1,
-          "content": "",
-          "style": {
-            "color": "#a78bfa",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1,
-            "backgroundColor": "#a78bfa",
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "slide-in-right",
-              "duration": 0.8,
-              "delay": 0.3,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c01-tech",
-          "position": {
-            "x": 460,
-            "y": 680
-          },
-          "size": {
-            "width": 1000,
-            "height": 50
-          },
-          "rotation": 0,
-          "opacity": 0.4,
-          "zIndex": 1,
-          "content": "React  ·  Vite  ·  Zustand  ·  Framer Motion  ·  MCP",
-          "style": {
-            "color": "#c7d2fe",
-            "fontSize": 18,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.5,
-              "delay": 1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "image",
-          "id": "img-c01-logo",
-          "position": {
-            "x": 760,
-            "y": 80
-          },
-          "size": {
-            "width": 400,
-            "height": 400
-          },
-          "rotation": 0,
-          "opacity": 0.15,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI1NjNlYiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcyIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkYjI3NzciLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjYwIiB5PSI2MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNnMSkiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjEyMCIgeT0iMTQwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEyMCIgcng9IjE2IiBmaWxsPSJ1cmwoI2cxKSIgb3BhY2l0eT0iMC43Ii8+CiAgPHJlY3QgeD0iMjIwIiB5PSIyMjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMTYiIGZpbGw9InVybCgjZzIpIiBvcGFjaXR5PSIwLjkiLz4KICA8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjgwIiB5PSI5NiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iODAiIHk9IjEwOCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxNjQiIHdpZHRoPSIxMDAiIGhlaWdodD0iNiIgcng9IjMiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz4KICA8cmVjdCB4PSIxNDAiIHk9IjE4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxOTIiIHdpZHRoPSI5MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNCIvPgogIDxyZWN0IHg9IjE0MCIgeT0iMjA0IiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIyNDAiIHk9IjI0NCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjYiIHJ4PSIzIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPHJlY3QgeD0iMjQwIiB5PSIyNjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9IjI0MCIgeT0iMjcyIiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+",
-          "fit": "contain",
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 1,
-              "delay": 0,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c02-concept",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "portal",
-        "duration": 0.5,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "image",
-          "id": "img-c02-geo",
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "size": {
-            "width": 1920,
-            "height": 1080
-          },
-          "rotation": 0,
-          "opacity": 0.5,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
-          "fit": "cover",
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c02-quote",
-          "position": {
-            "x": 240,
-            "y": 320
-          },
-          "size": {
-            "width": 1440,
-            "height": 260
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "AI にプレゼンを任せて、\nあなたはストーリーに集中する",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 42,
-            "fontFamily": "Shippori Mincho",
-            "fontWeight": "normal",
-            "fontStyle": "italic",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.8,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.8,
-              "delay": 0.3,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c02-desc",
-          "position": {
-            "x": 360,
-            "y": 660
-          },
-          "size": {
-            "width": 1200,
-            "height": 80
-          },
-          "rotation": 0,
-          "opacity": 0.6,
-          "zIndex": 2,
-          "content": ".slide.json ひとつで完結する、新しいスライド体験",
-          "style": {
-            "color": "#475569",
-            "fontSize": 30,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.5,
-              "delay": 0.8,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c02-accent",
-          "position": {
-            "x": 860,
-            "y": 260
-          },
-          "size": {
-            "width": 200,
-            "height": 4
-          },
-          "rotation": 0,
-          "opacity": 0.6,
-          "zIndex": 1,
-          "content": "",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1,
-            "backgroundColor": "#2563eb",
-            "padding": 0
-          },
-          "animations": []
-        }
-      ]
-    },
-    {
-      "id": "slide-c03-arch",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "slide-left",
-        "duration": 0.5,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "text",
-          "id": "text-c03-title",
-          "position": {
-            "x": 120,
-            "y": 60
-          },
-          "size": {
-            "width": 1680,
-            "height": 90
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "アーキテクチャ",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 48,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c03-bar",
-          "position": {
-            "x": 120,
-            "y": 148
-          },
-          "size": {
-            "width": 120,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1,
-            "backgroundColor": "#2563eb",
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c03-b1",
-          "position": {
-            "x": 120,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 300
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### core\n\n型定義\nZodスキーマ\nデフォルト値\nフォント定義",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c03-b2",
-          "position": {
-            "x": 520,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 300
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### renderer\n\nReact描画\nFramer Motion\nフォント読込\nCSS scale",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.2,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c03-b3",
-          "position": {
-            "x": 920,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 300
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### app\n\nエディタUI\nZustand状態管理\nTailwind CSS\nVite HMR",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.3,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c03-b4",
-          "position": {
-            "x": 1320,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 300
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### templates\n\n10テンプレート\n6カラーセット\nセマンティック\nカラーマッピング",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.4,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c03-b5",
-          "position": {
-            "x": 120,
-            "y": 520
-          },
-          "size": {
-            "width": 1680,
-            "height": 140
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### mcp\n\nMCP サーバー（stdio） ·  19ツール  ·  AI からスライドを直接操作",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 26,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#ede9fe",
-            "padding": 24
-          },
-          "animations": [
-            {
-              "type": "slide-in-top",
-              "duration": 0.5,
-              "delay": 0.5,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c04-editor",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "slide-left",
-        "duration": 0.5,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "image",
-          "id": "img-c04-editor-geo",
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "size": {
-            "width": 1920,
-            "height": 1080
-          },
-          "rotation": 0,
-          "opacity": 0.4,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
-          "fit": "cover",
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c04-title",
-          "position": {
-            "x": 120,
-            "y": 60
-          },
-          "size": {
-            "width": 1680,
-            "height": 90
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "直感的なエディタ",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 48,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c04-bar",
-          "position": {
-            "x": 120,
-            "y": 148
-          },
-          "size": {
-            "width": 120,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "",
-          "style": {
-            "color": "#7c3aed",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1,
-            "backgroundColor": "#7c3aed",
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c04-body",
-          "position": {
-            "x": 140,
-            "y": 190
-          },
-          "size": {
-            "width": 1640,
-            "height": 800
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "- **テキスト・画像・動画・チャート**の 4 種類の要素を自由に配置\n- **Markdown** で書く ― react-markdown + remark-gfm で即座にレンダリング\n- ドラッグ＆リサイズで直感的に要素を操作\n- **Zustand** による単一ストアで高速な状態管理\n- 1920×1080 キャンバスにピクセル精度で配置",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 32,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 2.2,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        }
-      ]
-    },
-    {
-      "id": "slide-c05-fonts",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "flip-x",
-        "duration": 0.5,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "text",
-          "id": "text-c05-title",
-          "position": {
-            "x": 120,
-            "y": 60
-          },
-          "size": {
-            "width": 1680,
-            "height": 90
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "タイポグラフィ",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 48,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c05-bar",
-          "position": {
-            "x": 120,
-            "y": 148
-          },
-          "size": {
-            "width": 120,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1,
-            "backgroundColor": "#2563eb",
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c05-demo-gothic",
-          "position": {
-            "x": 120,
-            "y": 190
-          },
-          "size": {
-            "width": 520,
-            "height": 280
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### ゴシック体\n\nNoto Sans JP\nZen Kaku Gothic New\nM PLUS 1p\nM PLUS Rounded 1c\nBIZ UDPGothic",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Noto Sans JP",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c05-demo-mincho",
-          "position": {
-            "x": 670,
-            "y": 190
-          },
-          "size": {
-            "width": 520,
-            "height": 280
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### 明朝体\n\nNoto Serif JP\nShippori Mincho\nZen Antique",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Noto Serif JP",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.25,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c05-demo-display",
-          "position": {
-            "x": 1220,
-            "y": 190
-          },
-          "size": {
-            "width": 520,
-            "height": 280
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### デザイン向き\n\nDela Gothic One\nReggae One\nRampart One\nKiwi Maru",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Kiwi Maru",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.4,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c05-sample",
-          "position": {
-            "x": 120,
-            "y": 520
-          },
-          "size": {
-            "width": 1680,
-            "height": 220
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "見出しはインパクト重視",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 64,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.5,
-              "delay": 0.6,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c05-sample2",
-          "position": {
-            "x": 360,
-            "y": 740
-          },
-          "size": {
-            "width": 1200,
-            "height": 80
-          },
-          "rotation": 0,
-          "opacity": 0.7,
-          "zIndex": 2,
-          "content": "本文は読みやすさを優先",
-          "style": {
-            "color": "#475569",
-            "fontSize": 30,
-            "fontFamily": "Shippori Mincho",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.5,
-              "delay": 0.8,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c06-divider",
-      "background": {
-        "type": "gradient",
-        "gradient": {
-          "kind": "linear",
-          "angle": 135,
-          "stops": [
-            {
-              "color": "#2563eb",
-              "position": 0
-            },
-            {
-              "color": "#7c3aed",
-              "position": 100
-            }
-          ]
-        }
-      },
-      "transition": {
-        "type": "zoom",
-        "duration": 0.4,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "text",
-          "id": "text-c06-section",
-          "position": {
-            "x": 160,
-            "y": 380
-          },
-          "size": {
-            "width": 1600,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "表現力",
-          "style": {
-            "color": "#ffffff",
-            "fontSize": 72,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.3,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.5,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c06-sub",
-          "position": {
-            "x": 300,
-            "y": 550
-          },
-          "size": {
-            "width": 1320,
-            "height": 80
-          },
-          "rotation": 0,
-          "opacity": 0.8,
-          "zIndex": 2,
-          "content": "トランジション · チャート · アニメーション · オーバーレイ",
-          "style": {
-            "color": "#f1f5f9",
-            "fontSize": 28,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.5,
-              "delay": 0.4,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c07-transitions",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "cube-left",
-        "duration": 0.6,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "image",
-          "id": "img-c07-transitions-geo",
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "size": {
-            "width": 1920,
-            "height": 1080
-          },
-          "rotation": 0,
-          "opacity": 0.4,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
-          "fit": "cover",
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c07-title",
-          "position": {
-            "x": 120,
-            "y": 60
-          },
-          "size": {
-            "width": 1680,
-            "height": 90
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "16 種のトランジション",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 48,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c07-bar",
-          "position": {
-            "x": 120,
-            "y": 148
-          },
-          "size": {
-            "width": 120,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1,
-            "backgroundColor": "#2563eb",
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c07-grid1",
-          "position": {
-            "x": 120,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### 基本\n\nフェード · ズーム\n回転 · スケールフェード",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c07-grid2",
-          "position": {
-            "x": 520,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### スライド\n\n上下左右の\n4方向スライド",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.2,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c07-grid3",
-          "position": {
-            "x": 920,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### フリップ\n\n横・縦の\nフリップ回転",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.3,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c07-grid4",
-          "position": {
-            "x": 1320,
-            "y": 190
-          },
-          "size": {
-            "width": 380,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### ワイプ\n\n上下左右の\n4方向ワイプ",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#e8edf5",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.4,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c07-grid5",
-          "position": {
-            "x": 570,
-            "y": 360
-          },
-          "size": {
-            "width": 380,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### 3D キューブ\n\n立体的な回転遷移\n← いま体験中",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#dbeafe",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.4,
-              "delay": 0.5,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c07-grid6",
-          "position": {
-            "x": 970,
-            "y": 360
-          },
-          "size": {
-            "width": 380,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### ユニーク\n\nページめくり\nポータル",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#dbeafe",
-            "padding": 20
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.4,
-              "delay": 0.6,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c07-anim-title",
-          "position": {
-            "x": 120,
-            "y": 550
-          },
-          "size": {
-            "width": 1680,
-            "height": 60
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### アニメーション",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 34,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.7,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c07-anim-body",
-          "position": {
-            "x": 120,
-            "y": 600
-          },
-          "size": {
-            "width": 1680,
-            "height": 400
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "fade-in · scale-in · slide-in · rotate-in · bounce — 表示時 / 非表示時 / クリック時にトリガー、**stepIndex** で段階的に表示",
-          "style": {
-            "color": "#475569",
-            "fontSize": 26,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.6,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.8,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c08-charts",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "page-turn",
-        "duration": 0.6,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "image",
-          "id": "img-c08-charts-geo",
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "size": {
-            "width": 1920,
-            "height": 1080
-          },
-          "rotation": 0,
-          "opacity": 0.4,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
-          "fit": "cover",
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c08-title",
-          "position": {
-            "x": 120,
-            "y": 60
-          },
-          "size": {
-            "width": 1680,
-            "height": 90
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "データを語る",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 48,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c08-bar",
-          "position": {
-            "x": 120,
-            "y": 148
-          },
-          "size": {
-            "width": 120,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "",
-          "style": {
-            "color": "#7c3aed",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1,
-            "backgroundColor": "#7c3aed",
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c08-left-h",
-          "position": {
-            "x": 120,
-            "y": 200
-          },
-          "size": {
-            "width": 820,
-            "height": 60
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### チャート要素",
-          "style": {
-            "color": "#ffffff",
-            "fontSize": 30,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#2563eb",
-            "padding": 16
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c08-left-b",
-          "position": {
-            "x": 120,
-            "y": 280
-          },
-          "size": {
-            "width": 820,
-            "height": 680
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "- **棒グラフ** — 数値比較の定番\n- **折れ線グラフ** — 時系列トレンド\n- **円グラフ・ドーナツ** — 構成比を直感的に\n- **エリア** — 量感のある推移\n- **レーダー** — 多軸の能力評価\n- 積み上げ・凡例・カスタムカラー対応",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 28,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.8,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c08-right-h",
-          "position": {
-            "x": 980,
-            "y": 200
-          },
-          "size": {
-            "width": 820,
-            "height": 60
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### オーバーレイ要素",
-          "style": {
-            "color": "#ffffff",
-            "fontSize": 30,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": "#7c3aed",
-            "padding": 16
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c08-right-b",
-          "position": {
-            "x": 980,
-            "y": 280
-          },
-          "size": {
-            "width": 820,
-            "height": 680
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "- **背景レイヤー** — 全スライド共通\n- **前面レイヤー** — 全スライド共通\n- ロゴ・ページ番号の一括配置\n- スライドごとの要素とは独立管理\n- 右下の「Made with Slidini」がまさにこの機能",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 28,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.8,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        }
-      ]
-    },
-    {
-      "id": "slide-c09-divider-ai",
-      "background": {
-        "type": "gradient",
-        "gradient": {
-          "kind": "linear",
-          "angle": 180,
-          "stops": [
-            {
-              "color": "#eff6ff",
-              "position": 0
-            },
-            {
-              "color": "#dbeafe",
-              "position": 50
-            },
-            {
-              "color": "#eff6ff",
-              "position": 100
-            }
-          ]
-        }
-      },
-      "transition": {
-        "type": "portal",
-        "duration": 0.5,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "image",
-          "id": "img-c09-ai",
-          "position": {
-            "x": 660,
-            "y": 240
-          },
-          "size": {
-            "width": 600,
-            "height": 600
-          },
-          "rotation": 0,
-          "opacity": 0.3,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNjAwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9Im4xIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxnIHN0cm9rZT0iIzI1NjNlYiIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMiI+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMTUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMzAwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iNDUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iNTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMjUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMzUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iNTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEwMCIgcj0iMTgiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjQ1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjUwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjUyMCIgcj0iMTgiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMjAwIiBmaWxsPSJ1cmwoI24xKSIvPgo8L3N2Zz4=",
-          "fit": "contain",
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 1,
-              "delay": 0,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c09-section",
-          "position": {
-            "x": 160,
-            "y": 380
-          },
-          "size": {
-            "width": 1600,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "AI 連携",
-          "style": {
-            "color": "#1e3a5f",
-            "fontSize": 72,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.3,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.6,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c09-sub",
-          "position": {
-            "x": 300,
-            "y": 550
-          },
-          "size": {
-            "width": 1320,
-            "height": 80
-          },
-          "rotation": 0,
-          "opacity": 0.7,
-          "zIndex": 2,
-          "content": "Model Context Protocol で AI がスライドを自在に操る",
-          "style": {
-            "color": "#475569",
-            "fontSize": 28,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.5,
-              "delay": 0.5,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c10-stat",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "zoom",
-        "duration": 0.4,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "text",
-          "id": "text-c10-number",
-          "position": {
-            "x": 160,
-            "y": 200
-          },
-          "size": {
-            "width": 1600,
-            "height": 280
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "19",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 180,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.2,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.6,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c10-label",
-          "position": {
-            "x": 360,
-            "y": 520
-          },
-          "size": {
-            "width": 1200,
-            "height": 80
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "MCP ツール搭載",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 42,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.4,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c10-detail",
-          "position": {
-            "x": 240,
-            "y": 640
-          },
-          "size": {
-            "width": 1440,
-            "height": 200
-          },
-          "rotation": 0,
-          "opacity": 0.7,
-          "zIndex": 2,
-          "content": "スライド CRUD · テキスト/画像/チャート操作 · テンプレート適用\nカラーセット管理 · オーバーレイ制御 · プレゼン読み書き",
-          "style": {
-            "color": "#475569",
-            "fontSize": 28,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.8,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.6,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c11-mcp-detail",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
-      },
-      "transition": {
-        "type": "slide-left",
-        "duration": 0.5,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "image",
-          "id": "img-c11-mcp-detail-geo",
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "size": {
-            "width": 1920,
-            "height": 1080
-          },
-          "rotation": 0,
-          "opacity": 0.4,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNjAwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9Im4xIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxnIHN0cm9rZT0iIzI1NjNlYiIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMiI+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMTUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMzAwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iNDUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iNTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMjUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMzUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iNTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEwMCIgcj0iMTgiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjQ1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjUwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjUyMCIgcj0iMTgiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMjAwIiBmaWxsPSJ1cmwoI24xKSIvPgo8L3N2Zz4=",
-          "fit": "cover",
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c11-title",
-          "position": {
-            "x": 120,
-            "y": 60
-          },
-          "size": {
-            "width": 1680,
-            "height": 90
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "AI × 人間の協業ワークフロー",
-          "style": {
-            "color": "#0f172a",
-            "fontSize": 48,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c11-bar",
-          "position": {
-            "x": 120,
-            "y": 148
-          },
-          "size": {
-            "width": 120,
-            "height": 5
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 1,
-            "backgroundColor": "#2563eb",
-            "padding": 0
-          },
-          "animations": []
-        },
-        {
-          "type": "text",
-          "id": "text-c11-step1",
-          "position": {
-            "x": 120,
-            "y": 190
-          },
-          "size": {
-            "width": 470,
-            "height": 230
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### 1. AI が生成\n\nMCP 経由でスライド構成・テキスト・レイアウトを一括作成",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 24
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 1
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c11-arrow1",
-          "position": {
-            "x": 600,
-            "y": 285
-          },
-          "size": {
-            "width": 60,
-            "height": 60
-          },
-          "rotation": 0,
-          "opacity": 0.5,
-          "zIndex": 2,
-          "content": "→",
-          "style": {
-            "color": "#2563eb",
-            "fontSize": 40,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.3,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 1
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c11-step2",
-          "position": {
-            "x": 650,
-            "y": 190
-          },
-          "size": {
-            "width": 470,
-            "height": 230
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### 2. 人間が編集\n\nエディタ UI でドラッグ＆ドロップ、フォント変更、微調整",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 24
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.4,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 2
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c11-arrow2",
-          "position": {
-            "x": 1130,
-            "y": 285
-          },
-          "size": {
-            "width": 60,
-            "height": 60
-          },
-          "rotation": 0,
-          "opacity": 0.5,
-          "zIndex": 2,
-          "content": "→",
-          "style": {
-            "color": "#7c3aed",
-            "fontSize": 40,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.3,
-              "delay": 0.6,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 2
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c11-step3",
-          "position": {
-            "x": 1180,
-            "y": 190
-          },
-          "size": {
-            "width": 470,
-            "height": 230
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "### 3. 即プレゼン\n\nオートプレイ・キーボード操作でそのまま発表",
-          "style": {
-            "color": "#1e293b",
-            "fontSize": 24,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.6,
-            "backgroundColor": "#e8edf5",
-            "padding": 24
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.7,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 3
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c11-note",
-          "position": {
-            "x": 140,
-            "y": 460
-          },
-          "size": {
-            "width": 1640,
-            "height": 520
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "- .slide.json は **Git で管理**できる ― 差分も PR レビューも自然に\n- 画像・動画は **Base64 データ URI** で埋め込み、単一ファイルで完結\n- テンプレート＆カラーセットで統一感を一瞬で適用",
-          "style": {
-            "color": "#475569",
-            "fontSize": 26,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "left",
-            "lineHeight": 2.2,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.4,
-              "delay": 0.2,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "slide-c12-closing",
-      "background": {
-        "type": "gradient",
-        "gradient": {
-          "kind": "radial",
-          "angle": 0,
-          "stops": [
-            {
-              "color": "#2563eb",
-              "position": 0
-            },
-            {
-              "color": "#7c3aed",
-              "position": 100
-            }
-          ]
-        }
-      },
-      "transition": {
-        "type": "portal",
-        "duration": 0.6,
-        "easing": "ease-out"
-      },
-      "elements": [
-        {
-          "type": "text",
-          "id": "text-c12-cta",
-          "position": {
-            "x": 160,
-            "y": 360
-          },
-          "size": {
-            "width": 1600,
-            "height": 150
-          },
-          "rotation": 0,
-          "opacity": 1,
-          "zIndex": 2,
-          "content": "bun run dev",
-          "style": {
-            "color": "#ffffff",
-            "fontSize": 72,
-            "fontFamily": "Reggae One",
-            "fontWeight": "bold",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.4,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "scale-in",
-              "duration": 0.6,
-              "delay": 0.2,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c12-sub",
-          "position": {
-            "x": 360,
-            "y": 540
-          },
-          "size": {
-            "width": 1200,
-            "height": 80
-          },
-          "rotation": 0,
-          "opacity": 0.8,
-          "zIndex": 2,
-          "content": "スライド作成の未来は、もう始まっている",
-          "style": {
-            "color": "#e2e8f0",
-            "fontSize": 34,
-            "fontFamily": "Shippori Mincho",
-            "fontWeight": "normal",
-            "fontStyle": "italic",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1.5,
-            "backgroundColor": null,
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 0.6,
-              "delay": 0.6,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c12-bar1",
-          "position": {
-            "x": 610,
-            "y": 330
-          },
-          "size": {
-            "width": 700,
-            "height": 4
-          },
-          "rotation": 0,
-          "opacity": 0.6,
-          "zIndex": 1,
-          "content": "",
-          "style": {
-            "color": "#60a5fa",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1,
-            "backgroundColor": "#60a5fa",
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "slide-in-left",
-              "duration": 0.8,
-              "delay": 0.1,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "id": "text-c12-bar2",
-          "position": {
-            "x": 610,
-            "y": 630
-          },
-          "size": {
-            "width": 700,
-            "height": 4
-          },
-          "rotation": 0,
-          "opacity": 0.6,
-          "zIndex": 1,
-          "content": "",
-          "style": {
-            "color": "#a78bfa",
-            "fontSize": 1,
-            "fontFamily": "Zen Kaku Gothic New",
-            "fontWeight": "normal",
-            "fontStyle": "normal",
-            "textDecoration": "none",
-            "textAlign": "center",
-            "lineHeight": 1,
-            "backgroundColor": "#a78bfa",
-            "padding": 0
-          },
-          "animations": [
-            {
-              "type": "slide-in-right",
-              "duration": 0.8,
-              "delay": 0.3,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        },
-        {
-          "type": "image",
-          "id": "img-c12-logo",
-          "position": {
-            "x": 760,
-            "y": 700
-          },
-          "size": {
-            "width": 400,
-            "height": 400
-          },
-          "rotation": 0,
-          "opacity": 0.08,
-          "zIndex": 0,
-          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI1NjNlYiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcyIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkYjI3NzciLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjYwIiB5PSI2MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNnMSkiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjEyMCIgeT0iMTQwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEyMCIgcng9IjE2IiBmaWxsPSJ1cmwoI2cxKSIgb3BhY2l0eT0iMC43Ii8+CiAgPHJlY3QgeD0iMjIwIiB5PSIyMjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMTYiIGZpbGw9InVybCgjZzIpIiBvcGFjaXR5PSIwLjkiLz4KICA8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjgwIiB5PSI5NiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iODAiIHk9IjEwOCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxNjQiIHdpZHRoPSIxMDAiIGhlaWdodD0iNiIgcng9IjMiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz4KICA8cmVjdCB4PSIxNDAiIHk9IjE4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxOTIiIHdpZHRoPSI5MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNCIvPgogIDxyZWN0IHg9IjE0MCIgeT0iMjA0IiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIyNDAiIHk9IjI0NCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjYiIHJ4PSIzIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPHJlY3QgeD0iMjQwIiB5PSIyNjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9IjI0MCIgeT0iMjcyIiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+",
-          "fit": "contain",
-          "animations": [
-            {
-              "type": "fade-in",
-              "duration": 1,
-              "delay": 0.8,
-              "easing": "ease-out",
-              "trigger": "onEnter",
-              "stepIndex": 0
-            }
-          ]
-        }
-      ]
-    }
-  ]
+	"meta": {
+		"schemaVersion": 1,
+		"title": "Slidini - AIネイティブなスライド作成アプリ",
+		"width": 1920,
+		"height": 1080,
+		"colorSetId": "light-clean",
+		"createdAt": "2026-02-27T12:00:00.000Z",
+		"updatedAt": "2026-02-27T11:34:49.715Z"
+	},
+	"overlayForegroundElements": [
+		{
+			"type": "text",
+			"id": "overlay-fg-brand",
+			"position": {
+				"x": 1580,
+				"y": 1030
+			},
+			"size": {
+				"width": 300,
+				"height": 40
+			},
+			"rotation": 0,
+			"opacity": 0.3,
+			"zIndex": 10,
+			"content": "Made with **Slidini**",
+			"style": {
+				"color": "#94a3b8",
+				"fontSize": 18,
+				"fontFamily": "Zen Kaku Gothic New",
+				"fontWeight": "normal",
+				"fontStyle": "normal",
+				"textDecoration": "none",
+				"textAlign": "right",
+				"lineHeight": 1.5,
+				"backgroundColor": null,
+				"padding": 0
+			},
+			"animations": []
+		}
+	],
+	"slides": [
+		{
+			"id": "slide-c01-cover",
+			"background": {
+				"type": "gradient",
+				"gradient": {
+					"kind": "radial",
+					"angle": 0,
+					"stops": [
+						{
+							"color": "#2563eb",
+							"position": 0
+						},
+						{
+							"color": "#7c3aed",
+							"position": 60
+						},
+						{
+							"color": "#c4b5fd",
+							"position": 100
+						}
+					]
+				}
+			},
+			"transition": {
+				"type": "fade",
+				"duration": 0.6,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "text",
+					"id": "text-c01-glow-bar",
+					"position": {
+						"x": 610,
+						"y": 310
+					},
+					"size": {
+						"width": 700,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 0.8,
+					"zIndex": 1,
+					"content": "",
+					"style": {
+						"color": "#60a5fa",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1,
+						"backgroundColor": "#60a5fa",
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "slide-in-left",
+							"duration": 0.8,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c01-title",
+					"position": {
+						"x": 160,
+						"y": 340
+					},
+					"size": {
+						"width": 1600,
+						"height": 180
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "Slidini",
+					"style": {
+						"color": "#ffffff",
+						"fontSize": 96,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.3,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.7,
+							"delay": 0.2,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c01-subtitle",
+					"position": {
+						"x": 360,
+						"y": 530
+					},
+					"size": {
+						"width": 1200,
+						"height": 80
+					},
+					"rotation": 0,
+					"opacity": 0.85,
+					"zIndex": 2,
+					"content": "AI ネイティブなスライド作成アプリ",
+					"style": {
+						"color": "#e0e7ff",
+						"fontSize": 32,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.6,
+							"delay": 0.6,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c01-glow-bar2",
+					"position": {
+						"x": 610,
+						"y": 630
+					},
+					"size": {
+						"width": 700,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 0.8,
+					"zIndex": 1,
+					"content": "",
+					"style": {
+						"color": "#a78bfa",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1,
+						"backgroundColor": "#a78bfa",
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "slide-in-right",
+							"duration": 0.8,
+							"delay": 0.3,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c01-tech",
+					"position": {
+						"x": 460,
+						"y": 680
+					},
+					"size": {
+						"width": 1000,
+						"height": 50
+					},
+					"rotation": 0,
+					"opacity": 0.4,
+					"zIndex": 1,
+					"content": "React  ·  Vite  ·  Zustand  ·  Framer Motion  ·  MCP",
+					"style": {
+						"color": "#c7d2fe",
+						"fontSize": 18,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.5,
+							"delay": 1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "image",
+					"id": "img-c01-logo",
+					"position": {
+						"x": 760,
+						"y": 80
+					},
+					"size": {
+						"width": 400,
+						"height": 400
+					},
+					"rotation": 0,
+					"opacity": 0.15,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI1NjNlYiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcyIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkYjI3NzciLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjYwIiB5PSI2MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNnMSkiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjEyMCIgeT0iMTQwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEyMCIgcng9IjE2IiBmaWxsPSJ1cmwoI2cxKSIgb3BhY2l0eT0iMC43Ii8+CiAgPHJlY3QgeD0iMjIwIiB5PSIyMjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMTYiIGZpbGw9InVybCgjZzIpIiBvcGFjaXR5PSIwLjkiLz4KICA8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjgwIiB5PSI5NiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iODAiIHk9IjEwOCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxNjQiIHdpZHRoPSIxMDAiIGhlaWdodD0iNiIgcng9IjMiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz4KICA8cmVjdCB4PSIxNDAiIHk9IjE4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxOTIiIHdpZHRoPSI5MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNCIvPgogIDxyZWN0IHg9IjE0MCIgeT0iMjA0IiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIyNDAiIHk9IjI0NCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjYiIHJ4PSIzIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPHJlY3QgeD0iMjQwIiB5PSIyNjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9IjI0MCIgeT0iMjcyIiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+",
+					"fit": "contain",
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 1,
+							"delay": 0,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c02-concept",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "portal",
+				"duration": 0.5,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "image",
+					"id": "img-c02-geo",
+					"position": {
+						"x": 0,
+						"y": 0
+					},
+					"size": {
+						"width": 1920,
+						"height": 1080
+					},
+					"rotation": 0,
+					"opacity": 0.5,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
+					"fit": "cover",
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c02-quote",
+					"position": {
+						"x": 240,
+						"y": 320
+					},
+					"size": {
+						"width": 1440,
+						"height": 260
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "AI にプレゼンを任せて、\nあなたはストーリーに集中する",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 42,
+						"fontFamily": "Shippori Mincho",
+						"fontWeight": "normal",
+						"fontStyle": "italic",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.8,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.8,
+							"delay": 0.3,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c02-desc",
+					"position": {
+						"x": 360,
+						"y": 660
+					},
+					"size": {
+						"width": 1200,
+						"height": 80
+					},
+					"rotation": 0,
+					"opacity": 0.6,
+					"zIndex": 2,
+					"content": ".slide.json ひとつで完結する、新しいスライド体験",
+					"style": {
+						"color": "#475569",
+						"fontSize": 30,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.5,
+							"delay": 0.8,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c02-accent",
+					"position": {
+						"x": 860,
+						"y": 260
+					},
+					"size": {
+						"width": 200,
+						"height": 4
+					},
+					"rotation": 0,
+					"opacity": 0.6,
+					"zIndex": 1,
+					"content": "",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1,
+						"backgroundColor": "#2563eb",
+						"padding": 0
+					},
+					"animations": []
+				}
+			]
+		},
+		{
+			"id": "slide-c03-arch",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "slide-left",
+				"duration": 0.5,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "text",
+					"id": "text-c03-title",
+					"position": {
+						"x": 120,
+						"y": 60
+					},
+					"size": {
+						"width": 1680,
+						"height": 90
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "アーキテクチャ",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 48,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c03-bar",
+					"position": {
+						"x": 120,
+						"y": 148
+					},
+					"size": {
+						"width": 120,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1,
+						"backgroundColor": "#2563eb",
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c03-b1",
+					"position": {
+						"x": 120,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 300
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### core\n\n型定義\nZodスキーマ\nデフォルト値\nフォント定義",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c03-b2",
+					"position": {
+						"x": 520,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 300
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### renderer\n\nReact描画\nFramer Motion\nフォント読込\nCSS scale",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.2,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c03-b3",
+					"position": {
+						"x": 920,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 300
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### app\n\nエディタUI\nZustand状態管理\nTailwind CSS\nVite HMR",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.3,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c03-b4",
+					"position": {
+						"x": 1320,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 300
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### templates\n\n10テンプレート\n6カラーセット\nセマンティック\nカラーマッピング",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.4,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c03-b5",
+					"position": {
+						"x": 120,
+						"y": 520
+					},
+					"size": {
+						"width": 1680,
+						"height": 140
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### mcp\n\nMCP サーバー（stdio） ·  19ツール  ·  AI からスライドを直接操作",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 26,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#ede9fe",
+						"padding": 24
+					},
+					"animations": [
+						{
+							"type": "slide-in-top",
+							"duration": 0.5,
+							"delay": 0.5,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c04-editor",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "slide-left",
+				"duration": 0.5,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "image",
+					"id": "img-c04-editor-geo",
+					"position": {
+						"x": 0,
+						"y": 0
+					},
+					"size": {
+						"width": 1920,
+						"height": 1080
+					},
+					"rotation": 0,
+					"opacity": 0.4,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
+					"fit": "cover",
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c04-title",
+					"position": {
+						"x": 120,
+						"y": 60
+					},
+					"size": {
+						"width": 1680,
+						"height": 90
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "直感的なエディタ",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 48,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c04-bar",
+					"position": {
+						"x": 120,
+						"y": 148
+					},
+					"size": {
+						"width": 120,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "",
+					"style": {
+						"color": "#7c3aed",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1,
+						"backgroundColor": "#7c3aed",
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c04-body",
+					"position": {
+						"x": 140,
+						"y": 190
+					},
+					"size": {
+						"width": 1640,
+						"height": 800
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "- **テキスト・画像・動画・チャート**の 4 種類の要素を自由に配置\n- **Markdown** で書く ― react-markdown + remark-gfm で即座にレンダリング\n- ドラッグ＆リサイズで直感的に要素を操作\n- **Zustand** による単一ストアで高速な状態管理\n- 1920×1080 キャンバスにピクセル精度で配置",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 32,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 2.2,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				}
+			]
+		},
+		{
+			"id": "slide-c05-fonts",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "flip-x",
+				"duration": 0.5,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "text",
+					"id": "text-c05-title",
+					"position": {
+						"x": 120,
+						"y": 60
+					},
+					"size": {
+						"width": 1680,
+						"height": 90
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "タイポグラフィ",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 48,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c05-bar",
+					"position": {
+						"x": 120,
+						"y": 148
+					},
+					"size": {
+						"width": 120,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1,
+						"backgroundColor": "#2563eb",
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c05-demo-gothic",
+					"position": {
+						"x": 120,
+						"y": 190
+					},
+					"size": {
+						"width": 520,
+						"height": 280
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### ゴシック体\n\nNoto Sans JP\nZen Kaku Gothic New\nM PLUS 1p\nM PLUS Rounded 1c\nBIZ UDPGothic",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Noto Sans JP",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c05-demo-mincho",
+					"position": {
+						"x": 670,
+						"y": 190
+					},
+					"size": {
+						"width": 520,
+						"height": 280
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### 明朝体\n\nNoto Serif JP\nShippori Mincho\nZen Antique",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Noto Serif JP",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.25,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c05-demo-display",
+					"position": {
+						"x": 1220,
+						"y": 190
+					},
+					"size": {
+						"width": 520,
+						"height": 280
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### デザイン向き\n\nDela Gothic One\nReggae One\nRampart One\nKiwi Maru",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Kiwi Maru",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.4,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c05-sample",
+					"position": {
+						"x": 120,
+						"y": 520
+					},
+					"size": {
+						"width": 1680,
+						"height": 220
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "見出しはインパクト重視",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 64,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.5,
+							"delay": 0.6,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c05-sample2",
+					"position": {
+						"x": 360,
+						"y": 740
+					},
+					"size": {
+						"width": 1200,
+						"height": 80
+					},
+					"rotation": 0,
+					"opacity": 0.7,
+					"zIndex": 2,
+					"content": "本文は読みやすさを優先",
+					"style": {
+						"color": "#475569",
+						"fontSize": 30,
+						"fontFamily": "Shippori Mincho",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.5,
+							"delay": 0.8,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c06-divider",
+			"background": {
+				"type": "gradient",
+				"gradient": {
+					"kind": "linear",
+					"angle": 135,
+					"stops": [
+						{
+							"color": "#2563eb",
+							"position": 0
+						},
+						{
+							"color": "#7c3aed",
+							"position": 100
+						}
+					]
+				}
+			},
+			"transition": {
+				"type": "zoom",
+				"duration": 0.4,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "text",
+					"id": "text-c06-section",
+					"position": {
+						"x": 160,
+						"y": 380
+					},
+					"size": {
+						"width": 1600,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "表現力",
+					"style": {
+						"color": "#ffffff",
+						"fontSize": 72,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.3,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.5,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c06-sub",
+					"position": {
+						"x": 300,
+						"y": 550
+					},
+					"size": {
+						"width": 1320,
+						"height": 80
+					},
+					"rotation": 0,
+					"opacity": 0.8,
+					"zIndex": 2,
+					"content": "トランジション · チャート · アニメーション · オーバーレイ",
+					"style": {
+						"color": "#f1f5f9",
+						"fontSize": 28,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.5,
+							"delay": 0.4,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c07-transitions",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "cube-left",
+				"duration": 0.6,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "image",
+					"id": "img-c07-transitions-geo",
+					"position": {
+						"x": 0,
+						"y": 0
+					},
+					"size": {
+						"width": 1920,
+						"height": 1080
+					},
+					"rotation": 0,
+					"opacity": 0.4,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
+					"fit": "cover",
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c07-title",
+					"position": {
+						"x": 120,
+						"y": 60
+					},
+					"size": {
+						"width": 1680,
+						"height": 90
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "16 種のトランジション",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 48,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c07-bar",
+					"position": {
+						"x": 120,
+						"y": 148
+					},
+					"size": {
+						"width": 120,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1,
+						"backgroundColor": "#2563eb",
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c07-grid1",
+					"position": {
+						"x": 120,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### 基本\n\nフェード · ズーム\n回転 · スケールフェード",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c07-grid2",
+					"position": {
+						"x": 520,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### スライド\n\n上下左右の\n4方向スライド",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.2,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c07-grid3",
+					"position": {
+						"x": 920,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### フリップ\n\n横・縦の\nフリップ回転",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.3,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c07-grid4",
+					"position": {
+						"x": 1320,
+						"y": 190
+					},
+					"size": {
+						"width": 380,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### ワイプ\n\n上下左右の\n4方向ワイプ",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#e8edf5",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.4,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c07-grid5",
+					"position": {
+						"x": 570,
+						"y": 360
+					},
+					"size": {
+						"width": 380,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### 3D キューブ\n\n立体的な回転遷移\n← いま体験中",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#dbeafe",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.4,
+							"delay": 0.5,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c07-grid6",
+					"position": {
+						"x": 970,
+						"y": 360
+					},
+					"size": {
+						"width": 380,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### ユニーク\n\nページめくり\nポータル",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#dbeafe",
+						"padding": 20
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.4,
+							"delay": 0.6,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c07-anim-title",
+					"position": {
+						"x": 120,
+						"y": 550
+					},
+					"size": {
+						"width": 1680,
+						"height": 60
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### アニメーション",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 34,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.7,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c07-anim-body",
+					"position": {
+						"x": 120,
+						"y": 600
+					},
+					"size": {
+						"width": 1680,
+						"height": 400
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "fade-in · scale-in · slide-in · rotate-in · bounce — 表示時 / 非表示時 / クリック時にトリガー、**stepIndex** で段階的に表示",
+					"style": {
+						"color": "#475569",
+						"fontSize": 26,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.6,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.8,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c08-charts",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "page-turn",
+				"duration": 0.6,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "image",
+					"id": "img-c08-charts-geo",
+					"position": {
+						"x": 0,
+						"y": 0
+					},
+					"size": {
+						"width": 1920,
+						"height": 1080
+					},
+					"rotation": 0,
+					"opacity": 0.4,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPgogIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC40IiBvcGFjaXR5PSIwLjA2Ii8+CiAgPC9wYXR0ZXJuPgogIDxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxODAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjE3MDAiIGN5PSI5MDAiIHI9IjEyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMDYiLz4KICA8Y2lyY2xlIGN4PSIxNjAwIiBjeT0iMjAwIiByPSI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2MzYWVkIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4wOCIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjgwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjA1Ii8+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjQwIiB5Mj0iMCIgc3Ryb2tlPSIjMjU2M2ViIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTUiLz4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjQwIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE2ODAiIHkyPSIxMDgwIiBzdHJva2U9IiM3YzNhZWQiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNSIvPgogIDxsaW5lIHgxPSIxOTIwIiB5MT0iMTA4MCIgeDI9IjE5MjAiIHkyPSI4NDAiIHN0cm9rZT0iIzdjM2FlZCIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPg==",
+					"fit": "cover",
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c08-title",
+					"position": {
+						"x": 120,
+						"y": 60
+					},
+					"size": {
+						"width": 1680,
+						"height": 90
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "データを語る",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 48,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c08-bar",
+					"position": {
+						"x": 120,
+						"y": 148
+					},
+					"size": {
+						"width": 120,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "",
+					"style": {
+						"color": "#7c3aed",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1,
+						"backgroundColor": "#7c3aed",
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c08-left-h",
+					"position": {
+						"x": 120,
+						"y": 200
+					},
+					"size": {
+						"width": 820,
+						"height": 60
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### チャート要素",
+					"style": {
+						"color": "#ffffff",
+						"fontSize": 30,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#2563eb",
+						"padding": 16
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c08-left-b",
+					"position": {
+						"x": 120,
+						"y": 280
+					},
+					"size": {
+						"width": 820,
+						"height": 680
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "- **棒グラフ** — 数値比較の定番\n- **折れ線グラフ** — 時系列トレンド\n- **円グラフ・ドーナツ** — 構成比を直感的に\n- **エリア** — 量感のある推移\n- **レーダー** — 多軸の能力評価\n- 積み上げ・凡例・カスタムカラー対応",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 28,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.8,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c08-right-h",
+					"position": {
+						"x": 980,
+						"y": 200
+					},
+					"size": {
+						"width": 820,
+						"height": 60
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### オーバーレイ要素",
+					"style": {
+						"color": "#ffffff",
+						"fontSize": 30,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": "#7c3aed",
+						"padding": 16
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c08-right-b",
+					"position": {
+						"x": 980,
+						"y": 280
+					},
+					"size": {
+						"width": 820,
+						"height": 680
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "- **背景レイヤー** — 全スライド共通\n- **前面レイヤー** — 全スライド共通\n- ロゴ・ページ番号の一括配置\n- スライドごとの要素とは独立管理\n- 右下の「Made with Slidini」がまさにこの機能",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 28,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.8,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				}
+			]
+		},
+		{
+			"id": "slide-c09-divider-ai",
+			"background": {
+				"type": "gradient",
+				"gradient": {
+					"kind": "linear",
+					"angle": 180,
+					"stops": [
+						{
+							"color": "#eff6ff",
+							"position": 0
+						},
+						{
+							"color": "#dbeafe",
+							"position": 50
+						},
+						{
+							"color": "#eff6ff",
+							"position": 100
+						}
+					]
+				}
+			},
+			"transition": {
+				"type": "portal",
+				"duration": 0.5,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "image",
+					"id": "img-c09-ai",
+					"position": {
+						"x": 660,
+						"y": 240
+					},
+					"size": {
+						"width": 600,
+						"height": 600
+					},
+					"rotation": 0,
+					"opacity": 0.3,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNjAwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9Im4xIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxnIHN0cm9rZT0iIzI1NjNlYiIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMiI+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMTUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMzAwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iNDUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iNTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMjUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMzUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iNTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEwMCIgcj0iMTgiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjQ1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjUwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjUyMCIgcj0iMTgiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMjAwIiBmaWxsPSJ1cmwoI24xKSIvPgo8L3N2Zz4=",
+					"fit": "contain",
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 1,
+							"delay": 0,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c09-section",
+					"position": {
+						"x": 160,
+						"y": 380
+					},
+					"size": {
+						"width": 1600,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "AI 連携",
+					"style": {
+						"color": "#1e3a5f",
+						"fontSize": 72,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.3,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.6,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c09-sub",
+					"position": {
+						"x": 300,
+						"y": 550
+					},
+					"size": {
+						"width": 1320,
+						"height": 80
+					},
+					"rotation": 0,
+					"opacity": 0.7,
+					"zIndex": 2,
+					"content": "Model Context Protocol で AI がスライドを自在に操る",
+					"style": {
+						"color": "#475569",
+						"fontSize": 28,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.5,
+							"delay": 0.5,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c10-stat",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "zoom",
+				"duration": 0.4,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "text",
+					"id": "text-c10-number",
+					"position": {
+						"x": 160,
+						"y": 200
+					},
+					"size": {
+						"width": 1600,
+						"height": 280
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "19",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 180,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.2,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.6,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c10-label",
+					"position": {
+						"x": 360,
+						"y": 520
+					},
+					"size": {
+						"width": 1200,
+						"height": 80
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "MCP ツール搭載",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 42,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.4,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c10-detail",
+					"position": {
+						"x": 240,
+						"y": 640
+					},
+					"size": {
+						"width": 1440,
+						"height": 200
+					},
+					"rotation": 0,
+					"opacity": 0.7,
+					"zIndex": 2,
+					"content": "スライド CRUD · テキスト/画像/チャート操作 · テンプレート適用\nカラーセット管理 · オーバーレイ制御 · プレゼン読み書き",
+					"style": {
+						"color": "#475569",
+						"fontSize": 28,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.8,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.6,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c11-mcp-detail",
+			"background": {
+				"type": "color",
+				"value": "#f8fafc"
+			},
+			"transition": {
+				"type": "slide-left",
+				"duration": 0.5,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "image",
+					"id": "img-c11-mcp-detail-geo",
+					"position": {
+						"x": 0,
+						"y": 0
+					},
+					"size": {
+						"width": 1920,
+						"height": 1080
+					},
+					"rotation": 0,
+					"opacity": 0.4,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNjAwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9Im4xIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxnIHN0cm9rZT0iIzI1NjNlYiIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMiI+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMTUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iMzAwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMTAwIiB4Mj0iNDUwIiB5Mj0iMjUwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMjUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iMzUwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iMjUwIiB4Mj0iNTAwIiB5Mj0iNDAwIi8+CiAgICA8bGluZSB4MT0iMTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMjUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iMzUwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgICA8bGluZSB4MT0iNTAwIiB5MT0iNDAwIiB4Mj0iMzAwIiB5Mj0iNTIwIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEwMCIgcj0iMTgiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjQ1MCIgY3k9IjI1MCIgcj0iMTQiIGZpbGw9IiM0ZjQ2ZTUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjUwMCIgY3k9IjQwMCIgcj0iMTEiIGZpbGw9IiMyNTYzZWIiIG9wYWNpdHk9IjAuNSIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjUyMCIgcj0iMTgiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMjAwIiBmaWxsPSJ1cmwoI24xKSIvPgo8L3N2Zz4=",
+					"fit": "cover",
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c11-title",
+					"position": {
+						"x": 120,
+						"y": 60
+					},
+					"size": {
+						"width": 1680,
+						"height": 90
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "AI × 人間の協業ワークフロー",
+					"style": {
+						"color": "#0f172a",
+						"fontSize": 48,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c11-bar",
+					"position": {
+						"x": 120,
+						"y": 148
+					},
+					"size": {
+						"width": 120,
+						"height": 5
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 1,
+						"backgroundColor": "#2563eb",
+						"padding": 0
+					},
+					"animations": []
+				},
+				{
+					"type": "text",
+					"id": "text-c11-step1",
+					"position": {
+						"x": 120,
+						"y": 190
+					},
+					"size": {
+						"width": 470,
+						"height": 230
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### 1. AI が生成\n\nMCP 経由でスライド構成・テキスト・レイアウトを一括作成",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 24
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 1
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c11-arrow1",
+					"position": {
+						"x": 600,
+						"y": 285
+					},
+					"size": {
+						"width": 60,
+						"height": 60
+					},
+					"rotation": 0,
+					"opacity": 0.5,
+					"zIndex": 2,
+					"content": "→",
+					"style": {
+						"color": "#2563eb",
+						"fontSize": 40,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.3,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 1
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c11-step2",
+					"position": {
+						"x": 650,
+						"y": 190
+					},
+					"size": {
+						"width": 470,
+						"height": 230
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### 2. 人間が編集\n\nエディタ UI でドラッグ＆ドロップ、フォント変更、微調整",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 24
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.4,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 2
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c11-arrow2",
+					"position": {
+						"x": 1130,
+						"y": 285
+					},
+					"size": {
+						"width": 60,
+						"height": 60
+					},
+					"rotation": 0,
+					"opacity": 0.5,
+					"zIndex": 2,
+					"content": "→",
+					"style": {
+						"color": "#7c3aed",
+						"fontSize": 40,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.3,
+							"delay": 0.6,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 2
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c11-step3",
+					"position": {
+						"x": 1180,
+						"y": 190
+					},
+					"size": {
+						"width": 470,
+						"height": 230
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "### 3. 即プレゼン\n\nオートプレイ・キーボード操作でそのまま発表",
+					"style": {
+						"color": "#1e293b",
+						"fontSize": 24,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.6,
+						"backgroundColor": "#e8edf5",
+						"padding": 24
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.7,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 3
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c11-note",
+					"position": {
+						"x": 140,
+						"y": 460
+					},
+					"size": {
+						"width": 1640,
+						"height": 520
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "- .slide.json は **Git で管理**できる ― 差分も PR レビューも自然に\n- 画像・動画は **Base64 データ URI** で埋め込み、単一ファイルで完結\n- テンプレート＆カラーセットで統一感を一瞬で適用",
+					"style": {
+						"color": "#475569",
+						"fontSize": 26,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "left",
+						"lineHeight": 2.2,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.4,
+							"delay": 0.2,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "slide-c12-closing",
+			"background": {
+				"type": "gradient",
+				"gradient": {
+					"kind": "radial",
+					"angle": 0,
+					"stops": [
+						{
+							"color": "#2563eb",
+							"position": 0
+						},
+						{
+							"color": "#7c3aed",
+							"position": 100
+						}
+					]
+				}
+			},
+			"transition": {
+				"type": "portal",
+				"duration": 0.6,
+				"easing": "ease-out"
+			},
+			"elements": [
+				{
+					"type": "text",
+					"id": "text-c12-cta",
+					"position": {
+						"x": 160,
+						"y": 360
+					},
+					"size": {
+						"width": 1600,
+						"height": 150
+					},
+					"rotation": 0,
+					"opacity": 1,
+					"zIndex": 2,
+					"content": "bun run dev",
+					"style": {
+						"color": "#ffffff",
+						"fontSize": 72,
+						"fontFamily": "Reggae One",
+						"fontWeight": "bold",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.4,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "scale-in",
+							"duration": 0.6,
+							"delay": 0.2,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c12-sub",
+					"position": {
+						"x": 360,
+						"y": 540
+					},
+					"size": {
+						"width": 1200,
+						"height": 80
+					},
+					"rotation": 0,
+					"opacity": 0.8,
+					"zIndex": 2,
+					"content": "スライド作成の未来は、もう始まっている",
+					"style": {
+						"color": "#e2e8f0",
+						"fontSize": 34,
+						"fontFamily": "Shippori Mincho",
+						"fontWeight": "normal",
+						"fontStyle": "italic",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1.5,
+						"backgroundColor": null,
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 0.6,
+							"delay": 0.6,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c12-bar1",
+					"position": {
+						"x": 610,
+						"y": 330
+					},
+					"size": {
+						"width": 700,
+						"height": 4
+					},
+					"rotation": 0,
+					"opacity": 0.6,
+					"zIndex": 1,
+					"content": "",
+					"style": {
+						"color": "#60a5fa",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1,
+						"backgroundColor": "#60a5fa",
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "slide-in-left",
+							"duration": 0.8,
+							"delay": 0.1,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "text-c12-bar2",
+					"position": {
+						"x": 610,
+						"y": 630
+					},
+					"size": {
+						"width": 700,
+						"height": 4
+					},
+					"rotation": 0,
+					"opacity": 0.6,
+					"zIndex": 1,
+					"content": "",
+					"style": {
+						"color": "#a78bfa",
+						"fontSize": 1,
+						"fontFamily": "Zen Kaku Gothic New",
+						"fontWeight": "normal",
+						"fontStyle": "normal",
+						"textDecoration": "none",
+						"textAlign": "center",
+						"lineHeight": 1,
+						"backgroundColor": "#a78bfa",
+						"padding": 0
+					},
+					"animations": [
+						{
+							"type": "slide-in-right",
+							"duration": 0.8,
+							"delay": 0.3,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				},
+				{
+					"type": "image",
+					"id": "img-c12-logo",
+					"position": {
+						"x": 760,
+						"y": 700
+					},
+					"size": {
+						"width": 400,
+						"height": 400
+					},
+					"rotation": 0,
+					"opacity": 0.08,
+					"zIndex": 0,
+					"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI1NjNlYiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcyIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkYjI3NzciLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjYwIiB5PSI2MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNnMSkiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjEyMCIgeT0iMTQwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEyMCIgcng9IjE2IiBmaWxsPSJ1cmwoI2cxKSIgb3BhY2l0eT0iMC43Ii8+CiAgPHJlY3QgeD0iMjIwIiB5PSIyMjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMTYiIGZpbGw9InVybCgjZzIpIiBvcGFjaXR5PSIwLjkiLz4KICA8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjgwIiB5PSI5NiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iODAiIHk9IjEwOCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC41Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxNjQiIHdpZHRoPSIxMDAiIGhlaWdodD0iNiIgcng9IjMiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjgiLz4KICA8cmVjdCB4PSIxNDAiIHk9IjE4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTQwIiB5PSIxOTIiIHdpZHRoPSI5MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNCIvPgogIDxyZWN0IHg9IjE0MCIgeT0iMjA0IiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIyNDAiIHk9IjI0NCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjYiIHJ4PSIzIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPHJlY3QgeD0iMjQwIiB5PSIyNjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9IjI0MCIgeT0iMjcyIiB3aWR0aD0iNzAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+",
+					"fit": "contain",
+					"animations": [
+						{
+							"type": "fade-in",
+							"duration": 1,
+							"delay": 0.8,
+							"easing": "ease-out",
+							"trigger": "onEnter",
+							"stepIndex": 0
+						}
+					]
+				}
+			]
+		}
+	],
+	"playback": {
+		"defaultSlideDuration": 5,
+		"defaultStepDelay": 1,
+		"slides": [
+			{
+				"slideIndex": 0,
+				"narration": "スライディーニ。エーアイネイティブなスライド作成アプリです。リアクト、ヴィート、ズスタンド、フレーマーモーション、そしてエムシーピーを組み合わせて構築されています。",
+				"audioFile": "narration-000.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 1,
+				"narration": "コンセプトは、エーアイにプレゼンを任せて、あなたはストーリーに集中すること。ドット・スライド・ジェイソンひとつで完結する、新しいスライド体験を提供します。",
+				"audioFile": "narration-001.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 2,
+				"narration": "アーキテクチャはモノレポ構成です。コア、レンダラー、テンプレーツ、アップ、エムシーピーの5パッケージで構成され、コアは型定義とゾッドスキーマ、レンダラーはリアクトとフレーマーモーションで描画を担当します。",
+				"audioFile": "narration-002.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 3,
+				"narration": "直感的なエディタ画面です。テキスト、画像、動画、チャートの4種類の要素を自由に配置でき、マークダウンでリッチなテキスト表現が可能です。",
+				"audioFile": "narration-003.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 4,
+				"narration": "タイポグラフィにもこだわっています。ゴシック体、明朝体、丸ゴシック、デザイン書体など、グーグルフォンツから厳選した日本語フォントを14種類搭載しています。",
+				"audioFile": "narration-004.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 5,
+				"narration": "ここからは表現力についてご紹介します。トランジション、チャート、アニメーション、オーバーレイなど、豊富な演出機能を備えています。",
+				"audioFile": "narration-005.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 6,
+				"narration": "16種のトランジションを搭載しています。フェードやズームなどの基本から、上下左右4方向のスライド、ワイプ、フリップ、さらにキューブやページターン、ポータルといったスリーディー系まで揃っています。",
+				"audioFile": "narration-006.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 7,
+				"narration": "チャート要素でデータを視覚的に表現できます。棒グラフ、折れ線グラフ、円グラフ、ドーナツチャート、エリアチャート、レーダーチャートの6種類に対応しています。",
+				"audioFile": "narration-007.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 8,
+				"narration": "エーアイ連携機能です。モデルコンテキストプロトコルにより、エーアイがスライドを自在に操ることができます。",
+				"audioFile": "narration-008.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 9,
+				"narration": "エムシーピーツールは19個搭載しています。スライドの作成、編集、削除から、テキスト、画像、チャートの操作、テンプレート適用、カラーセット管理まで、幅広い操作をエーアイが実行できます。",
+				"audioFile": "narration-009.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 10,
+				"narration": "エーアイと人間の協業ワークフローです。まずエーアイがエムシーピー経由でスライド構成を一括作成し、次にエディタで人間が微調整し、最後にエーアイが仕上げのブラッシュアップを行います。",
+				"audioFile": "narration-010.wav",
+				"duration": null
+			},
+			{
+				"slideIndex": 11,
+				"narration": "バンランデブで始められます。スライド作成の未来は、もう始まっています。ご視聴ありがとうございました。",
+				"audioFile": "narration-011.wav",
+				"duration": null
+			}
+		],
+		"bgm": [
+			{
+				"src": "/Users/snhrm/Documents/ati/music/ai-news.wav",
+				"volume": 0.3,
+				"loop": true,
+				"fadeIn": 2,
+				"fadeOut": 3
+			}
+		]
+	}
 }

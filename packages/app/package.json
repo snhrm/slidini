@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@slidini/core": "workspace:*",
+    "@slidini/player": "workspace:*",
     "@slidini/renderer": "workspace:*",
     "@slidini/templates": "workspace:*",
     "react": "^19.0.0",

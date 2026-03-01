@@ -21,6 +21,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@slidini/core": "workspace:*",
+        "@slidini/player": "workspace:*",
         "@slidini/renderer": "workspace:*",
         "@slidini/templates": "workspace:*",
         "react": "^19.0.0",
@@ -55,6 +56,24 @@
       },
       "devDependencies": {
         "@types/node": "^22.10.0",
+      },
+    },
+    "packages/player": {
+      "name": "@slidini/player",
+      "version": "0.1.0",
+      "dependencies": {
+        "@slidini/core": "workspace:*",
+        "@slidini/renderer": "workspace:*",
+      },
+      "devDependencies": {
+        "@types/react": "^19.0.10",
+        "@types/react-dom": "^19.0.4",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+      },
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
       },
     },
     "packages/renderer": {
@@ -364,6 +383,8 @@
     "@slidini/core": ["@slidini/core@workspace:packages/core"],
 
     "@slidini/mcp": ["@slidini/mcp@workspace:packages/mcp"],
+
+    "@slidini/player": ["@slidini/player@workspace:packages/player"],
 
     "@slidini/renderer": ["@slidini/renderer@workspace:packages/renderer"],
 

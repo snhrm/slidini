@@ -54,5 +54,13 @@ export {
 export { AVAILABLE_FONTS, buildGoogleFontsUrl } from "./fonts"
 export type { FontCategory, FontDefinition } from "./fonts"
 
+export { createDefaultPlayerConfig } from "./playback"
+export type {
+	BgmPlaybackConfig,
+	PlayerConfig,
+	SlidePlaybackConfig,
+	SlideTiming,
+} from "./playback"
+
 export { parsePresentation, presentationSchema } from "./schema"
 export type { ParseResult } from "./schema"

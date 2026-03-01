@@ -181,6 +181,32 @@ const presentationMetaSchema = z.object({
 	colorSetId: z.string().nullable().optional(),
 })
 
+// ===== 再生設定 =====
+
+const slidePlaybackConfigSchema = z.object({
+	slideIndex: z.number().int().min(0),
+	narration: z.string().optional(),
+	audioFile: z.string().optional(),
+	duration: z.number().min(0).nullable().optional(),
+})
+
+const bgmPlaybackConfigSchema = z.object({
+	src: z.string(),
+	volume: z.number().min(0).max(1),
+	loop: z.boolean(),
+	fadeIn: z.number().min(0),
+	fadeOut: z.number().min(0),
+	fromSlide: z.number().int().min(0).optional(),
+	toSlide: z.number().int().min(0).optional(),
+})
+
+const playerConfigSchema = z.object({
+	defaultSlideDuration: z.number().min(0),
+	defaultStepDelay: z.number().min(0),
+	slides: z.array(slidePlaybackConfigSchema),
+	bgm: z.array(bgmPlaybackConfigSchema),
+})
+
 // ===== プレゼンテーション =====
 
 export const presentationSchema = z.object({
@@ -188,6 +214,7 @@ export const presentationSchema = z.object({
 	slides: z.array(slideSchema),
 	overlayBackgroundElements: z.array(slideElementSchema).optional(),
 	overlayForegroundElements: z.array(slideElementSchema).optional(),
+	playback: playerConfigSchema.optional(),
 })
 
 export type ParseResult =

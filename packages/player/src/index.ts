@@ -1,0 +1,7 @@
+export { VideoPlayer } from "./components/VideoPlayer"
+export type { VideoPlayerProps } from "./components/VideoPlayer"
+export { PlayerControls } from "./components/PlayerControls"
+export { usePlaybackEngine, computeSlideTimings } from "./hooks/usePlaybackEngine"
+export type { PlaybackState, PlaybackActions } from "./hooks/usePlaybackEngine"
+export { useAudioPlayback } from "./hooks/useAudioPlayback"
+export type { AudioTrack } from "./hooks/useAudioPlayback"

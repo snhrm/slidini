@@ -6,34 +6,39 @@ import {
 } from "@slidini/core"
 import { useShallow } from "zustand/react/shallow"
 import { usePresentationStore } from "../store/presentation"
-import { downloadJson, openJsonFile } from "../utils/file"
+import { downloadJson, openDirectory } from "../utils/file"
+import { processDirectoryFiles } from "../utils/import"
 
 export function Toolbar() {
 	const {
 		presentation,
 		currentSlideIndex,
 		viewMode,
+		isPlayerMode,
 		addElement,
 		addOverlayElement,
 		exportJson,
-		importJson,
+		importData,
 		setViewMode,
 		setCurrentStep,
 		setNotification,
 		openColorSetPicker,
+		setIsPlayerMode,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
 			currentSlideIndex: s.currentSlideIndex,
 			viewMode: s.viewMode,
+			isPlayerMode: s.isPlayerMode,
 			addElement: s.addElement,
 			addOverlayElement: s.addOverlayElement,
 			exportJson: s.exportJson,
-			importJson: s.importJson,
+			importData: s.importData,
 			setViewMode: s.setViewMode,
 			setCurrentStep: s.setCurrentStep,
 			setNotification: s.setNotification,
 			openColorSetPicker: s.openColorSetPicker,
+			setIsPlayerMode: s.setIsPlayerMode,
 		})),
 	)
 	const currentSlide = presentation.slides[currentSlideIndex]
@@ -66,11 +71,13 @@ export function Toolbar() {
 
 	const handleImport = async () => {
 		try {
-			const json = await openJsonFile()
-			const success = importJson(json)
-			if (!success) {
-				setNotification("JSONの形式が正しくありません")
+			const { jsonFiles, mediaFiles } = await openDirectory()
+			const result = processDirectoryFiles(jsonFiles, mediaFiles)
+			if (result.errors.length > 0 && !result.presentation && !result.playerConfig) {
+				setNotification(result.errors[0] ?? "インポートエラー")
+				return
 			}
+			importData(result)
 		} catch {
 			// user cancelled
 		}
@@ -174,6 +181,20 @@ export function Toolbar() {
 				<option value="overview">オーバービュー</option>
 				<option value="autoplay">オートプレイ</option>
 			</select>
+
+			<div className="w-px h-5 bg-gray-600" />
+
+			<button
+				type="button"
+				onClick={() => setIsPlayerMode(!isPlayerMode)}
+				className={`px-2 py-1 text-xs rounded transition-colors ${
+					isPlayerMode
+						? "bg-indigo-600 hover:bg-indigo-500 text-white"
+						: "bg-gray-700 hover:bg-gray-600 text-white"
+				}`}
+			>
+				プレイヤー
+			</button>
 
 			<div className="ml-auto">
 				<button
