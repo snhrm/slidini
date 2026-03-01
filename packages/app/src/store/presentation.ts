@@ -98,6 +98,15 @@ type PresentationStore = {
 	importJson: (json: string) => boolean
 	importData: (data: { presentation?: Presentation; playerConfig?: PlayerConfig }) => void
 
+	// 自動保存
+	autoSaveEnabled: boolean
+	autoSaveDirHandle: FileSystemDirectoryHandle | null
+	autoSaveStatus: "idle" | "saving" | "saved" | "error"
+	autoSaveError: string | null
+	enableAutoSave: (dirHandle: FileSystemDirectoryHandle) => void
+	disableAutoSave: () => void
+	setAutoSaveStatus: (status: "idle" | "saving" | "saved" | "error", error?: string) => void
+
 	// 通知
 	notification: string | null
 	setNotification: (message: string | null) => void
@@ -535,6 +544,30 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 				},
 			}
 		}),
+
+	autoSaveEnabled: false,
+	autoSaveDirHandle: null,
+	autoSaveStatus: "idle",
+	autoSaveError: null,
+
+	enableAutoSave: (dirHandle) =>
+		set({
+			autoSaveEnabled: true,
+			autoSaveDirHandle: dirHandle,
+			autoSaveStatus: "idle",
+			autoSaveError: null,
+		}),
+
+	disableAutoSave: () =>
+		set({
+			autoSaveEnabled: false,
+			autoSaveDirHandle: null,
+			autoSaveStatus: "idle",
+			autoSaveError: null,
+		}),
+
+	setAutoSaveStatus: (status, error) =>
+		set({ autoSaveStatus: status, autoSaveError: error ?? null }),
 
 	notification: null,
 

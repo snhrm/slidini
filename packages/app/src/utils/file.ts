@@ -1,4 +1,4 @@
-function dataUriToBlob(dataUri: string): Blob {
+export function dataUriToBlob(dataUri: string): Blob {
 	const [header, base64] = dataUri.split(",")
 	const mime = header?.match(/data:([^;]+)/)?.[1] ?? "application/octet-stream"
 	const binary = atob(base64 ?? "")

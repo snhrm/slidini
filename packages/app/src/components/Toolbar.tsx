@@ -10,11 +10,15 @@ import { usePresentationStore } from "../store/presentation"
 import { downloadJson, openDirectory, saveToDirectory } from "../utils/file"
 import { processDirectoryFiles } from "../utils/import"
 
+const supportsDirectoryPicker = "showDirectoryPicker" in window
+
 export function Toolbar() {
 	const {
 		presentation,
 		currentSlideIndex,
 		viewMode,
+		autoSaveEnabled,
+		autoSaveStatus,
 		addElement,
 		addOverlayElement,
 		exportJson,
@@ -23,11 +27,15 @@ export function Toolbar() {
 		setCurrentStep,
 		setNotification,
 		openColorSetPicker,
+		enableAutoSave,
+		disableAutoSave,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
 			currentSlideIndex: s.currentSlideIndex,
 			viewMode: s.viewMode,
+			autoSaveEnabled: s.autoSaveEnabled,
+			autoSaveStatus: s.autoSaveStatus,
 			addElement: s.addElement,
 			addOverlayElement: s.addOverlayElement,
 			exportJson: s.exportJson,
@@ -36,6 +44,8 @@ export function Toolbar() {
 			setCurrentStep: s.setCurrentStep,
 			setNotification: s.setNotification,
 			openColorSetPicker: s.openColorSetPicker,
+			enableAutoSave: s.enableAutoSave,
+			disableAutoSave: s.disableAutoSave,
 		})),
 	)
 	const currentSlide = presentation.slides[currentSlideIndex]
@@ -79,6 +89,9 @@ export function Toolbar() {
 	}
 
 	const handleImport = async () => {
+		if (autoSaveEnabled) {
+			disableAutoSave()
+		}
 		try {
 			const { jsonFiles, mediaFiles } = await openDirectory()
 			const result = processDirectoryFiles(jsonFiles, mediaFiles)
@@ -87,6 +100,21 @@ export function Toolbar() {
 				return
 			}
 			importData(result)
+		} catch {
+			// user cancelled
+		}
+	}
+
+	const handleToggleAutoSave = async () => {
+		if (autoSaveEnabled) {
+			disableAutoSave()
+			return
+		}
+		try {
+			const dirHandle = await (
+				window as unknown as { showDirectoryPicker: () => Promise<FileSystemDirectoryHandle> }
+			).showDirectoryPicker()
+			enableAutoSave(dirHandle)
 		} catch {
 			// user cancelled
 		}
@@ -137,7 +165,13 @@ export function Toolbar() {
 				<button
 					type="button"
 					onClick={handleImport}
-					className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-white rounded transition-colors"
+					disabled={autoSaveEnabled}
+					title={autoSaveEnabled ? "自動保存中はインポートできません" : undefined}
+					className={`px-2 py-1 text-xs rounded transition-colors ${
+						autoSaveEnabled
+							? "bg-gray-800 text-gray-500 cursor-not-allowed"
+							: "bg-gray-700 hover:bg-gray-600 text-white"
+					}`}
 				>
 					インポート
 				</button>
@@ -191,7 +225,34 @@ export function Toolbar() {
 				<option value="autoplay">オートプレイ</option>
 			</select>
 
-			<div className="ml-auto">
+			<div className="ml-auto flex items-center gap-1.5">
+				{supportsDirectoryPicker && (
+					<>
+						<div className="flex items-center gap-1">
+							<button
+								type="button"
+								onClick={handleToggleAutoSave}
+								className={`px-2 py-1 text-xs rounded transition-colors ${
+									autoSaveEnabled
+										? "bg-green-700 hover:bg-green-600 text-white"
+										: "bg-gray-700 hover:bg-gray-600 text-white"
+								}`}
+							>
+								{autoSaveEnabled ? "自動保存 ON" : "自動保存"}
+							</button>
+							{autoSaveEnabled && autoSaveStatus === "saving" && (
+								<span className="text-xs text-yellow-400">保存中...</span>
+							)}
+							{autoSaveEnabled && autoSaveStatus === "saved" && (
+								<span className="text-xs text-green-400">保存済み</span>
+							)}
+							{autoSaveEnabled && autoSaveStatus === "error" && (
+								<span className="text-xs text-red-400">エラー</span>
+							)}
+						</div>
+						<div className="w-px h-5 bg-gray-600" />
+					</>
+				)}
 				<button
 					type="button"
 					onClick={handlePresent}
