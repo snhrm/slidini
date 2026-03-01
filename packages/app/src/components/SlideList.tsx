@@ -18,7 +18,7 @@ export function SlideList() {
 
 	const THUMB_HEIGHT = 72
 	const scrollRef = useRef<HTMLDivElement>(null)
-	const itemRefs = useRef<Map<number, HTMLButtonElement>>(new Map())
+	const itemRefs = useRef<Map<number, HTMLDivElement>>(new Map())
 
 	useEffect(() => {
 		const el = itemRefs.current.get(currentSlideIndex)
@@ -44,58 +44,59 @@ export function SlideList() {
 				className="flex-1 overflow-x-auto overflow-y-hidden flex items-center gap-1.5 px-1.5"
 			>
 				{slides.map((slide, index) => (
-					<button
-						type="button"
+					<div
 						key={slide.id}
 						ref={(el) => {
 							if (el) itemRefs.current.set(index, el)
 							else itemRefs.current.delete(index)
 						}}
-						onClick={() => setCurrentSlideIndex(index)}
-						className={`shrink-0 cursor-pointer rounded overflow-hidden border-2 transition-colors ${
-							index === currentSlideIndex
-								? "border-blue-500"
-								: "border-transparent hover:border-gray-600"
-						}`}
+						className="shrink-0"
 					>
-						<div
-							className="relative overflow-hidden"
-							style={{
-								width: THUMB_HEIGHT * (meta.width / meta.height),
-								height: THUMB_HEIGHT,
-							}}
+						<button
+							type="button"
+							onClick={() => setCurrentSlideIndex(index)}
+							className={`block rounded overflow-hidden border-2 transition-colors ${
+								index === currentSlideIndex
+									? "border-blue-500"
+									: "border-transparent hover:border-gray-600"
+							}`}
 						>
 							<div
+								className="relative overflow-hidden"
 								style={{
-									position: "absolute",
-									top: 0,
-									left: 0,
-									transform: `scale(${THUMB_HEIGHT / meta.height})`,
-									transformOrigin: "top left",
-									width: meta.width,
-									height: meta.height,
-									pointerEvents: "none",
+									width: THUMB_HEIGHT * (meta.width / meta.height),
+									height: THUMB_HEIGHT,
 								}}
 							>
-								<Slide slide={slide} meta={meta} currentStep={0} mode="view" scale={1} />
+								<div
+									style={{
+										position: "absolute",
+										top: 0,
+										left: 0,
+										transform: `scale(${THUMB_HEIGHT / meta.height})`,
+										transformOrigin: "top left",
+										width: meta.width,
+										height: meta.height,
+										pointerEvents: "none",
+									}}
+								>
+									<Slide slide={slide} meta={meta} currentStep={0} mode="view" scale={1} />
+								</div>
 							</div>
-						</div>
-						<div className="flex items-center justify-between px-1.5 bg-gray-800">
+						</button>
+						<div className="flex items-center justify-between px-1.5 bg-gray-800 rounded-b">
 							<span className="text-[10px] text-gray-400">{index + 1}</span>
 							{slides.length > 1 && (
 								<button
 									type="button"
-									onClick={(e) => {
-										e.stopPropagation()
-										removeSlide(slide.id)
-									}}
+									onClick={() => removeSlide(slide.id)}
 									className="text-[10px] text-gray-500 hover:text-red-400 transition-colors"
 								>
 									削除
 								</button>
 							)}
 						</div>
-					</button>
+					</div>
 				))}
 			</div>
 		</div>
