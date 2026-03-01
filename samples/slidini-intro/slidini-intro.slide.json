@@ -6,7 +6,7 @@
 		"height": 1080,
 		"colorSetId": "light-clean",
 		"createdAt": "2026-02-27T12:00:00.000Z",
-		"updatedAt": "2026-02-27T11:34:49.715Z"
+		"updatedAt": "2026-03-01T08:32:25.895Z"
 	},
 	"overlayForegroundElements": [
 		{
@@ -2566,73 +2566,73 @@
 				"slideIndex": 0,
 				"narration": "スライディーニ。エーアイネイティブなスライド作成アプリです。リアクト、ヴィート、ズスタンド、フレーマーモーション、そしてエムシーピーを組み合わせて構築されています。",
 				"audioFile": "narration-000.wav",
-				"duration": null
+				"duration": 10.2
 			},
 			{
 				"slideIndex": 1,
 				"narration": "コンセプトは、エーアイにプレゼンを任せて、あなたはストーリーに集中すること。ドット・スライド・ジェイソンひとつで完結する、新しいスライド体験を提供します。",
 				"audioFile": "narration-001.wav",
-				"duration": null
+				"duration": 10.4
 			},
 			{
 				"slideIndex": 2,
 				"narration": "アーキテクチャはモノレポ構成です。コア、レンダラー、テンプレーツ、アップ、エムシーピーの5パッケージで構成され、コアは型定義とゾッドスキーマ、レンダラーはリアクトとフレーマーモーションで描画を担当します。",
 				"audioFile": "narration-002.wav",
-				"duration": null
+				"duration": 13.1
 			},
 			{
 				"slideIndex": 3,
 				"narration": "直感的なエディタ画面です。テキスト、画像、動画、チャートの4種類の要素を自由に配置でき、マークダウンでリッチなテキスト表現が可能です。",
 				"audioFile": "narration-003.wav",
-				"duration": null
+				"duration": 9.4
 			},
 			{
 				"slideIndex": 4,
 				"narration": "タイポグラフィにもこだわっています。ゴシック体、明朝体、丸ゴシック、デザイン書体など、グーグルフォンツから厳選した日本語フォントを14種類搭載しています。",
 				"audioFile": "narration-004.wav",
-				"duration": null
+				"duration": 9.9
 			},
 			{
 				"slideIndex": 5,
 				"narration": "ここからは表現力についてご紹介します。トランジション、チャート、アニメーション、オーバーレイなど、豊富な演出機能を備えています。",
 				"audioFile": "narration-005.wav",
-				"duration": null
+				"duration": 8.5
 			},
 			{
 				"slideIndex": 6,
 				"narration": "16種のトランジションを搭載しています。フェードやズームなどの基本から、上下左右4方向のスライド、ワイプ、フリップ、さらにキューブやページターン、ポータルといったスリーディー系まで揃っています。",
 				"audioFile": "narration-006.wav",
-				"duration": null
+				"duration": 12.1
 			},
 			{
 				"slideIndex": 7,
 				"narration": "チャート要素でデータを視覚的に表現できます。棒グラフ、折れ線グラフ、円グラフ、ドーナツチャート、エリアチャート、レーダーチャートの6種類に対応しています。",
 				"audioFile": "narration-007.wav",
-				"duration": null
+				"duration": 10.2
 			},
 			{
 				"slideIndex": 8,
 				"narration": "エーアイ連携機能です。モデルコンテキストプロトコルにより、エーアイがスライドを自在に操ることができます。",
 				"audioFile": "narration-008.wav",
-				"duration": null
+				"duration": 6.1
 			},
 			{
 				"slideIndex": 9,
 				"narration": "エムシーピーツールは19個搭載しています。スライドの作成、編集、削除から、テキスト、画像、チャートの操作、テンプレート適用、カラーセット管理まで、幅広い操作をエーアイが実行できます。",
 				"audioFile": "narration-009.wav",
-				"duration": null
+				"duration": 13.7
 			},
 			{
 				"slideIndex": 10,
 				"narration": "エーアイと人間の協業ワークフローです。まずエーアイがエムシーピー経由でスライド構成を一括作成し、次にエディタで人間が微調整し、最後にエーアイが仕上げのブラッシュアップを行います。",
 				"audioFile": "narration-010.wav",
-				"duration": null
+				"duration": 11.1
 			},
 			{
 				"slideIndex": 11,
 				"narration": "バンランデブで始められます。スライド作成の未来は、もう始まっています。ご視聴ありがとうございました。",
 				"audioFile": "narration-011.wav",
-				"duration": null
+				"duration": 6.2
 			}
 		],
 		"bgm": [

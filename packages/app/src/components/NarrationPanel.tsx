@@ -50,12 +50,20 @@ export function NarrationPanel() {
 			const reader = new FileReader()
 			reader.onload = () => {
 				if (typeof reader.result === "string") {
-					updateSlideAudioFile(currentSlideIndex, reader.result)
+					const dataUrl = reader.result
+					updateSlideAudioFile(currentSlideIndex, dataUrl)
+					// Extract audio duration and set as slide display time
+					const audio = new Audio(dataUrl)
+					audio.addEventListener("loadedmetadata", () => {
+						if (Number.isFinite(audio.duration) && audio.duration > 0) {
+							updateSlideDuration(currentSlideIndex, Math.ceil(audio.duration * 10) / 10)
+						}
+					})
 				}
 			}
 			reader.readAsDataURL(file)
 		},
-		[currentSlideIndex, updateSlideAudioFile],
+		[currentSlideIndex, updateSlideAudioFile, updateSlideDuration],
 	)
 
 	const handleClearAudio = useCallback(() => {

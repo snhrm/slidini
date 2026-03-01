@@ -5,7 +5,7 @@
 		"width": 1920,
 		"height": 1080,
 		"createdAt": "2026-02-26T00:00:00.000Z",
-		"updatedAt": "2026-02-26T00:00:00.000Z",
+		"updatedAt": "2026-03-01T08:32:25.351Z",
 		"colorSetId": "dark-slate"
 	},
 	"slides": [
@@ -1462,79 +1462,79 @@
 				"slideIndex": 0,
 				"narration": "こんにちは。今日はスライディーニのサンプルプレゼンテーションをご紹介します。テンプレートやコンポーネントのショーケースをご覧ください。",
 				"audioFile": "narration-000.wav",
-				"duration": null
+				"duration": 7.1
 			},
 			{
 				"slideIndex": 1,
 				"narration": "まずはテキスト表現についてです。スライディーニでは、マークダウンを使った豊かなテキスト表現が可能です。",
 				"audioFile": "narration-001.wav",
-				"duration": null
+				"duration": 6.1
 			},
 			{
 				"slideIndex": 2,
 				"narration": "箇条書きリストです。マークダウンの箇条書きがそのまま使えます。太字、斜体、インラインコード、リンク、取り消し線など、ジーエフエム拡張にも対応しています。",
 				"audioFile": "narration-002.wav",
-				"duration": null
+				"duration": 10.6
 			},
 			{
 				"slideIndex": 3,
 				"narration": "データテーブルの表示です。スライディーニはテキスト、画像、動画、チャート、アニメーション、カラーセットなど、主要な機能をすべてサポートしています。",
 				"audioFile": "narration-003.wav",
-				"duration": null
+				"duration": 9.9
 			},
 			{
 				"slideIndex": 4,
 				"narration": "コードブロックの表示例です。タイプスクリプトのシンタックスハイライトにも対応しており、テンプレートからスライドを作成するコード例を示しています。",
 				"audioFile": "narration-004.wav",
-				"duration": null
+				"duration": 8.1
 			},
 			{
 				"slideIndex": 5,
 				"narration": "続いて、データビジュアライゼーション機能をご紹介します。",
 				"audioFile": "narration-005.wav",
-				"duration": null
+				"duration": 3.4
 			},
 			{
 				"slideIndex": 6,
 				"narration": "四半期別売上の棒グラフです。2024年と2025年の売上を比較しており、いずれの四半期も前年比で成長していることがわかります。",
 				"audioFile": "narration-006.wav",
-				"duration": null
+				"duration": 8.7
 			},
 			{
 				"slideIndex": 7,
 				"narration": "月次トレンドの折れ線グラフです。ユーザー数とアクティブ率の推移を12ヶ月分表示しています。右肩上がりの成長トレンドが確認できます。",
 				"audioFile": "narration-007.wav",
-				"duration": null
+				"duration": 8.1
 			},
 			{
 				"slideIndex": 8,
 				"narration": "マーケットシェアをドーナツチャートで、競合比較をレーダーチャートで表示しています。サービスエーが35パーセントのシェアでトップ。自社は品質、機能、速度で競合を上回っています。",
 				"audioFile": "narration-008.wav",
-				"duration": null
+				"duration": 10.9
 			},
 			{
 				"slideIndex": 9,
 				"narration": "次は、レイアウトパターンについてご紹介します。",
 				"audioFile": "narration-009.wav",
-				"duration": null
+				"duration": 3
 			},
 			{
 				"slideIndex": 10,
 				"narration": "2カラムレイアウトの例です。左側にメリットとして直感的な操作やリアルタイムプレビューなどを、右側に技術スタックとしてリアクト、ズスタンド、フレーマーモーションなどを並べています。",
 				"audioFile": "narration-010.wav",
-				"duration": null
+				"duration": 10.7
 			},
 			{
 				"slideIndex": 11,
 				"narration": "主要な実績です。15種類のテンプレート、10種類のカラーセット、6種類のチャートタイプを提供しています。",
 				"audioFile": "narration-011.wav",
-				"duration": null
+				"duration": 7
 			},
 			{
 				"slideIndex": 12,
 				"narration": "ご視聴ありがとうございました。こちらはスライディーニで作成されたサンプルプレゼンテーションでした。",
 				"audioFile": "narration-012.wav",
-				"duration": null
+				"duration": 5.1
 			}
 		],
 		"bgm": [
