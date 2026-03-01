@@ -206,4 +206,34 @@ describe("slide_set_bgm", () => {
 		expect(data.bgm[0]?.volume).toBe(0.2)
 		expect(data.bgm[0]?.fadeIn).toBe(2)
 	})
+
+	test("sets bgm with start_time and end_time", async () => {
+		writeSlideJson("bgm-time/bgm-time.slide.json")
+		const result = await callTool("slide_set_bgm", {
+			file_path: "bgm-time/bgm-time.slide.json",
+			bgm: [{ src: "bgm.mp3", start_time: 5, end_time: 30 }],
+		})
+		expect(result.isError).toBeUndefined()
+		const data = parseToolText(result) as {
+			bgm: Array<{ src: string; startTime: number; endTime: number }>
+		}
+		expect(data.bgm).toHaveLength(1)
+		expect(data.bgm[0]?.startTime).toBe(5)
+		expect(data.bgm[0]?.endTime).toBe(30)
+	})
+
+	test("omits startTime/endTime when not provided", async () => {
+		writeSlideJson("bgm-no-time/bgm-no-time.slide.json")
+		const result = await callTool("slide_set_bgm", {
+			file_path: "bgm-no-time/bgm-no-time.slide.json",
+			bgm: [{ src: "bgm.mp3" }],
+		})
+		expect(result.isError).toBeUndefined()
+		const data = parseToolText(result) as {
+			bgm: Array<{ src: string; startTime?: number; endTime?: number }>
+		}
+		expect(data.bgm).toHaveLength(1)
+		expect(data.bgm[0]?.startTime).toBeUndefined()
+		expect(data.bgm[0]?.endTime).toBeUndefined()
+	})
 })

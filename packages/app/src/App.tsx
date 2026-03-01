@@ -1,11 +1,7 @@
 import { Presentation } from "@slidini/renderer"
 import { useEffect, useState } from "react"
 import { useShallow } from "zustand/react/shallow"
-import { ColorSetPicker } from "./components/ColorSetPicker"
 import { Editor } from "./components/Editor"
-import { PlayerView } from "./components/PlayerView"
-import { TemplatePicker } from "./components/TemplatePicker"
-import { Toolbar } from "./components/Toolbar"
 import { usePresentationStore } from "./store/presentation"
 
 function Notification() {
@@ -36,23 +32,19 @@ function Notification() {
 
 export function App() {
 	const [isFullscreen, setIsFullscreen] = useState(false)
-	const {
-		presentation,
-		currentSlideIndex,
-		currentStep,
-		viewMode,
-		autoplayConfig,
-		isPlayerMode,
-		setCurrentSlideIndex,
-		setCurrentStep,
-	} = usePresentationStore(
+	const { presentation, currentSlideIndex, currentStep, viewMode, autoplayConfig } =
+		usePresentationStore(
+			useShallow((s) => ({
+				presentation: s.presentation,
+				currentSlideIndex: s.currentSlideIndex,
+				currentStep: s.currentStep,
+				viewMode: s.viewMode,
+				autoplayConfig: s.autoplayConfig,
+			})),
+		)
+
+	const { setCurrentSlideIndex, setCurrentStep } = usePresentationStore(
 		useShallow((s) => ({
-			presentation: s.presentation,
-			currentSlideIndex: s.currentSlideIndex,
-			currentStep: s.currentStep,
-			viewMode: s.viewMode,
-			autoplayConfig: s.autoplayConfig,
-			isPlayerMode: s.isPlayerMode,
 			setCurrentSlideIndex: s.setCurrentSlideIndex,
 			setCurrentStep: s.setCurrentStep,
 		})),
@@ -79,18 +71,6 @@ export function App() {
 					onSlideChange={setCurrentSlideIndex}
 					onStepChange={setCurrentStep}
 				/>
-			</div>
-		)
-	}
-
-	if (isPlayerMode) {
-		return (
-			<div className="h-screen flex flex-col bg-gray-950 text-white">
-				<Toolbar />
-				<PlayerView />
-				<TemplatePicker />
-				<ColorSetPicker />
-				<Notification />
 			</div>
 		)
 	}

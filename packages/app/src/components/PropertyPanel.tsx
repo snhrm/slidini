@@ -52,7 +52,7 @@ export function PropertyPanel() {
 	)
 
 	return (
-		<div className="w-60 bg-gray-900 border-l border-gray-700 overflow-y-auto">
+		<div>
 			<div className="p-2 space-y-2">
 				{selectedElement && overlayContext ? (
 					<OverlayElementProperties element={selectedElement} layer={overlayContext.layer} />

@@ -3,10 +3,11 @@ import {
 	createDefaultImageElement,
 	createDefaultTextElement,
 	createDefaultVideoElement,
+	extractMediaFiles,
 } from "@slidini/core"
 import { useShallow } from "zustand/react/shallow"
 import { usePresentationStore } from "../store/presentation"
-import { downloadJson, openDirectory } from "../utils/file"
+import { downloadJson, openDirectory, saveToDirectory } from "../utils/file"
 import { processDirectoryFiles } from "../utils/import"
 
 export function Toolbar() {
@@ -14,7 +15,6 @@ export function Toolbar() {
 		presentation,
 		currentSlideIndex,
 		viewMode,
-		isPlayerMode,
 		addElement,
 		addOverlayElement,
 		exportJson,
@@ -23,13 +23,11 @@ export function Toolbar() {
 		setCurrentStep,
 		setNotification,
 		openColorSetPicker,
-		setIsPlayerMode,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
 			currentSlideIndex: s.currentSlideIndex,
 			viewMode: s.viewMode,
-			isPlayerMode: s.isPlayerMode,
 			addElement: s.addElement,
 			addOverlayElement: s.addOverlayElement,
 			exportJson: s.exportJson,
@@ -38,7 +36,6 @@ export function Toolbar() {
 			setCurrentStep: s.setCurrentStep,
 			setNotification: s.setNotification,
 			openColorSetPicker: s.openColorSetPicker,
-			setIsPlayerMode: s.setIsPlayerMode,
 		})),
 	)
 	const currentSlide = presentation.slides[currentSlideIndex]
@@ -63,10 +60,22 @@ export function Toolbar() {
 		addElement(currentSlide.id, createDefaultChartElement())
 	}
 
-	const handleExport = () => {
-		const json = exportJson()
+	const handleExport = async () => {
 		const title = presentation.meta.title || "presentation"
-		downloadJson(json, `${title}.slide.json`)
+		const filename = `${title}.slide.json`
+		const { cleanedPresentation, mediaFiles } = extractMediaFiles(presentation)
+
+		if (mediaFiles.length > 0) {
+			try {
+				const json = JSON.stringify(cleanedPresentation, null, 2)
+				await saveToDirectory(json, filename, mediaFiles)
+			} catch {
+				// user cancelled directory picker
+			}
+		} else {
+			const json = exportJson()
+			downloadJson(json, filename)
+		}
 	}
 
 	const handleImport = async () => {
@@ -181,20 +190,6 @@ export function Toolbar() {
 				<option value="overview">オーバービュー</option>
 				<option value="autoplay">オートプレイ</option>
 			</select>
-
-			<div className="w-px h-5 bg-gray-600" />
-
-			<button
-				type="button"
-				onClick={() => setIsPlayerMode(!isPlayerMode)}
-				className={`px-2 py-1 text-xs rounded transition-colors ${
-					isPlayerMode
-						? "bg-indigo-600 hover:bg-indigo-500 text-white"
-						: "bg-gray-700 hover:bg-gray-600 text-white"
-				}`}
-			>
-				プレイヤー
-			</button>
 
 			<div className="ml-auto">
 				<button

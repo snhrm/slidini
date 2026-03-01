@@ -246,8 +246,8 @@ Args:
     - loop (boolean, optional): Loop the audio (default: true)
     - fade_in (number, optional): Fade-in duration in seconds (default: 0)
     - fade_out (number, optional): Fade-out duration in seconds (default: 0)
-    - from_slide (number, optional): Start from this slide index
-    - to_slide (number, optional): End at this slide index
+    - start_time (number, optional): Start playback at this time in seconds
+    - end_time (number, optional): End playback at this time in seconds
 
 Returns: The updated bgm array.`,
 			inputSchema: {
@@ -260,13 +260,16 @@ Returns: The updated bgm array.`,
 							loop: z.boolean().optional().describe("Loop the audio (default: true)"),
 							fade_in: z.number().min(0).optional().describe("Fade-in duration in seconds"),
 							fade_out: z.number().min(0).optional().describe("Fade-out duration in seconds"),
-							from_slide: z
+							start_time: z
 								.number()
-								.int()
 								.min(0)
 								.optional()
-								.describe("Start from this slide index"),
-							to_slide: z.number().int().min(0).optional().describe("End at this slide index"),
+								.describe("Start playback at this time in seconds"),
+							end_time: z
+								.number()
+								.min(0)
+								.optional()
+								.describe("End playback at this time in seconds"),
 						}),
 					)
 					.describe("Array of BGM entries"),
@@ -289,8 +292,8 @@ Returns: The updated bgm array.`,
 					loop: b.loop ?? true,
 					fadeIn: b.fade_in ?? 0,
 					fadeOut: b.fade_out ?? 0,
-					...(b.from_slide !== undefined ? { fromSlide: b.from_slide } : {}),
-					...(b.to_slide !== undefined ? { toSlide: b.to_slide } : {}),
+					...(b.start_time !== undefined ? { startTime: b.start_time } : {}),
+					...(b.end_time !== undefined ? { endTime: b.end_time } : {}),
 				}))
 
 				presentation.playback = playback

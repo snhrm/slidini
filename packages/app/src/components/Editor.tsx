@@ -1,7 +1,8 @@
 import { Canvas } from "./Canvas"
 import { ColorSetPicker } from "./ColorSetPicker"
 import { ElementList } from "./ElementList"
-import { PropertyPanel } from "./PropertyPanel"
+import { PlaybackBar } from "./PlaybackBar"
+import { RightPanel } from "./RightPanel"
 import { SlideList } from "./SlideList"
 import { TemplatePicker } from "./TemplatePicker"
 import { Toolbar } from "./Toolbar"
@@ -13,8 +14,9 @@ export function Editor() {
 			<div className="flex flex-1 min-h-0">
 				<ElementList />
 				<Canvas />
-				<PropertyPanel />
+				<RightPanel />
 			</div>
+			<PlaybackBar />
 			<SlideList />
 			<TemplatePicker />
 			<ColorSetPicker />

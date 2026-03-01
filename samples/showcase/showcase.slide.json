@@ -1539,7 +1539,7 @@
 		],
 		"bgm": [
 			{
-				"src": "/Users/snhrm/Documents/ati/music/ai-news.wav",
+				"src": "bgm.wav",
 				"volume": 0.3,
 				"loop": true,
 				"fadeIn": 2,

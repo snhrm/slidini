@@ -85,8 +85,8 @@ export function playerConfigToVideoConfig(playback: PlayerConfig, input: string)
 			loop: b.loop,
 			fadeIn: b.fadeIn,
 			fadeOut: b.fadeOut,
-			...(b.fromSlide !== undefined ? { fromSlide: b.fromSlide } : {}),
-			...(b.toSlide !== undefined ? { toSlide: b.toSlide } : {}),
+			...(b.startTime !== undefined ? { fromTime: b.startTime } : {}),
+			...(b.endTime !== undefined ? { toTime: b.endTime } : {}),
 		})),
 	}
 }

@@ -20,8 +20,8 @@ export type BgmPlaybackConfig = {
 	loop: boolean // (default: true)
 	fadeIn: number // seconds (default: 0)
 	fadeOut: number // seconds (default: 0)
-	fromSlide?: number
-	toSlide?: number
+	startTime?: number // seconds (undefined = 0)
+	endTime?: number // seconds (undefined = total duration)
 }
 
 export type SlideTiming = {

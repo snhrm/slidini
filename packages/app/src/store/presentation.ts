@@ -86,8 +86,6 @@ type PresentationStore = {
 	removeOverlayElement: (layer: "background" | "foreground", elementId: string) => void
 
 	// プレイヤー
-	isPlayerMode: boolean
-	setIsPlayerMode: (isPlayer: boolean) => void
 	updateSlideNarration: (slideIndex: number, narration: string) => void
 	updateSlideAudioFile: (slideIndex: number, audioFile: string | null) => void
 	updateSlideDuration: (slideIndex: number, duration: number | null) => void
@@ -448,10 +446,6 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 			}
 		}),
 
-	isPlayerMode: false,
-
-	setIsPlayerMode: (isPlayer) => set({ isPlayerMode: isPlayer }),
-
 	updateSlideNarration: (slideIndex, narration) =>
 		set((s) => {
 			const config = s.presentation.playback ?? createDefaultPlayerConfig()
@@ -588,7 +582,6 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 		if (playerConfig) {
 			const pres = updates.presentation ?? get().presentation
 			updates.presentation = { ...pres, playback: playerConfig }
-			updates.isPlayerMode = true
 		}
 		set(updates)
 	},

@@ -38,17 +38,8 @@ export function resolveAudioTracks(
 		const bgm = playerConfig.bgm[i]
 		if (!bgm) continue
 
-		let startTimeMs = 0
-		let endTimeMs = totalDuration
-
-		if (bgm.fromSlide !== undefined) {
-			const timing = slideTimings[bgm.fromSlide]
-			if (timing) startTimeMs = timing.startTimeMs
-		}
-		if (bgm.toSlide !== undefined) {
-			const timing = slideTimings[bgm.toSlide]
-			if (timing) endTimeMs = timing.startTimeMs + timing.durationMs
-		}
+		const startTimeMs = (bgm.startTime ?? 0) * 1000
+		const endTimeMs = bgm.endTime !== undefined ? bgm.endTime * 1000 : totalDuration
 
 		tracks.push({
 			id: `bgm-${i}`,

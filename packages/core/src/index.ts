@@ -62,5 +62,8 @@ export type {
 	SlideTiming,
 } from "./playback"
 
+export { extractMediaFiles } from "./media"
+export type { MediaFile } from "./media"
+
 export { parsePresentation, presentationSchema } from "./schema"
 export type { ParseResult } from "./schema"

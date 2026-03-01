@@ -115,6 +115,41 @@ export function BgmPanel() {
 
 					<div className="flex gap-2">
 						<label className="flex-1">
+							<span className="block text-xs text-gray-400 mb-0.5">開始時間 (秒)</span>
+							<input
+								type="number"
+								value={bgm.startTime ?? ""}
+								min={0}
+								step={0.5}
+								onChange={(e) =>
+									updateBgm(index, {
+										startTime: e.target.value === "" ? undefined : Number(e.target.value),
+									})
+								}
+								placeholder="0"
+								className="w-full px-1.5 py-0.5 text-xs bg-gray-700 text-white border border-gray-600 rounded"
+							/>
+						</label>
+						<label className="flex-1">
+							<span className="block text-xs text-gray-400 mb-0.5">終了時間 (秒)</span>
+							<input
+								type="number"
+								value={bgm.endTime ?? ""}
+								min={0}
+								step={0.5}
+								onChange={(e) =>
+									updateBgm(index, {
+										endTime: e.target.value === "" ? undefined : Number(e.target.value),
+									})
+								}
+								placeholder="全体"
+								className="w-full px-1.5 py-0.5 text-xs bg-gray-700 text-white border border-gray-600 rounded"
+							/>
+						</label>
+					</div>
+
+					<div className="flex gap-2">
+						<label className="flex-1">
 							<span className="block text-xs text-gray-400 mb-0.5">フェードイン (秒)</span>
 							<input
 								type="number"

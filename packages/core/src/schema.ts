@@ -196,8 +196,8 @@ const bgmPlaybackConfigSchema = z.object({
 	loop: z.boolean(),
 	fadeIn: z.number().min(0),
 	fadeOut: z.number().min(0),
-	fromSlide: z.number().int().min(0).optional(),
-	toSlide: z.number().int().min(0).optional(),
+	startTime: z.number().min(0).optional(),
+	endTime: z.number().min(0).optional(),
 })
 
 const playerConfigSchema = z.object({

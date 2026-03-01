@@ -3,7 +3,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, isAbsolute, resolve } from "node:path"
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
-import { type Presentation, parsePresentation } from "@slidini/core"
+import { type Presentation, extractMediaFiles, parsePresentation } from "@slidini/core"
 import { registerSlideTools } from "./slide-tools"
 import { registerVideoTools } from "./video-tools"
 
@@ -26,11 +26,24 @@ export function readPresentation(filePath: string): Presentation {
 	return result.data
 }
 
+function dataUriToBuffer(dataUri: string): Buffer {
+	const match = dataUri.match(/^data:[^;]+;base64,(.+)$/)
+	if (!match?.[1]) throw new Error("Invalid data URI")
+	return Buffer.from(match[1], "base64")
+}
+
 export function writePresentation(filePath: string, presentation: Presentation): void {
 	const absPath = resolveProjectFile(filePath)
 	mkdirSync(dirname(absPath), { recursive: true })
 	presentation.meta.updatedAt = new Date().toISOString()
-	writeFileSync(absPath, JSON.stringify(presentation, null, 2), "utf-8")
+
+	const { cleanedPresentation, mediaFiles } = extractMediaFiles(presentation)
+	writeFileSync(absPath, JSON.stringify(cleanedPresentation, null, 2), "utf-8")
+
+	const dir = dirname(absPath)
+	for (const { filename, dataUri } of mediaFiles) {
+		writeFileSync(resolve(dir, filename), dataUriToBuffer(dataUri))
+	}
 }
 
 export function findSlide(presentation: Presentation, slideId: string) {

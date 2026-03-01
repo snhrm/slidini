@@ -1,3 +1,37 @@
+function dataUriToBlob(dataUri: string): Blob {
+	const [header, base64] = dataUri.split(",")
+	const mime = header?.match(/data:([^;]+)/)?.[1] ?? "application/octet-stream"
+	const binary = atob(base64 ?? "")
+	const bytes = new Uint8Array(binary.length)
+	for (let i = 0; i < binary.length; i++) {
+		bytes[i] = binary.charCodeAt(i)
+	}
+	return new Blob([bytes], { type: mime })
+}
+
+export async function saveToDirectory(
+	jsonContent: string,
+	jsonFilename: string,
+	mediaFiles: { filename: string; dataUri: string }[],
+): Promise<void> {
+	const dirHandle = await (
+		window as unknown as { showDirectoryPicker: () => Promise<FileSystemDirectoryHandle> }
+	).showDirectoryPicker()
+
+	const jsonHandle = await dirHandle.getFileHandle(jsonFilename, { create: true })
+	const jsonWritable = await jsonHandle.createWritable()
+	await jsonWritable.write(jsonContent)
+	await jsonWritable.close()
+
+	for (const { filename, dataUri } of mediaFiles) {
+		const blob = dataUriToBlob(dataUri)
+		const fileHandle = await dirHandle.getFileHandle(filename, { create: true })
+		const writable = await fileHandle.createWritable()
+		await writable.write(blob)
+		await writable.close()
+	}
+}
+
 export function downloadJson(content: string, filename: string): void {
 	const blob = new Blob([content], { type: "application/json" })
 	const url = URL.createObjectURL(blob)
