@@ -3,10 +3,19 @@ import { ANIMATION_TYPES } from "./animations"
 
 // ===== 基本型 =====
 
-const gradientStopSchema = z.object({
-	color: z.string(),
-	position: z.number().min(0).max(100),
-})
+const gradientStopSchema = z.preprocess(
+	(val) => {
+		if (typeof val === "object" && val !== null && "offset" in val && !("position" in val)) {
+			const { offset, ...rest } = val as Record<string, unknown>
+			return { ...rest, position: offset }
+		}
+		return val
+	},
+	z.object({
+		color: z.string(),
+		position: z.number().min(0).max(100),
+	}),
+)
 
 const gradientSchema = z.object({
 	kind: z.enum(["linear", "radial"]),
