@@ -7,6 +7,7 @@ import {
 } from "@slidini/core"
 import { useShallow } from "zustand/react/shallow"
 import { usePresentationStore } from "../store/presentation"
+import { createMediaObjectUrls, readSlideJson } from "../utils/autoSave"
 import { downloadJson, openDirectory, saveToDirectory } from "../utils/file"
 import { processDirectoryFiles } from "../utils/import"
 
@@ -29,6 +30,7 @@ export function Toolbar() {
 		openColorSetPicker,
 		enableAutoSave,
 		disableAutoSave,
+		setMediaUrlMap,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
@@ -46,6 +48,7 @@ export function Toolbar() {
 			openColorSetPicker: s.openColorSetPicker,
 			enableAutoSave: s.enableAutoSave,
 			disableAutoSave: s.disableAutoSave,
+			setMediaUrlMap: s.setMediaUrlMap,
 		})),
 	)
 	const currentSlide = presentation.slides[currentSlideIndex]
@@ -93,13 +96,41 @@ export function Toolbar() {
 			disableAutoSave()
 		}
 		try {
-			const { jsonFiles, mediaFiles } = await openDirectory()
-			const result = processDirectoryFiles(jsonFiles, mediaFiles)
-			if (result.errors.length > 0 && !result.presentation && !result.playerConfig) {
-				setNotification(result.errors[0] ?? "インポートエラー")
-				return
+			if (supportsDirectoryPicker) {
+				const dirHandle = await (
+					window as unknown as {
+						showDirectoryPicker: () => Promise<FileSystemDirectoryHandle>
+					}
+				).showDirectoryPicker()
+
+				const slideJson = await readSlideJson(dirHandle)
+				if (!slideJson) {
+					setNotification("フォルダ内に .slide.json が見つかりません")
+					return
+				}
+
+				// Process with empty media map (keep filenames as-is)
+				const result = processDirectoryFiles([slideJson], new Map())
+				if (result.errors.length > 0 && !result.presentation && !result.playerConfig) {
+					setNotification(result.errors[0] ?? "インポートエラー")
+					return
+				}
+
+				// Create Object URLs for media files
+				const mediaMap = await createMediaObjectUrls(dirHandle)
+				importData(result)
+				setMediaUrlMap(mediaMap)
+				enableAutoSave(dirHandle)
+			} else {
+				const { jsonFiles, mediaFiles } = await openDirectory()
+				const result = processDirectoryFiles(jsonFiles, mediaFiles)
+				if (result.errors.length > 0 && !result.presentation && !result.playerConfig) {
+					setNotification(result.errors[0] ?? "インポートエラー")
+					return
+				}
+				setMediaUrlMap(new Map())
+				importData(result)
 			}
-			importData(result)
 		} catch {
 			// user cancelled
 		}

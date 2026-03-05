@@ -11,9 +11,10 @@ import { usePresentationStore } from "../store/presentation"
 import { resolveAudioTracks } from "../utils/audio"
 
 export function PlaybackBar() {
-	const { presentation, setCurrentSlideIndex, setCurrentStep } = usePresentationStore(
+	const { presentation, mediaUrlMap, setCurrentSlideIndex, setCurrentStep } = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
+			mediaUrlMap: s.mediaUrlMap,
 			setCurrentSlideIndex: s.setCurrentSlideIndex,
 			setCurrentStep: s.setCurrentStep,
 		})),
@@ -28,8 +29,8 @@ export function PlaybackBar() {
 
 	const audioTracks = useMemo(() => {
 		const timings = computeSlideTimings(presentation, effectiveConfig)
-		return resolveAudioTracks(effectiveConfig, timings)
-	}, [presentation, effectiveConfig])
+		return resolveAudioTracks(effectiveConfig, timings, mediaUrlMap)
+	}, [presentation, effectiveConfig, mediaUrlMap])
 
 	useAudioPlayback(audioTracks, engine.currentTimeMs, engine.isPlaying)
 

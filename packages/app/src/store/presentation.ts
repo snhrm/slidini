@@ -107,6 +107,10 @@ type PresentationStore = {
 	disableAutoSave: () => void
 	setAutoSaveStatus: (status: "idle" | "saving" | "saved" | "error", error?: string) => void
 
+	// メディアURL（ファイル名 → Object URL）
+	mediaUrlMap: Map<string, string>
+	setMediaUrlMap: (map: Map<string, string>) => void
+
 	// 通知
 	notification: string | null
 	setNotification: (message: string | null) => void
@@ -565,6 +569,17 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 			autoSaveStatus: "idle",
 			autoSaveError: null,
 		}),
+
+	mediaUrlMap: new Map(),
+
+	setMediaUrlMap: (map) => {
+		// Revoke old Object URLs before replacing
+		const old = get().mediaUrlMap
+		for (const url of old.values()) {
+			URL.revokeObjectURL(url)
+		}
+		set({ mediaUrlMap: map })
+	},
 
 	setAutoSaveStatus: (status, error) =>
 		set({ autoSaveStatus: status, autoSaveError: error ?? null }),
