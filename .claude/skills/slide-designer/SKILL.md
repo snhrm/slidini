@@ -412,14 +412,25 @@ Import the .slide.json file from the toolbar.
 
 | Element | fontSize |
 |---------|----------|
-| Cover title | 72 |
-| Section title | 60 |
-| Slide title | 48 |
-| Subtitle | 36 |
-| Body text | 32 |
-| Bullet points | 28-32 |
-| Caption / attribution | 24-28 |
-| Key stat number | 120-160 |
+| Cover title | 80 |
+| Section title | 64 |
+| Slide title | 52 |
+| Subtitle | 40 |
+| Body text | 36 |
+| Bullet points | 32-36 |
+| Caption / attribution | 28 |
+| Key stat number | 140-180 |
+
+### Element Height Rule
+
+**CRITICAL**: Always calculate element height based on actual content. Never use fixed heights that could clip text.
+
+```
+height = numberOfLines × fontSize × lineHeight + style.padding × 2 + 10
+```
+
+- `style.padding` は上下両方に適用されるため **×2** が必須（バッジ等の `backgroundColor` 付き要素で特に重要）
+- fontSize や padding を変更したら height も必ず再計算すること
 
 ### Animation Pattern
 

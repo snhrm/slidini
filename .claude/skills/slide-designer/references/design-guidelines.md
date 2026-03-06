@@ -9,9 +9,49 @@ Visual hierarchy and design principles for slide generation.
 | Width | 1920 px |
 | Height | 1080 px |
 | Aspect Ratio | 16:9 |
-| Margin (horizontal) | 120 px from edges |
-| Margin (vertical) | 60 px from edges |
-| Safe area | 120-1800 (x), 60-1020 (y) |
+| Margin (horizontal) | 100 px from edges |
+| Margin (vertical) | 50 px from edges |
+| Safe area | 100-1820 (x), 50-1030 (y) |
+
+## Core Principles
+
+### 1. Fill the Canvas
+
+**余白を無駄にしない。** コンテンツ領域はキャンバスを最大限に活用する。
+
+- タイトルは y=50 から開始し、上部の無駄な空白を排除
+- ボディは y=220 からタイトル直下に配置し、下端 y=1000 付近まで使う
+- 左右マージンは 100px に抑え、コンテンツ幅を最大化
+
+### 2. Readable Type Sizes
+
+**遠くからでも読める文字サイズ。** プレゼンテーションは大画面で表示される前提。
+
+- ボディテキストは最低 36px（title-body）
+- 箇条書きは最低 32px
+- 28px 未満のテキストは使わない（キャプション・属性表記のみ例外）
+
+### 3. No Text Clipping
+
+**文字の見切れは絶対に防ぐ。** 要素の height はコンテンツ量に応じて必ず調整する。
+
+```
+必要な高さ = 行数 × fontSize × lineHeight + padding × 2 + 10
+```
+
+- **`padding × 2`**: `style.padding` は上下両方に適用される。バッジ（`backgroundColor` 付きテキスト）では特に重要
+- Markdown の箇条書きは1項目＝最低1行。長い項目は折り返し行数も加算
+- コードブロックの各行もカウント対象
+
+例: padding=14, fontSize=32, lineHeight=1.5 の1行テキスト：
+```
+1行 × 32px × 1.5 + 14 × 2 + 10 = 86px → height: 86 以上
+```
+
+例: padding=0, fontSize=36, lineHeight=1.7 の5項目箇条書き（各2行）：
+```
+5項目 × 2行 × 36px × 1.7 + 0 + 10 = 622px → height: 650 以上
+```
 
 ## Visual Hierarchy
 
@@ -19,7 +59,7 @@ Visual hierarchy and design principles for slide generation.
 |-----------|-------------|
 | Focal Point | ONE dominant element per slide draws attention first |
 | Size Contrast | Headlines 1.5-2x larger than body text |
-| Breathing Room | Minimum 120px margin from horizontal edges, 60px from vertical |
+| Breathing Room | Minimum 100px margin from horizontal edges, 50px from vertical |
 | Alignment | Consistent left alignment for content slides, center for titles |
 | Z-Index | Higher z-index for elements that should appear on top |
 
@@ -34,7 +74,7 @@ Visual hierarchy and design principles for slide generation.
 | `textPrimary` | Headlines, main text | Title text color |
 | `textSecondary` | Body text, bullets | Body text color |
 | `textMuted` | Captions, attributions | Small/secondary text color |
-| `accent` | Emphasis, primary highlight | Section headers bg, gradient start |
+| `accent` | Emphasis, primary highlight | Section headers bg, gradient start, key-stat number |
 | `accentSecondary` | Secondary highlight | Comparison headers bg, gradient end |
 
 ### Background Strategy
@@ -52,14 +92,14 @@ Visual hierarchy and design principles for slide generation.
 
 | Level | fontSize | fontWeight | Color Role | Usage |
 |-------|----------|------------|------------|-------|
-| Display | 72 | bold | textPrimary | Cover title only |
-| H1 | 60 | bold | textPrimary | Section divider |
-| H2 | 48 | bold | textPrimary | Slide title |
-| H3 | 36 | bold | textPrimary | Subtitle, sub-headings |
-| Body | 32 | normal | textSecondary | Main body text |
-| Small | 28 | normal | textSecondary | Bullet points, details |
-| Caption | 24 | normal | textMuted | Attributions, notes |
-| Stat | 120-160 | bold | accent | Large statistics |
+| Display | 80 | bold | textPrimary | Cover title only |
+| H1 | 64 | bold | textPrimary | Section divider |
+| H2 | 52 | bold | textPrimary | Slide title |
+| H3 | 40 | bold | textPrimary | Subtitle, sub-headings |
+| Body | 36 | normal | textSecondary | Main body text |
+| Small | 32 | normal | textSecondary | Bullet points, column text |
+| Caption | 28 | normal | textMuted | Attributions, notes |
+| Stat | 140-180 | bold | accent | Large statistics |
 
 ## Animation Guidelines
 
@@ -105,7 +145,7 @@ Use `stepIndex > 0` sparingly:
 
 | Element | Guideline |
 |---------|-----------|
-| Margins | Same horizontal (120px) and vertical (60px) margins on all slides |
+| Margins | Same horizontal (100px) and vertical (50px) margins on all slides |
 | Title position | Same x,y position for all title-body slides |
 | Font sizes | Same size for same content type across all slides |
 | Colors | Use only colors from the selected ColorSet |
@@ -116,9 +156,9 @@ Use `stepIndex > 0` sparingly:
 | Type | Max Text Elements | Max Bullet Points | Notes |
 |------|-------------------|-------------------|-------|
 | Cover | 2 (title + subtitle) | 0 | Keep minimal |
-| Content | 2 (title + body) | 5 | Focus on key points |
-| Two-column | 3 (title + 2 cols) | 3-4 per column | Balance both sides |
-| Comparison | 5 (title + 2 headers + 2 bodies) | 3-4 per side | Keep parallel |
+| Content | 2 (title + body) | 5 | Each bullet 2-3 lines with detail |
+| Two-column | 3 (title + 2 cols) | 4 per column | Balance both sides |
+| Comparison | 5 (title + 2 headers + 2 bodies) | 4 per side | Keep parallel |
 | Section divider | 1 | 0 | Section name only |
 | Quote | 2 (quote + attribution) | 0 | Let quote breathe |
 | Key stat | 3 (number + label + context) | 0 | One number dominates |
