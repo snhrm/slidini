@@ -78,18 +78,61 @@ const markdownComponents = {
 		<h4 style={{ ...headingBase, fontSize: "0.75em", opacity: 0.8 }}>{children}</h4>
 	),
 	p: ({ children }: ComponentPropsWithoutRef<"p">) => (
-		<p style={{ margin: "0.3em 0" }}>{children}</p>
+		<p style={{ margin: "0.4em 0", lineHeight: 1.6 }}>{children}</p>
 	),
 	ul: ({ children }: ComponentPropsWithoutRef<"ul">) => (
-		<ul style={{ margin: "0.3em 0", paddingLeft: "1.5em", listStyleType: "disc" }}>{children}</ul>
+		<ul
+			style={{
+				margin: "0.3em 0",
+				paddingLeft: 0,
+				listStyle: "none",
+				display: "flex",
+				flexDirection: "column",
+				gap: "0.3em",
+			}}
+		>
+			{children}
+		</ul>
 	),
 	ol: ({ children }: ComponentPropsWithoutRef<"ol">) => (
-		<ol style={{ margin: "0.3em 0", paddingLeft: "1.5em", listStyleType: "decimal" }}>
+		<ol
+			style={{
+				margin: "0.3em 0",
+				paddingLeft: 0,
+				listStyle: "none",
+				display: "flex",
+				flexDirection: "column",
+				gap: "0.3em",
+			}}
+		>
 			{children}
 		</ol>
 	),
 	li: ({ children }: ComponentPropsWithoutRef<"li">) => (
-		<li style={{ margin: "0.15em 0" }}>{children}</li>
+		<li
+			style={{
+				display: "flex",
+				alignItems: "center",
+				gap: "0.6em",
+				lineHeight: 1.6,
+				backgroundColor: "color-mix(in srgb, currentColor 8%, transparent)",
+				borderRadius: "0.3em",
+				padding: "0.4em 0.7em",
+				borderLeft: "0.2em solid color-mix(in srgb, currentColor 30%, transparent)",
+			}}
+		>
+			<span
+				style={{
+					flexShrink: 0,
+					width: "0.4em",
+					height: "0.4em",
+					borderRadius: "50%",
+					backgroundColor: "currentColor",
+					opacity: 0.4,
+				}}
+			/>
+			<span style={{ flex: 1 }}>{children}</span>
+		</li>
 	),
 	table: ({ children }: ComponentPropsWithoutRef<"table">) => (
 		<table
@@ -113,6 +156,7 @@ const markdownComponents = {
 				padding: "0.5em 0.8em",
 				textAlign: "left",
 				fontWeight: "bold",
+				borderRight: "1px solid color-mix(in srgb, currentColor 15%, transparent)",
 			}}
 		>
 			{children}
@@ -122,8 +166,8 @@ const markdownComponents = {
 		<td
 			style={{
 				padding: "0.5em 0.8em",
-				borderBottom: "1px solid currentColor",
-				opacity: 0.9,
+				borderBottom: "1px solid color-mix(in srgb, currentColor 20%, transparent)",
+				borderRight: "1px solid color-mix(in srgb, currentColor 15%, transparent)",
 			}}
 		>
 			{children}
