@@ -72,10 +72,32 @@ const markdownComponents = {
 	h1: ({ children }: ComponentPropsWithoutRef<"h1">) => <h1 style={headingBase}>{children}</h1>,
 	h2: ({ children }: ComponentPropsWithoutRef<"h2">) => <h2 style={headingBase}>{children}</h2>,
 	h3: ({ children }: ComponentPropsWithoutRef<"h3">) => (
-		<h3 style={{ ...headingBase, fontSize: "0.85em", opacity: 0.85 }}>{children}</h3>
+		<h3
+			style={{
+				...headingBase,
+				fontSize: "0.85em",
+				fontWeight: "bold",
+				paddingBottom: "0.3em",
+				marginBottom: "0.2em",
+				borderBottom: "2px solid color-mix(in srgb, currentColor 15%, transparent)",
+			}}
+		>
+			{children}
+		</h3>
 	),
 	h4: ({ children }: ComponentPropsWithoutRef<"h4">) => (
-		<h4 style={{ ...headingBase, fontSize: "0.75em", opacity: 0.8 }}>{children}</h4>
+		<h4
+			style={{
+				...headingBase,
+				fontSize: "0.75em",
+				fontWeight: "bold",
+				opacity: 0.85,
+				letterSpacing: "0.05em",
+				textTransform: "uppercase" as const,
+			}}
+		>
+			{children}
+		</h4>
 	),
 	p: ({ children }: ComponentPropsWithoutRef<"p">) => (
 		<p style={{ margin: "0.4em 0", lineHeight: 1.6 }}>{children}</p>
@@ -140,13 +162,20 @@ const markdownComponents = {
 				borderCollapse: "collapse",
 				width: "100%",
 				margin: "0.5em 0",
+				borderRadius: "0.4em",
+				overflow: "hidden",
 			}}
 		>
 			{children}
 		</table>
 	),
 	thead: ({ children }: ComponentPropsWithoutRef<"thead">) => (
-		<thead style={{ backgroundColor: "color-mix(in srgb, currentColor 10%, transparent)" }}>
+		<thead
+			style={{
+				backgroundColor: "color-mix(in srgb, currentColor 12%, transparent)",
+				borderBottom: "2px solid color-mix(in srgb, currentColor 20%, transparent)",
+			}}
+		>
 			{children}
 		</thead>
 	),
@@ -187,11 +216,13 @@ const markdownComponents = {
 	blockquote: ({ children }: ComponentPropsWithoutRef<"blockquote">) => (
 		<blockquote
 			style={{
-				borderLeft: "0.2em solid currentColor",
-				paddingLeft: "0.8em",
+				borderLeft: "0.25em solid color-mix(in srgb, currentColor 40%, transparent)",
+				backgroundColor: "color-mix(in srgb, currentColor 6%, transparent)",
+				borderRadius: "0 0.3em 0.3em 0",
+				padding: "0.5em 0.8em",
 				margin: "0.5em 0",
-				opacity: 0.8,
 				fontStyle: "italic",
+				opacity: 0.9,
 			}}
 		>
 			{children}
@@ -201,8 +232,9 @@ const markdownComponents = {
 		<hr
 			style={{
 				border: "none",
-				borderTop: "1px solid currentColor",
-				opacity: 0.3,
+				height: "2px",
+				background:
+					"linear-gradient(to right, color-mix(in srgb, currentColor 30%, transparent), transparent)",
 				margin: "0.8em 0",
 			}}
 		/>
@@ -236,6 +268,7 @@ export function TextElement({ element, currentStep, isExiting }: Props) {
 				textAlign: style.textAlign,
 				lineHeight: style.lineHeight,
 				backgroundColor: style.backgroundColor ?? undefined,
+				borderRadius: style.backgroundColor ? 12 : undefined,
 				padding: style.padding,
 				width: "100%",
 				height: "100%",

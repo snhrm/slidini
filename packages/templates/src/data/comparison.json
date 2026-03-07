@@ -11,32 +11,34 @@
       {
         "type": "text",
         "colorRole": "textPrimary",
-        "position": { "x": 120, "y": 60 },
-        "size": { "width": 1680, "height": 120 },
+        "position": { "x": 140, "y": 80 },
+        "size": { "width": 1640, "height": 120 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 1,
         "content": "## 比較タイトル",
         "style": {
           "color": "#f8fafc",
-          "fontSize": 48,
+          "fontSize": 52,
           "fontFamily": "sans-serif",
           "fontWeight": "bold",
           "fontStyle": "normal",
           "textDecoration": "none",
           "textAlign": "center",
-          "lineHeight": 1.4,
+          "lineHeight": 1.3,
           "backgroundColor": null,
           "padding": 0
         },
-        "animations": []
+        "animations": [
+          { "type": "fade-in", "duration": 0.5, "delay": 0.1, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
       },
       {
         "type": "text",
         "colorRole": "textPrimary",
         "bgColorRole": "accent",
-        "position": { "x": 120, "y": 220 },
-        "size": { "width": 810, "height": 80 },
+        "position": { "x": 140, "y": 240 },
+        "size": { "width": 790, "height": 80 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 2,
@@ -53,14 +55,16 @@
           "backgroundColor": "#6366f1",
           "padding": 16
         },
-        "animations": []
+        "animations": [
+          { "type": "fade-in", "duration": 0.4, "delay": 0.2, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
       },
       {
         "type": "text",
         "colorRole": "textSecondary",
         "bgColorRole": "surface",
-        "position": { "x": 120, "y": 300 },
-        "size": { "width": 810, "height": 660 },
+        "position": { "x": 140, "y": 320 },
+        "size": { "width": 790, "height": 640 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 3,
@@ -75,16 +79,18 @@
           "textAlign": "left",
           "lineHeight": 1.8,
           "backgroundColor": "#1e293b",
-          "padding": 28
+          "padding": 32
         },
-        "animations": []
+        "animations": [
+          { "type": "fade-in", "duration": 0.4, "delay": 0.3, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
       },
       {
         "type": "text",
         "colorRole": "textPrimary",
         "bgColorRole": "accentSecondary",
-        "position": { "x": 990, "y": 220 },
-        "size": { "width": 810, "height": 80 },
+        "position": { "x": 990, "y": 240 },
+        "size": { "width": 790, "height": 80 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 4,
@@ -101,14 +107,16 @@
           "backgroundColor": "#ec4899",
           "padding": 16
         },
-        "animations": []
+        "animations": [
+          { "type": "fade-in", "duration": 0.4, "delay": 0.2, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
       },
       {
         "type": "text",
         "colorRole": "textSecondary",
         "bgColorRole": "surface",
-        "position": { "x": 990, "y": 300 },
-        "size": { "width": 810, "height": 660 },
+        "position": { "x": 990, "y": 320 },
+        "size": { "width": 790, "height": 640 },
         "rotation": 0,
         "opacity": 1,
         "zIndex": 5,
@@ -123,9 +131,11 @@
           "textAlign": "left",
           "lineHeight": 1.8,
           "backgroundColor": "#1e293b",
-          "padding": 28
+          "padding": 32
         },
-        "animations": []
+        "animations": [
+          { "type": "fade-in", "duration": 0.4, "delay": 0.3, "easing": "ease-out", "trigger": "onEnter", "stepIndex": 0 }
+        ]
       }
     ]
   }

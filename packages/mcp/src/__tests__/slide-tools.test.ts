@@ -532,7 +532,7 @@ describe("slide_list_color_sets", () => {
 		const data = parseToolText(result) as {
 			colorSets: Array<{ id: string; name: string }>
 		}
-		expect(data.colorSets.length).toBe(10)
+		expect(data.colorSets.length).toBe(13)
 	})
 })
 
