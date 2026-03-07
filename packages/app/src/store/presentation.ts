@@ -107,6 +107,13 @@ type PresentationStore = {
 	disableAutoSave: () => void
 	setAutoSaveStatus: (status: "idle" | "saving" | "saved" | "error", error?: string) => void
 
+	// ハッシュルート読み込み
+	hashLoadStatus: "idle" | "loading" | "loaded" | "error"
+	hashLoadError: string | null
+	hashProjectName: string | null
+	setHashLoadStatus: (status: "idle" | "loading" | "loaded" | "error", error?: string) => void
+	setHashProjectName: (name: string | null) => void
+
 	// メディアURL（ファイル名 → Object URL）
 	mediaUrlMap: Map<string, string>
 	setMediaUrlMap: (map: Map<string, string>) => void
@@ -569,6 +576,15 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 			autoSaveStatus: "idle",
 			autoSaveError: null,
 		}),
+
+	hashLoadStatus: "idle",
+	hashLoadError: null,
+	hashProjectName: null,
+
+	setHashLoadStatus: (status, error) =>
+		set({ hashLoadStatus: status, hashLoadError: error ?? null }),
+
+	setHashProjectName: (name) => set({ hashProjectName: name }),
 
 	mediaUrlMap: new Map(),
 

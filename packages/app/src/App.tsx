@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useShallow } from "zustand/react/shallow"
 import { Editor } from "./components/Editor"
 import { useAutoSave } from "./hooks/useAutoSave"
+import { useHashRoute } from "./hooks/useHashRoute"
 import { usePresentationStore } from "./store/presentation"
 
 function Notification() {
@@ -33,8 +34,9 @@ function Notification() {
 
 export function App() {
 	useAutoSave()
+	useHashRoute()
 	const [isFullscreen, setIsFullscreen] = useState(false)
-	const { presentation, currentSlideIndex, currentStep, viewMode, autoplayConfig } =
+	const { presentation, currentSlideIndex, currentStep, viewMode, autoplayConfig, hashLoadStatus } =
 		usePresentationStore(
 			useShallow((s) => ({
 				presentation: s.presentation,
@@ -42,6 +44,7 @@ export function App() {
 				currentStep: s.currentStep,
 				viewMode: s.viewMode,
 				autoplayConfig: s.autoplayConfig,
+				hashLoadStatus: s.hashLoadStatus,
 			})),
 		)
 
@@ -59,6 +62,14 @@ export function App() {
 		document.addEventListener("fullscreenchange", handler)
 		return () => document.removeEventListener("fullscreenchange", handler)
 	}, [])
+
+	if (hashLoadStatus === "loading") {
+		return (
+			<div className="w-screen h-screen bg-zinc-900 flex items-center justify-center">
+				<p className="text-zinc-400 text-lg">読み込み中…</p>
+			</div>
+		)
+	}
 
 	if (isFullscreen) {
 		return (

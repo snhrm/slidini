@@ -95,12 +95,20 @@ export async function createMediaObjectUrls(
 	dirHandle: FileSystemDirectoryHandle,
 ): Promise<Map<string, string>> {
 	const map = new Map<string, string>()
-	for await (const entry of dirHandle.values()) {
-		if (entry.kind === "file" && isAudioFile(entry.name)) {
-			const fileHandle = entry as FileSystemFileHandle
-			const file = await fileHandle.getFile()
-			map.set(entry.name, URL.createObjectURL(file))
+
+	async function scan(handle: FileSystemDirectoryHandle) {
+		for await (const entry of handle.values()) {
+			if (entry.kind === "file" && isAudioFile(entry.name)) {
+				const fileHandle = entry as FileSystemFileHandle
+				const file = await fileHandle.getFile()
+				map.set(entry.name, URL.createObjectURL(file))
+			} else if (entry.kind === "directory") {
+				const subHandle = await handle.getDirectoryHandle(entry.name)
+				await scan(subHandle)
+			}
 		}
 	}
+
+	await scan(dirHandle)
 	return map
 }

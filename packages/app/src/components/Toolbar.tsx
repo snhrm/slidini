@@ -3,12 +3,11 @@ import {
 	createDefaultImageElement,
 	createDefaultTextElement,
 	createDefaultVideoElement,
-	extractMediaFiles,
 } from "@slidini/core"
 import { useShallow } from "zustand/react/shallow"
 import { usePresentationStore } from "../store/presentation"
 import { createMediaObjectUrls, readSlideJson } from "../utils/autoSave"
-import { downloadJson, openDirectory, saveToDirectory } from "../utils/file"
+import { openDirectory } from "../utils/file"
 import { processDirectoryFiles } from "../utils/import"
 
 const supportsDirectoryPicker = "showDirectoryPicker" in window
@@ -22,7 +21,6 @@ export function Toolbar() {
 		autoSaveStatus,
 		addElement,
 		addOverlayElement,
-		exportJson,
 		importData,
 		setViewMode,
 		setCurrentStep,
@@ -31,6 +29,7 @@ export function Toolbar() {
 		enableAutoSave,
 		disableAutoSave,
 		setMediaUrlMap,
+		setHashProjectName,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
@@ -40,7 +39,6 @@ export function Toolbar() {
 			autoSaveStatus: s.autoSaveStatus,
 			addElement: s.addElement,
 			addOverlayElement: s.addOverlayElement,
-			exportJson: s.exportJson,
 			importData: s.importData,
 			setViewMode: s.setViewMode,
 			setCurrentStep: s.setCurrentStep,
@@ -49,6 +47,7 @@ export function Toolbar() {
 			enableAutoSave: s.enableAutoSave,
 			disableAutoSave: s.disableAutoSave,
 			setMediaUrlMap: s.setMediaUrlMap,
+			setHashProjectName: s.setHashProjectName,
 		})),
 	)
 	const currentSlide = presentation.slides[currentSlideIndex]
@@ -71,24 +70,6 @@ export function Toolbar() {
 	const handleAddChart = () => {
 		if (!currentSlide) return
 		addElement(currentSlide.id, createDefaultChartElement())
-	}
-
-	const handleExport = async () => {
-		const title = presentation.meta.title || "presentation"
-		const filename = `${title}.slide.json`
-		const { cleanedPresentation, mediaFiles } = extractMediaFiles(presentation)
-
-		if (mediaFiles.length > 0) {
-			try {
-				const json = JSON.stringify(cleanedPresentation, null, 2)
-				await saveToDirectory(json, filename, mediaFiles)
-			} catch {
-				// user cancelled directory picker
-			}
-		} else {
-			const json = exportJson()
-			downloadJson(json, filename)
-		}
 	}
 
 	const handleImport = async () => {
@@ -121,6 +102,19 @@ export function Toolbar() {
 				importData(result)
 				setMediaUrlMap(mediaMap)
 				enableAutoSave(dirHandle)
+
+				// projects/ 配下のプロジェクトならハッシュを更新
+				const projectName = dirHandle.name
+				const checkUrl = `/projects/${encodeURIComponent(projectName)}/${encodeURIComponent(projectName)}.slide.json`
+				try {
+					const res = await fetch(checkUrl, { method: "HEAD" })
+					if (res.ok) {
+						setHashProjectName(projectName)
+						window.location.hash = `#/projects/${encodeURIComponent(projectName)}`
+					}
+				} catch {
+					// projects/ 外のディレクトリ — ハッシュは更新しない
+				}
 			} else {
 				const { jsonFiles, mediaFiles } = await openDirectory()
 				const result = processDirectoryFiles(jsonFiles, mediaFiles)
@@ -192,31 +186,6 @@ export function Toolbar() {
 
 			<div className="w-px h-5 bg-gray-600" />
 
-			<div className="flex items-center gap-0.5">
-				<button
-					type="button"
-					onClick={handleImport}
-					disabled={autoSaveEnabled}
-					title={autoSaveEnabled ? "自動保存中はインポートできません" : undefined}
-					className={`px-2 py-1 text-xs rounded transition-colors ${
-						autoSaveEnabled
-							? "bg-gray-800 text-gray-500 cursor-not-allowed"
-							: "bg-gray-700 hover:bg-gray-600 text-white"
-					}`}
-				>
-					インポート
-				</button>
-				<button
-					type="button"
-					onClick={handleExport}
-					className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-white rounded transition-colors"
-				>
-					エクスポート
-				</button>
-			</div>
-
-			<div className="w-px h-5 bg-gray-600" />
-
 			<button
 				type="button"
 				onClick={openColorSetPicker}
@@ -257,6 +226,13 @@ export function Toolbar() {
 			</select>
 
 			<div className="ml-auto flex items-center gap-1.5">
+				<button
+					type="button"
+					onClick={handleImport}
+					className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-white rounded transition-colors"
+				>
+					インポート
+				</button>
 				{supportsDirectoryPicker && (
 					<>
 						<div className="flex items-center gap-1">
