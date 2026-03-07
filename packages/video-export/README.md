@@ -25,45 +25,45 @@ Phase 3: Audio Encoding
   └── FFmpeg で映像 + ナレーション + BGM をミックスして MP4 出力
 ```
 
-## `.video.json` フォーマット
+## `playback` 設定（`.slide.json` 内）
+
+再生・動画エクスポート設定は `.slide.json` の `playback` フィールドに統合されている。
 
 ```json
 {
-  "input": "./showcase.slide.json",
-  "voicevox": {
-    "url": "http://localhost:50021",
-    "speaker": 3,
-    "speed": 1.0
-  },
-  "fps": 30,
-  "defaultSlideDuration": 5,
-  "slides": [
-    {
-      "slideIndex": 0,
-      "narration": "こんにちは、今日はSlidiniについて紹介します。",
-      "duration": null
-    },
-    {
-      "slideIndex": 1,
-      "narration": "Slidiniは、JSONベースのプレゼンテーションツールです。",
-      "duration": null
-    },
-    {
-      "slideIndex": 2,
-      "duration": 8
-    }
-  ],
-  "bgm": [
-    {
-      "src": "./bgm/intro.mp3",
-      "volume": 0.15,
-      "fromSlide": 0,
-      "toSlide": 2,
-      "loop": true,
-      "fadeIn": 1,
-      "fadeOut": 2
-    }
-  ]
+  "meta": { "..." : "..." },
+  "slides": [ "..." ],
+  "playback": {
+    "defaultSlideDuration": 5,
+    "defaultStepDelay": 1,
+    "slides": [
+      {
+        "slideIndex": 0,
+        "narration": "こんにちは、今日はスリディーニについて紹介します。",
+        "audioFile": "./audio/slide-00.wav",
+        "duration": null
+      },
+      {
+        "slideIndex": 1,
+        "narration": "スリディーニは、ジェイソンベースのプレゼンテーションツールです。",
+        "audioFile": "./audio/slide-01.wav",
+        "duration": null
+      },
+      {
+        "slideIndex": 2,
+        "duration": 8
+      }
+    ],
+    "bgm": [
+      {
+        "src": "./bgm/intro.mp3",
+        "volume": 0.15,
+        "loop": true,
+        "fadeIn": 1,
+        "fadeOut": 2
+      }
+    ]
+  }
 }
 ```
 
@@ -71,19 +71,16 @@ Phase 3: Audio Encoding
 
 | フィールド | 説明 |
 |-----------|------|
-| `input` | ソースとなる `.slide.json` のパス |
-| `voicevox` | VOICEVOX エンジンの接続設定 (省略可) |
-| `fps` | フレームレート (デフォルト: 30) |
-| `defaultSlideDuration` | ナレーションがないスライドのデフォルト表示秒数 |
-| `slides[].narration` | VOICEVOX で読み上げるテキスト (`audioFile` と排他) |
-| `slides[].audioFile` | 事前録音した音声ファイルのパス (`narration` と排他) |
-| `slides[].duration` | 表示時間の明示指定 (秒)。`null` = 音声の長さに合わせて自動算出 |
-| `bgm[].src` | BGM ファイルのパス |
-| `bgm[].volume` | 音量 (0–1、デフォルト: 0.15) |
-| `bgm[].loop` | ループ再生 (デフォルト: true) |
-| `bgm[].fadeIn / fadeOut` | フェード秒数 |
-| `bgm[].fromSlide / toSlide` | スライドインデックスによる再生範囲 |
-| `bgm[].fromTime / toTime` | 秒数による再生範囲 |
+| `playback.defaultSlideDuration` | ナレーションがないスライドのデフォルト表示秒数 |
+| `playback.defaultStepDelay` | ステップ間のデフォルト遅延秒数 |
+| `playback.slides[].narration` | VOICEVOX で読み上げるテキスト (`audioFile` と排他) |
+| `playback.slides[].audioFile` | 事前録音した音声ファイルのパス (`narration` と排他) |
+| `playback.slides[].duration` | 表示時間の明示指定 (秒)。`null` = 音声の長さに合わせて自動算出 |
+| `playback.bgm[].src` | BGM ファイルのパス |
+| `playback.bgm[].volume` | 音量 (0–1、デフォルト: 0.15) |
+| `playback.bgm[].loop` | ループ再生 (デフォルト: true) |
+| `playback.bgm[].fadeIn / fadeOut` | フェード秒数 |
+| `playback.bgm[].startTime / endTime` | 秒数による再生範囲 |
 
 ## アーキテクチャ
 

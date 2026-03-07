@@ -58,9 +58,9 @@ video-export ──> renderer ──> core
 - **core** (`@slidini/core`): 型定義、Zod スキーマ、デフォルト値。フレームワーク非依存、`zod` のみに依存。`parsePresentation()` でバリデーション、`generateId(prefix)` で ID 生成、`createDefaultSlide()` 等のファクトリ関数をエクスポート。
 - **renderer** (`@slidini/renderer`): Framer Motion を使用した React スライドレンダラー。**Tailwind 不使用** — 全てインラインスタイル。将来的にスタンドアロン npm パッケージとして切り出し予定。`ResizeObserver` + CSS `transform: scale()` でビューポートフィッティング。
 - **templates** (`@slidini/templates`): 10 種のスライドテンプレート JSON + 6 種のカラーセットプリセット。テンプレートは `colorRole`/`bgColorRole` でセマンティックカラーマッピング。カラーセットは `applyColorSetToSlide()` で hex→hex の即時置換。
-- **video-export** (`@slidini/video-export`): スライドから動画（MP4）を生成。Puppeteer + timeweb でフレーム単位キャプチャ。`.video.json` 設定ファイルで FPS、スライドごとのナレーション（VOICEVOX 音声合成）、BGM を管理。
+- **video-export** (`@slidini/video-export`): スライドから動画（MP4）を生成。Puppeteer + timeweb でフレーム単位キャプチャ。`.slide.json` 内の `playback` フィールドで FPS、スライドごとのナレーション（VOICEVOX 音声合成）、BGM を管理。
 - **app** (`@slidini/app`): Vite + React + Tailwind + Zustand によるエディタ UI。単一の Zustand ストア（`usePresentationStore`）で全状態を管理。
-- **mcp** (`@slidini/mcp`): MCP サーバー（stdio トランスポート）。AI による `.slide.json` / `.video.json` ファイル操作用。スライドツール（`slide_*`）と動画設定ツール（`slide_create_video_config` 等）を提供。
+- **mcp** (`@slidini/mcp`): MCP サーバー（stdio トランスポート）。AI による `.slide.json` ファイル操作用。スライドツール（`slide_*`）と再生設定ツール（`slide_create_video_config` 等）を提供。
 
 ## コードスタイル（Biome 強制）
 
@@ -77,7 +77,7 @@ video-export ──> renderer ──> core
 - `noUncheckedIndexedAccess: true` — 配列アクセスは `T | undefined` を返す
 - 全ての位置・サイズは絶対ピクセル（デフォルトキャンバス 1920x1080）
 - プレゼンテーションデータは `.slide.json` ファイルとして保存、画像・動画は Base64 データ URI で埋め込み
-- 動画エクスポート設定は `.video.json` ファイルとして保存（入力元 `.slide.json`、FPS、ナレーション、BGM 等）
+- 再生・動画エクスポート設定は `.slide.json` 内の `playback` フィールドに統合（FPS、ナレーション、BGM 等）
 - `updatedAt` はミューテーションごとに `new Date().toISOString()` で設定すること
 - MCP ツール名は `slide_` プレフィックス + `snake_case`
 
@@ -91,12 +91,10 @@ Presentation
     └── elements: (TextElement | ImageElement | VideoElement)[]
         └── 共通: id, position, size, rotation, opacity, zIndex, animations[]
 
-VideoConfig (.video.json)
-├── input: 入力 .slide.json ファイル名
-├── fps, defaultSlideDuration
-├── voicevox: { speaker, speed, pitch, volume }
+Presentation.playback (PlayerConfig, optional)
+├── defaultSlideDuration, defaultStepDelay
 ├── slides: [{ slideIndex, narration?, audioFile?, duration? }]
-└── bgm: [{ src, volume?, loop?, fadeIn?, fadeOut? }]
+└── bgm: [{ src, volume, loop, fadeIn, fadeOut, startTime?, endTime? }]
 ```
 
 テキストコンテンツは Markdown（react-markdown + remark-gfm で描画）。

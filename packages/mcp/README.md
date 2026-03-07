@@ -1,6 +1,6 @@
 # @slidini/mcp
 
-`.slide.json` / `.video.json` ファイルをLLM（Claude等）から操作するためのMCPサーバー。stdioトランスポートで動作。
+`.slide.json` ファイルをLLM（Claude等）から操作するためのMCPサーバー。stdioトランスポートで動作。
 
 ファイルはプロジェクトディレクトリ（`projects/{name}/`）に自動的に整理される。
 
@@ -84,13 +84,15 @@ src/
 | `slide_remove_overlay_element` | オーバーレイ要素削除 |
 | `slide_update_overlay_element` | オーバーレイ要素更新 |
 
-### 動画設定操作（5 ツール）
+### 再生設定操作（5 ツール）
+
+再生設定は `.slide.json` 内の `playback` フィールドに統合されている。
 
 | ツール | 説明 |
 |--------|------|
-| `slide_create_video_config` | プロジェクトディレクトリに `.video.json` を作成 |
-| `slide_read_video_config` | `.video.json` 読み込み |
-| `slide_update_video_config` | トップレベル設定を更新 (fps, VOICEVOX 等) |
+| `slide_create_video_config` | `.slide.json` に `playback` 設定を初期化 |
+| `slide_read_video_config` | `playback` 設定を読み込み |
+| `slide_update_video_config` | トップレベル設定を更新 (デフォルト再生時間等) |
 | `slide_set_slide_narration` | スライドごとのナレーション / 音声ファイルを設定 |
 | `slide_set_bgm` | BGM 設定を一括置き換え |
 
@@ -99,7 +101,7 @@ src/
 - `slide_set_slide_narration`: 既存の `slideIndex` エントリを上書き、なければ追加
 - `slide_set_slide_narration`: ナレーションテキストは VOICEVOX 用にカタカナ表記必須（英語・技術用語）
 - `slide_set_bgm`: `bgm` 配列を丸ごと置き換え
-- 動画エクスポート時、VOICEVOX で生成した音声は `audioFile` としてプロジェクトディレクトリに保存・video.json に追記される
+- 動画エクスポート時、VOICEVOX で生成した音声は `audioFile` としてプロジェクトディレクトリに保存・`.slide.json` の `playback` に追記される
 
 ## 依存関係
 
