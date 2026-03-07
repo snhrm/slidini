@@ -7,7 +7,7 @@ import { z } from "zod"
 
 const voicevoxConfigSchema = z.object({
 	url: z.string().default("http://localhost:50021"),
-	speaker: z.number().int().min(0).default(3),
+	speaker: z.number().int().min(0).default(8),
 	speed: z.number().min(0.1).max(5).default(1.0),
 })
 

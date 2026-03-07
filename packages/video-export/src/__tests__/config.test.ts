@@ -57,7 +57,7 @@ describe("parseVideoConfig", () => {
 		expect(result.success).toBe(true)
 		if (result.success) {
 			expect(result.data.voicevox?.url).toBe("http://localhost:50021")
-			expect(result.data.voicevox?.speaker).toBe(3)
+			expect(result.data.voicevox?.speaker).toBe(8)
 			expect(result.data.voicevox?.speed).toBe(1.0)
 		}
 	})
