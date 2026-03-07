@@ -1,0 +1,13 @@
+{
+  "id": "neon-dark",
+  "name": "ネオンダーク",
+  "colors": {
+    "background": "#09090b",
+    "surface": "#18181b",
+    "textPrimary": "#fafafa",
+    "textSecondary": "#d4d4d8",
+    "textMuted": "#71717a",
+    "accent": "#22d3ee",
+    "accentSecondary": "#a3e635"
+  }
+}

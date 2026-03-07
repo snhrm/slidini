@@ -1,0 +1,13 @@
+{
+  "id": "warm-neutral",
+  "name": "ウォームニュートラル",
+  "colors": {
+    "background": "#faf8f5",
+    "surface": "#ffffff",
+    "textPrimary": "#1c1917",
+    "textSecondary": "#44403c",
+    "textMuted": "#a8a29e",
+    "accent": "#b45309",
+    "accentSecondary": "#c2703e"
+  }
+}

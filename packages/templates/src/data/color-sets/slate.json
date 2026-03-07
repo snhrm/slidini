@@ -1,13 +1,13 @@
 {
-  "id": "mint",
-  "name": "ミント",
+  "id": "slate",
+  "name": "スレート",
   "colors": {
     "background": "#ffffff",
-    "surface": "#f0fdf4",
+    "surface": "#f8fafc",
     "textPrimary": "#0f172a",
     "textSecondary": "#334155",
     "textMuted": "#94a3b8",
-    "accent": "#16a34a",
-    "accentSecondary": "#059669"
+    "accent": "#475569",
+    "accentSecondary": "#334155"
   }
 }

@@ -14,8 +14,8 @@ import {
 } from "../color-sets"
 
 describe("COLOR_SETS", () => {
-	test("contains 10 color sets", () => {
-		expect(COLOR_SETS).toHaveLength(10)
+	test("contains 13 color sets", () => {
+		expect(COLOR_SETS).toHaveLength(13)
 	})
 
 	test("each set has id, name, and colors", () => {

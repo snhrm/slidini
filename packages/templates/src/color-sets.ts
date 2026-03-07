@@ -1,28 +1,34 @@
 import type { ColorSet, ColorSetColors, Slide } from "@slidini/core"
 import { DEFAULT_COLOR_SET_COLORS } from "@slidini/core"
 
+import coral from "./data/color-sets/coral.json"
 import darkSlate from "./data/color-sets/dark-slate.json"
-import forestGreen from "./data/color-sets/forest-green.json"
 import lavender from "./data/color-sets/lavender.json"
 import lightClean from "./data/color-sets/light-clean.json"
 import midnightBlue from "./data/color-sets/midnight-blue.json"
 import mint from "./data/color-sets/mint.json"
-import monochrome from "./data/color-sets/monochrome.json"
+import neonDark from "./data/color-sets/neon-dark.json"
 import oceanBreeze from "./data/color-sets/ocean-breeze.json"
 import sakura from "./data/color-sets/sakura.json"
+import sky from "./data/color-sets/sky.json"
+import slate from "./data/color-sets/slate.json"
+import warmNeutral from "./data/color-sets/warm-neutral.json"
 import warmSunset from "./data/color-sets/warm-sunset.json"
 
 export const COLOR_SETS: ColorSet[] = [
-	darkSlate,
 	lightClean,
 	sakura,
 	oceanBreeze,
 	lavender,
 	mint,
+	coral,
+	sky,
+	slate,
+	warmNeutral,
+	darkSlate,
 	midnightBlue,
 	warmSunset,
-	forestGreen,
-	monochrome,
+	neonDark,
 ] as ColorSet[]
 
 export function getColorSet(id: string): ColorSet | undefined {

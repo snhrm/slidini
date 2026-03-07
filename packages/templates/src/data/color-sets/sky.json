@@ -1,0 +1,13 @@
+{
+  "id": "sky",
+  "name": "スカイ",
+  "colors": {
+    "background": "#f0f9ff",
+    "surface": "#ffffff",
+    "textPrimary": "#0c4a6e",
+    "textSecondary": "#1e3a5f",
+    "textMuted": "#94a3b8",
+    "accent": "#0284c7",
+    "accentSecondary": "#6366f1"
+  }
+}

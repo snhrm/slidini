@@ -1,13 +1,13 @@
 {
-	"id": "ocean-breeze",
-	"name": "オーシャンブリーズ",
-	"colors": {
-		"background": "#f0f9ff",
-		"surface": "#e0f2fe",
-		"textPrimary": "#0c4a6e",
-		"textSecondary": "#075985",
-		"textMuted": "#7dd3fc",
-		"accent": "#0284c7",
-		"accentSecondary": "#0891b2"
-	}
+  "id": "ocean-breeze",
+  "name": "オーシャンブリーズ",
+  "colors": {
+    "background": "#ffffff",
+    "surface": "#f0fdfa",
+    "textPrimary": "#0f172a",
+    "textSecondary": "#334155",
+    "textMuted": "#94a3b8",
+    "accent": "#0d9488",
+    "accentSecondary": "#06b6d4"
+  }
 }

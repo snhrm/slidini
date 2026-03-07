@@ -1,13 +1,13 @@
 {
-  "id": "lavender",
-  "name": "ラベンダー",
+  "id": "coral",
+  "name": "コーラル",
   "colors": {
     "background": "#ffffff",
-    "surface": "#faf5ff",
+    "surface": "#fff7ed",
     "textPrimary": "#18181b",
     "textSecondary": "#3f3f46",
     "textMuted": "#a1a1aa",
-    "accent": "#7c3aed",
-    "accentSecondary": "#a855f7"
+    "accent": "#ea580c",
+    "accentSecondary": "#dc2626"
   }
 }

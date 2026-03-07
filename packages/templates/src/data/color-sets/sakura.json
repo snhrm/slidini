@@ -1,13 +1,13 @@
 {
-	"id": "sakura",
-	"name": "サクラ",
-	"colors": {
-		"background": "#fff1f2",
-		"surface": "#ffe4e6",
-		"textPrimary": "#1c1917",
-		"textSecondary": "#44403c",
-		"textMuted": "#a8a29e",
-		"accent": "#e11d48",
-		"accentSecondary": "#db2777"
-	}
+  "id": "sakura",
+  "name": "サクラ",
+  "colors": {
+    "background": "#ffffff",
+    "surface": "#fef2f2",
+    "textPrimary": "#18181b",
+    "textSecondary": "#3f3f46",
+    "textMuted": "#a1a1aa",
+    "accent": "#e11d48",
+    "accentSecondary": "#f43f5e"
+  }
 }
