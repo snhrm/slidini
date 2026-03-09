@@ -8,7 +8,7 @@ const TYPE_LABELS: Record<string, string> = {
 	chart: "チャート",
 }
 
-export function ElementList() {
+export function ElementList({ width }: { width: number }) {
 	const { elements, selectedElementId, setSelectedElementId } = usePresentationStore(
 		useShallow((s) => {
 			const slide = s.presentation.slides[s.currentSlideIndex]
@@ -21,7 +21,7 @@ export function ElementList() {
 	)
 
 	return (
-		<div className="w-48 bg-gray-900 border-r border-gray-700 flex flex-col">
+		<div className="bg-gray-900 border-r border-gray-700 flex flex-col shrink-0" style={{ width }}>
 			<div className="px-2 py-1.5 border-b border-gray-700">
 				<span className="text-xs text-gray-400 font-medium">要素 ({elements.length})</span>
 			</div>

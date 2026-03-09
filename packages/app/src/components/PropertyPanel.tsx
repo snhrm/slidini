@@ -24,6 +24,9 @@ import { openImageFile, openVideoFile } from "../utils/file"
 
 type OverlayContext = { layer: "background" | "foreground" }
 
+const BG_CONTEXT: OverlayContext = { layer: "background" }
+const FG_CONTEXT: OverlayContext = { layer: "foreground" }
+
 export function PropertyPanel() {
 	const { currentSlide, selectedElement, overlayContext } = usePresentationStore(
 		useShallow((s) => {
@@ -37,14 +40,14 @@ export function PropertyPanel() {
 					return {
 						currentSlide: slide,
 						selectedElement: bgEl,
-						overlayContext: { layer: "background" } as OverlayContext,
+						overlayContext: BG_CONTEXT,
 					}
 				const fgEl = s.presentation.overlayForegroundElements?.find((el) => el.id === id)
 				if (fgEl)
 					return {
 						currentSlide: slide,
 						selectedElement: fgEl,
-						overlayContext: { layer: "foreground" } as OverlayContext,
+						overlayContext: FG_CONTEXT,
 					}
 			}
 			return { currentSlide: slide, selectedElement: undefined, overlayContext: null }

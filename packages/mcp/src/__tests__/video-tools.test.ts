@@ -178,15 +178,67 @@ describe("slide_set_slide_narration", () => {
 		expect(data.slides[0]?.narration).toBe("Second")
 	})
 
-	test("returns error when both narration and audio_file provided", async () => {
-		writeSlideJson("nar-err/nar-err.slide.json")
+	test("allows both narration and audio_file simultaneously", async () => {
+		writeSlideJson("nar-both/nar-both.slide.json")
 		const result = await callTool("slide_set_slide_narration", {
-			file_path: "nar-err/nar-err.slide.json",
+			file_path: "nar-both/nar-both.slide.json",
 			slide_index: 0,
 			narration: "text",
 			audio_file: "audio.wav",
 		})
-		expect(result.isError).toBe(true)
+		expect(result.isError).toBeUndefined()
+	})
+
+	test("preserves narration when setting audio_file separately", async () => {
+		writeSlideJson("nar-merge/nar-merge.slide.json")
+		await callTool("slide_set_slide_narration", {
+			file_path: "nar-merge/nar-merge.slide.json",
+			slide_index: 0,
+			narration: "テストナレーション",
+		})
+		await callTool("slide_set_slide_narration", {
+			file_path: "nar-merge/nar-merge.slide.json",
+			slide_index: 0,
+			audio_file: "audio/slide-00.wav",
+			duration: 10,
+		})
+
+		const readResult = await callTool("slide_read_video_config", {
+			file_path: "nar-merge/nar-merge.slide.json",
+		})
+		const data = parseToolText(readResult) as {
+			slides: Array<{ narration?: string; audioFile?: string; duration?: number | null }>
+		}
+		expect(data.slides).toHaveLength(1)
+		expect(data.slides[0]?.narration).toBe("テストナレーション")
+		expect(data.slides[0]?.audioFile).toBe("audio/slide-00.wav")
+		expect(data.slides[0]?.duration).toBe(10)
+	})
+
+	test("preserves audio_file when updating narration separately", async () => {
+		writeSlideJson("nar-merge2/nar-merge2.slide.json")
+		await callTool("slide_set_slide_narration", {
+			file_path: "nar-merge2/nar-merge2.slide.json",
+			slide_index: 0,
+			audio_file: "audio/slide-00.wav",
+			duration: 5,
+		})
+		await callTool("slide_set_slide_narration", {
+			file_path: "nar-merge2/nar-merge2.slide.json",
+			slide_index: 0,
+			narration: "更新されたナレーション",
+		})
+
+		const readResult = await callTool("slide_read_video_config", {
+			file_path: "nar-merge2/nar-merge2.slide.json",
+		})
+		const data = parseToolText(readResult) as {
+			slides: Array<{ narration?: string; audioFile?: string; duration?: number | null }>
+		}
+		expect(data.slides).toHaveLength(1)
+		expect(data.slides[0]?.narration).toBe("更新されたナレーション")
+		expect(data.slides[0]?.audioFile).toBe("audio/slide-00.wav")
+		expect(data.slides[0]?.duration).toBe(5)
 	})
 })
 

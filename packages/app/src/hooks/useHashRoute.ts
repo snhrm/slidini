@@ -10,7 +10,6 @@ export function useHashRoute(): void {
 
 			const store = usePresentationStore.getState()
 			store.setHashLoadStatus("loading")
-			store.disableAutoSave()
 
 			try {
 				const { presentation, playerConfig, mediaUrlMap } = await fetchProject(projectName)

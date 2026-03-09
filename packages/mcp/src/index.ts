@@ -9,7 +9,12 @@ import { registerVideoTools } from "./video-tools"
 
 // ===== Helpers =====
 
+const ASCII_PATH_RE = /^[a-zA-Z0-9/._ -]+$/
+
 export function resolveProjectFile(filePath: string): string {
+	if (!isAbsolute(filePath) && !ASCII_PATH_RE.test(filePath)) {
+		throw new Error(`File path must use only ASCII characters: ${filePath}`)
+	}
 	return isAbsolute(filePath) ? filePath : resolve("projects", filePath)
 }
 

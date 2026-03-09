@@ -5,11 +5,14 @@ import { PropertyPanel } from "./PropertyPanel"
 
 type Tab = "element" | "playback"
 
-export function RightPanel() {
+export function RightPanel({ width }: { width: number }) {
 	const [activeTab, setActiveTab] = useState<Tab>("element")
 
 	return (
-		<div className="w-60 flex-shrink-0 border-l border-gray-700 flex flex-col bg-gray-900">
+		<div
+			className="flex-shrink-0 border-l border-gray-700 flex flex-col bg-gray-900"
+			style={{ width }}
+		>
 			<div className="flex border-b border-gray-700 shrink-0">
 				<button
 					type="button"

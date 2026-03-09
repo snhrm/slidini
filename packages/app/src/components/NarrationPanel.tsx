@@ -5,21 +5,26 @@ import { usePresentationStore } from "../store/presentation"
 export function NarrationPanel() {
 	const {
 		currentSlideIndex,
-		playback,
+		narration,
+		audioFile,
+		duration,
 		updateSlideNarration,
 		updateSlideAudioFile,
 		updateSlideDuration,
 	} = usePresentationStore(
-		useShallow((s) => ({
-			currentSlideIndex: s.currentSlideIndex,
-			playback: s.presentation.playback,
-			updateSlideNarration: s.updateSlideNarration,
-			updateSlideAudioFile: s.updateSlideAudioFile,
-			updateSlideDuration: s.updateSlideDuration,
-		})),
+		useShallow((s) => {
+			const sc = s.presentation.playback?.slides.find((c) => c.slideIndex === s.currentSlideIndex)
+			return {
+				currentSlideIndex: s.currentSlideIndex,
+				narration: sc?.narration ?? "",
+				audioFile: sc?.audioFile,
+				duration: sc?.duration,
+				updateSlideNarration: s.updateSlideNarration,
+				updateSlideAudioFile: s.updateSlideAudioFile,
+				updateSlideDuration: s.updateSlideDuration,
+			}
+		}),
 	)
-
-	const slideConfig = playback?.slides.find((s) => s.slideIndex === currentSlideIndex)
 
 	const handleNarrationChange = useCallback(
 		(e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -77,10 +82,10 @@ export function NarrationPanel() {
 					ナレーション (Slide {currentSlideIndex + 1})
 				</span>
 				<textarea
-					value={slideConfig?.narration ?? ""}
+					value={narration}
 					onChange={handleNarrationChange}
 					placeholder="ナレーションテキスト..."
-					className="w-full h-20 px-2 py-1.5 text-xs bg-gray-800 text-white border border-gray-600 rounded resize-none"
+					className="w-full min-h-20 px-2 py-1.5 text-xs bg-gray-800 text-white border border-gray-600 rounded resize-y"
 				/>
 			</label>
 
@@ -88,7 +93,7 @@ export function NarrationPanel() {
 				<span className="block text-xs text-gray-400 mb-1">表示時間 (秒)</span>
 				<input
 					type="number"
-					value={slideConfig?.duration ?? ""}
+					value={duration ?? ""}
 					onChange={handleDurationChange}
 					placeholder="デフォルト: 5"
 					min={0.5}
@@ -99,7 +104,7 @@ export function NarrationPanel() {
 
 			<div>
 				<span className="block text-xs text-gray-400 mb-1">音声ファイル</span>
-				{slideConfig?.audioFile ? (
+				{audioFile ? (
 					<div className="flex items-center gap-2">
 						<span className="text-xs text-green-400 truncate flex-1">音声あり</span>
 						<button

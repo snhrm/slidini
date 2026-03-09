@@ -2,7 +2,6 @@ import { Presentation } from "@slidini/renderer"
 import { useEffect, useState } from "react"
 import { useShallow } from "zustand/react/shallow"
 import { Editor } from "./components/Editor"
-import { useAutoSave } from "./hooks/useAutoSave"
 import { useHashRoute } from "./hooks/useHashRoute"
 import { usePresentationStore } from "./store/presentation"
 
@@ -33,7 +32,6 @@ function Notification() {
 }
 
 export function App() {
-	useAutoSave()
 	useHashRoute()
 	const [isFullscreen, setIsFullscreen] = useState(false)
 	const { presentation, currentSlideIndex, currentStep, viewMode, autoplayConfig, hashLoadStatus } =

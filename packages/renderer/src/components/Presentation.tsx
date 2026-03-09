@@ -189,7 +189,7 @@ export function Presentation({
 			>
 				{elements.map((el) => (
 					<SlideElement
-						key={el.id}
+						key={`${el.id}-${currentSlide}`}
 						element={el}
 						currentStep={currentStep}
 						mode={mode}

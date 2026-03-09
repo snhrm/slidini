@@ -13,15 +13,23 @@ type Props = {
 	isExiting?: boolean
 }
 
-function CodeBlock({ className, children, ...rest }: ComponentPropsWithoutRef<"code">) {
+function CodeBlock({
+	className,
+	children,
+	node,
+	...rest
+}: ComponentPropsWithoutRef<"code"> & { node?: { position?: unknown } }) {
 	const match = /language-(\w+)/.exec(className || "")
 	const code = String(children).replace(/\n$/, "")
 
-	if (match) {
+	// Detect block code: has language OR content contains newlines (fenced code block)
+	const isBlock = !!match || code.includes("\n")
+
+	if (isBlock) {
 		return (
 			<SyntaxHighlighter
 				style={vscDarkPlus}
-				language={match[1]}
+				language={match?.[1] ?? "text"}
 				PreTag="div"
 				customStyle={{
 					margin: 0,
@@ -47,10 +55,11 @@ function CodeBlock({ className, children, ...rest }: ComponentPropsWithoutRef<"c
 		<code
 			{...rest}
 			style={{
-				color: "color-mix(in srgb, currentColor 70%, transparent)",
-				backgroundColor: "color-mix(in srgb, currentColor 10%, transparent)",
+				color: "inherit",
+				backgroundColor: "rgba(59, 130, 246, 0.15)",
 				padding: "0.15em 0.4em",
 				borderRadius: "0.25em",
+				border: "1px solid rgba(59, 130, 246, 0.3)",
 				fontFamily: "'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace",
 				fontSize: "0.85em",
 			}}
@@ -79,7 +88,7 @@ const markdownComponents = {
 				fontWeight: "bold",
 				paddingBottom: "0.3em",
 				marginBottom: "0.2em",
-				borderBottom: "2px solid color-mix(in srgb, currentColor 15%, transparent)",
+				borderBottom: "2px solid rgba(59, 130, 246, 0.3)",
 			}}
 		>
 			{children}
@@ -105,12 +114,12 @@ const markdownComponents = {
 	ul: ({ children }: ComponentPropsWithoutRef<"ul">) => (
 		<ul
 			style={{
-				margin: "0.3em 0",
+				margin: "0.5em 0",
 				paddingLeft: 0,
 				listStyle: "none",
 				display: "flex",
 				flexDirection: "column",
-				gap: "0.3em",
+				gap: "0.4em",
 			}}
 		>
 			{children}
@@ -119,12 +128,12 @@ const markdownComponents = {
 	ol: ({ children }: ComponentPropsWithoutRef<"ol">) => (
 		<ol
 			style={{
-				margin: "0.3em 0",
+				margin: "0.5em 0",
 				paddingLeft: 0,
 				listStyle: "none",
 				display: "flex",
 				flexDirection: "column",
-				gap: "0.3em",
+				gap: "0.4em",
 			}}
 		>
 			{children}
@@ -137,10 +146,10 @@ const markdownComponents = {
 				alignItems: "center",
 				gap: "0.6em",
 				lineHeight: 1.6,
-				backgroundColor: "color-mix(in srgb, currentColor 8%, transparent)",
+				backgroundColor: "rgba(59, 130, 246, 0.08)",
 				borderRadius: "0.3em",
 				padding: "0.4em 0.7em",
-				borderLeft: "0.2em solid color-mix(in srgb, currentColor 30%, transparent)",
+				borderLeft: "0.2em solid rgba(59, 130, 246, 0.5)",
 			}}
 		>
 			<span
@@ -149,8 +158,8 @@ const markdownComponents = {
 					width: "0.4em",
 					height: "0.4em",
 					borderRadius: "50%",
-					backgroundColor: "currentColor",
-					opacity: 0.4,
+					backgroundColor: "#3b82f6",
+					opacity: 0.6,
 				}}
 			/>
 			<span style={{ flex: 1 }}>{children}</span>
@@ -172,8 +181,8 @@ const markdownComponents = {
 	thead: ({ children }: ComponentPropsWithoutRef<"thead">) => (
 		<thead
 			style={{
-				backgroundColor: "color-mix(in srgb, currentColor 12%, transparent)",
-				borderBottom: "2px solid color-mix(in srgb, currentColor 20%, transparent)",
+				backgroundColor: "rgba(59, 130, 246, 0.12)",
+				borderBottom: "2px solid rgba(59, 130, 246, 0.3)",
 			}}
 		>
 			{children}
@@ -185,7 +194,7 @@ const markdownComponents = {
 				padding: "0.5em 0.8em",
 				textAlign: "left",
 				fontWeight: "bold",
-				borderRight: "1px solid color-mix(in srgb, currentColor 15%, transparent)",
+				borderRight: "1px solid rgba(59, 130, 246, 0.15)",
 			}}
 		>
 			{children}
@@ -195,29 +204,30 @@ const markdownComponents = {
 		<td
 			style={{
 				padding: "0.5em 0.8em",
-				borderBottom: "1px solid color-mix(in srgb, currentColor 20%, transparent)",
-				borderRight: "1px solid color-mix(in srgb, currentColor 15%, transparent)",
+				borderBottom: "1px solid rgba(59, 130, 246, 0.2)",
+				borderRight: "1px solid rgba(59, 130, 246, 0.15)",
 			}}
 		>
 			{children}
 		</td>
 	),
-	a: ({ children, href }: ComponentPropsWithoutRef<"a">) => (
-		<a
-			href={href}
+	a: ({ children }: ComponentPropsWithoutRef<"a">) => (
+		<span
 			style={{
 				textDecoration: "underline",
+				textDecorationColor: "color-mix(in srgb, currentColor 70%, transparent)",
 				textUnderlineOffset: "0.15em",
+				textDecorationThickness: "0.1em",
 			}}
 		>
 			{children}
-		</a>
+		</span>
 	),
 	blockquote: ({ children }: ComponentPropsWithoutRef<"blockquote">) => (
 		<blockquote
 			style={{
-				borderLeft: "0.25em solid color-mix(in srgb, currentColor 40%, transparent)",
-				backgroundColor: "color-mix(in srgb, currentColor 6%, transparent)",
+				borderLeft: "0.25em solid rgba(59, 130, 246, 0.6)",
+				backgroundColor: "rgba(59, 130, 246, 0.06)",
 				borderRadius: "0 0.3em 0.3em 0",
 				padding: "0.5em 0.8em",
 				margin: "0.5em 0",
@@ -233,14 +243,20 @@ const markdownComponents = {
 			style={{
 				border: "none",
 				height: "2px",
-				background:
-					"linear-gradient(to right, color-mix(in srgb, currentColor 30%, transparent), transparent)",
+				background: "linear-gradient(to right, rgba(59, 130, 246, 0.4), transparent)",
 				margin: "0.8em 0",
 			}}
 		/>
 	),
 	strong: ({ children }: ComponentPropsWithoutRef<"strong">) => (
-		<strong style={{ fontWeight: "bold" }}>{children}</strong>
+		<strong
+			style={{
+				fontWeight: 900,
+				letterSpacing: "0.02em",
+			}}
+		>
+			{children}
+		</strong>
 	),
 	em: ({ children }: ComponentPropsWithoutRef<"em">) => (
 		<em style={{ fontStyle: "italic" }}>{children}</em>
@@ -268,12 +284,14 @@ export function TextElement({ element, currentStep, isExiting }: Props) {
 				textAlign: style.textAlign,
 				lineHeight: style.lineHeight,
 				backgroundColor: style.backgroundColor ?? undefined,
-				borderRadius: style.backgroundColor ? 12 : undefined,
 				padding: style.padding,
 				width: "100%",
 				height: "100%",
 				overflow: "hidden",
 				wordBreak: "break-word",
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "center",
 			}}
 		>
 			<Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>

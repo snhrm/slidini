@@ -1,20 +1,36 @@
 import { Slide } from "@slidini/renderer"
-import { useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 import { useShallow } from "zustand/react/shallow"
 import { usePresentationStore } from "../store/presentation"
 
 export function SlideList() {
-	const { slides, meta, currentSlideIndex, openTemplatePicker, setCurrentSlideIndex, removeSlide } =
-		usePresentationStore(
-			useShallow((s) => ({
-				slides: s.presentation.slides,
-				meta: s.presentation.meta,
-				currentSlideIndex: s.currentSlideIndex,
-				openTemplatePicker: s.openTemplatePicker,
-				setCurrentSlideIndex: s.setCurrentSlideIndex,
-				removeSlide: s.removeSlide,
-			})),
-		)
+	const {
+		slides,
+		meta,
+		currentSlideIndex,
+		openTemplatePicker,
+		setCurrentSlideIndex,
+		removeSlide,
+		playbackSeekToSlide,
+	} = usePresentationStore(
+		useShallow((s) => ({
+			slides: s.presentation.slides,
+			meta: s.presentation.meta,
+			currentSlideIndex: s.currentSlideIndex,
+			openTemplatePicker: s.openTemplatePicker,
+			setCurrentSlideIndex: s.setCurrentSlideIndex,
+			removeSlide: s.removeSlide,
+			playbackSeekToSlide: s.playbackSeekToSlide,
+		})),
+	)
+
+	const handleSlideClick = useCallback(
+		(index: number) => {
+			setCurrentSlideIndex(index)
+			playbackSeekToSlide?.(index)
+		},
+		[setCurrentSlideIndex, playbackSeekToSlide],
+	)
 
 	const THUMB_HEIGHT = 72
 	const scrollRef = useRef<HTMLDivElement>(null)
@@ -54,7 +70,7 @@ export function SlideList() {
 					>
 						<button
 							type="button"
-							onClick={() => setCurrentSlideIndex(index)}
+							onClick={() => handleSlideClick(index)}
 							className={`block rounded overflow-hidden border-2 transition-colors ${
 								index === currentSlideIndex
 									? "border-blue-500"

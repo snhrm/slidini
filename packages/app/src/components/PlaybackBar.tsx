@@ -11,12 +11,19 @@ import { usePresentationStore } from "../store/presentation"
 import { resolveAudioTracks } from "../utils/audio"
 
 export function PlaybackBar() {
-	const { presentation, mediaUrlMap, setCurrentSlideIndex, setCurrentStep } = usePresentationStore(
+	const {
+		presentation,
+		mediaUrlMap,
+		setCurrentSlideIndex,
+		setCurrentStep,
+		setPlaybackSeekToSlide,
+	} = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
 			mediaUrlMap: s.mediaUrlMap,
 			setCurrentSlideIndex: s.setCurrentSlideIndex,
 			setCurrentStep: s.setCurrentStep,
+			setPlaybackSeekToSlide: s.setPlaybackSeekToSlide,
 		})),
 	)
 
@@ -34,6 +41,14 @@ export function PlaybackBar() {
 
 	useAudioPlayback(audioTracks, engine.currentTimeMs, engine.isPlaying)
 
+	// Register seekToSlide so SlideList can call it during playback
+	useEffect(() => {
+		setPlaybackSeekToSlide((slideIndex: number) => {
+			engine.seekToSlide(slideIndex)
+		})
+		return () => setPlaybackSeekToSlide(null)
+	}, [engine.seekToSlide, setPlaybackSeekToSlide])
+
 	// Wrap togglePlayPause to unlock audio autoplay in user gesture context
 	const handleTogglePlayPause = useCallback(() => {
 		if (!engine.isPlaying) {
@@ -50,6 +65,7 @@ export function PlaybackBar() {
 		engine.togglePlayPause()
 	}, [engine.isPlaying, engine.togglePlayPause])
 
+	// Sync engine → store: update store when engine advances
 	useEffect(() => {
 		if (engine.isPlaying) {
 			setCurrentSlideIndex(engine.currentSlideIndex)

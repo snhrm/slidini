@@ -98,14 +98,12 @@ type PresentationStore = {
 	importJson: (json: string) => boolean
 	importData: (data: { presentation?: Presentation; playerConfig?: PlayerConfig }) => void
 
-	// 自動保存
-	autoSaveEnabled: boolean
-	autoSaveDirHandle: FileSystemDirectoryHandle | null
-	autoSaveStatus: "idle" | "saving" | "saved" | "error"
-	autoSaveError: string | null
-	enableAutoSave: (dirHandle: FileSystemDirectoryHandle) => void
-	disableAutoSave: () => void
-	setAutoSaveStatus: (status: "idle" | "saving" | "saved" | "error", error?: string) => void
+	// 保存
+	saveDirHandle: FileSystemDirectoryHandle | null
+	saveStatus: "idle" | "saving" | "saved" | "error"
+	saveError: string | null
+	setSaveDirHandle: (dirHandle: FileSystemDirectoryHandle | null) => void
+	save: () => Promise<void>
 
 	// ハッシュルート読み込み
 	hashLoadStatus: "idle" | "loading" | "loaded" | "error"
@@ -117,6 +115,10 @@ type PresentationStore = {
 	// メディアURL（ファイル名 → Object URL）
 	mediaUrlMap: Map<string, string>
 	setMediaUrlMap: (map: Map<string, string>) => void
+
+	// 再生エンジン連携
+	playbackSeekToSlide: ((slideIndex: number) => void) | null
+	setPlaybackSeekToSlide: (fn: ((slideIndex: number) => void) | null) => void
 
 	// 通知
 	notification: string | null
@@ -556,28 +558,32 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 			}
 		}),
 
-	autoSaveEnabled: false,
-	autoSaveDirHandle: null,
-	autoSaveStatus: "idle",
-	autoSaveError: null,
+	saveDirHandle: null,
+	saveStatus: "idle",
+	saveError: null,
 
-	enableAutoSave: (dirHandle) =>
-		set({
-			autoSaveEnabled: true,
-			autoSaveDirHandle: dirHandle,
-			autoSaveStatus: "idle",
-			autoSaveError: null,
-		}),
+	setSaveDirHandle: (dirHandle) =>
+		set({ saveDirHandle: dirHandle, saveStatus: "idle", saveError: null }),
 
-	disableAutoSave: () =>
-		set({
-			autoSaveEnabled: false,
-			autoSaveDirHandle: null,
-			autoSaveStatus: "idle",
-			autoSaveError: null,
-		}),
+	save: async () => {
+		const { saveDirHandle, presentation, setNotification } = get()
+		if (!saveDirHandle) {
+			setNotification("保存先フォルダが未設定です")
+			return
+		}
+		set({ saveStatus: "saving", saveError: null })
+		try {
+			const { writeAutoSave } = await import("../utils/autoSave")
+			await writeAutoSave(saveDirHandle, presentation, new Map())
+			set({ saveStatus: "saved", saveError: null })
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : "保存エラー"
+			set({ saveStatus: "error", saveError: msg })
+			setNotification(`保存に失敗しました: ${msg}`)
+		}
+	},
 
-	hashLoadStatus: "idle",
+	hashLoadStatus: /^#\/projects\/[^/]+$/.test(window.location.hash) ? "loading" : "idle",
 	hashLoadError: null,
 	hashProjectName: null,
 
@@ -597,8 +603,8 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 		set({ mediaUrlMap: map })
 	},
 
-	setAutoSaveStatus: (status, error) =>
-		set({ autoSaveStatus: status, autoSaveError: error ?? null }),
+	playbackSeekToSlide: null,
+	setPlaybackSeekToSlide: (fn) => set({ playbackSeekToSlide: fn }),
 
 	notification: null,
 

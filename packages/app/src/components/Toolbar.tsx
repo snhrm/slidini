@@ -17,8 +17,8 @@ export function Toolbar() {
 		presentation,
 		currentSlideIndex,
 		viewMode,
-		autoSaveEnabled,
-		autoSaveStatus,
+		saveDirHandle,
+		saveStatus,
 		addElement,
 		addOverlayElement,
 		importData,
@@ -26,8 +26,8 @@ export function Toolbar() {
 		setCurrentStep,
 		setNotification,
 		openColorSetPicker,
-		enableAutoSave,
-		disableAutoSave,
+		setSaveDirHandle,
+		save,
 		setMediaUrlMap,
 		setHashProjectName,
 	} = usePresentationStore(
@@ -35,8 +35,8 @@ export function Toolbar() {
 			presentation: s.presentation,
 			currentSlideIndex: s.currentSlideIndex,
 			viewMode: s.viewMode,
-			autoSaveEnabled: s.autoSaveEnabled,
-			autoSaveStatus: s.autoSaveStatus,
+			saveDirHandle: s.saveDirHandle,
+			saveStatus: s.saveStatus,
 			addElement: s.addElement,
 			addOverlayElement: s.addOverlayElement,
 			importData: s.importData,
@@ -44,8 +44,8 @@ export function Toolbar() {
 			setCurrentStep: s.setCurrentStep,
 			setNotification: s.setNotification,
 			openColorSetPicker: s.openColorSetPicker,
-			enableAutoSave: s.enableAutoSave,
-			disableAutoSave: s.disableAutoSave,
+			setSaveDirHandle: s.setSaveDirHandle,
+			save: s.save,
 			setMediaUrlMap: s.setMediaUrlMap,
 			setHashProjectName: s.setHashProjectName,
 		})),
@@ -73,9 +73,6 @@ export function Toolbar() {
 	}
 
 	const handleImport = async () => {
-		if (autoSaveEnabled) {
-			disableAutoSave()
-		}
 		try {
 			if (supportsDirectoryPicker) {
 				const dirHandle = await (
@@ -101,7 +98,7 @@ export function Toolbar() {
 				const mediaMap = await createMediaObjectUrls(dirHandle)
 				importData(result)
 				setMediaUrlMap(mediaMap)
-				enableAutoSave(dirHandle)
+				setSaveDirHandle(dirHandle)
 
 				// projects/ 配下のプロジェクトならハッシュを更新
 				const projectName = dirHandle.name
@@ -130,19 +127,23 @@ export function Toolbar() {
 		}
 	}
 
-	const handleToggleAutoSave = async () => {
-		if (autoSaveEnabled) {
-			disableAutoSave()
+	const handleSave = async () => {
+		if (!saveDirHandle) {
+			// No dir handle yet — prompt user to pick one
+			if (!supportsDirectoryPicker) return
+			try {
+				const dirHandle = await (
+					window as unknown as { showDirectoryPicker: () => Promise<FileSystemDirectoryHandle> }
+				).showDirectoryPicker()
+				setSaveDirHandle(dirHandle)
+				// save after setting dir handle
+				await usePresentationStore.getState().save()
+			} catch {
+				// user cancelled
+			}
 			return
 		}
-		try {
-			const dirHandle = await (
-				window as unknown as { showDirectoryPicker: () => Promise<FileSystemDirectoryHandle> }
-			).showDirectoryPicker()
-			enableAutoSave(dirHandle)
-		} catch {
-			// user cancelled
-		}
+		await save()
 	}
 
 	const handlePresent = () => {
@@ -238,24 +239,16 @@ export function Toolbar() {
 						<div className="flex items-center gap-1">
 							<button
 								type="button"
-								onClick={handleToggleAutoSave}
-								className={`px-2 py-1 text-xs rounded transition-colors ${
-									autoSaveEnabled
-										? "bg-green-700 hover:bg-green-600 text-white"
-										: "bg-gray-700 hover:bg-gray-600 text-white"
-								}`}
+								onClick={handleSave}
+								className="px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-white rounded transition-colors"
 							>
-								{autoSaveEnabled ? "自動保存 ON" : "自動保存"}
+								保存
 							</button>
-							{autoSaveEnabled && autoSaveStatus === "saving" && (
+							{saveStatus === "saving" && (
 								<span className="text-xs text-yellow-400">保存中...</span>
 							)}
-							{autoSaveEnabled && autoSaveStatus === "saved" && (
-								<span className="text-xs text-green-400">保存済み</span>
-							)}
-							{autoSaveEnabled && autoSaveStatus === "error" && (
-								<span className="text-xs text-red-400">エラー</span>
-							)}
+							{saveStatus === "saved" && <span className="text-xs text-green-400">保存済み</span>}
+							{saveStatus === "error" && <span className="text-xs text-red-400">エラー</span>}
 						</div>
 						<div className="w-px h-5 bg-gray-600" />
 					</>

@@ -51,7 +51,13 @@ Args:
 
 Returns: JSON summary of the created presentation including the project directory path.`,
 			inputSchema: {
-				name: z.string().describe("Project name (used as directory name and file name stem)"),
+				name: z
+					.string()
+					.regex(
+						/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/,
+						"Project name must use only alphanumeric characters, hyphens, dots, and underscores",
+					)
+					.describe("Project name (used as directory name and file name stem). ASCII only."),
 				title: z.string().optional().describe("Presentation title"),
 				width: z.number().int().min(1).optional().describe("Slide width in px"),
 				height: z.number().int().min(1).optional().describe("Slide height in px"),

@@ -180,11 +180,11 @@ Returns: The updated slide config entry.`,
 				narration: z
 					.string()
 					.optional()
-					.describe("Narration text (mutually exclusive with audio_file)"),
+					.describe("Narration text in Japanese with katakana for foreign words"),
 				audio_file: z
 					.string()
 					.optional()
-					.describe("Path to audio file (mutually exclusive with narration)"),
+					.describe("Path to audio file (can be used together with narration)"),
 				duration: z
 					.number()
 					.min(0)
@@ -201,23 +201,22 @@ Returns: The updated slide config entry.`,
 		},
 		async ({ file_path, slide_index, narration, audio_file, duration }) => {
 			try {
-				if (narration !== undefined && audio_file !== undefined) {
-					return err("narration and audio_file are mutually exclusive")
-				}
 				const presentation = readPresentation(file_path)
 				const playback = presentation.playback ?? createDefaultPlayerConfig()
 
-				const entry = {
-					slideIndex: slide_index,
-					...(narration !== undefined ? { narration } : {}),
-					...(audio_file !== undefined ? { audioFile: audio_file } : {}),
-					duration: duration !== undefined ? duration : null,
-				}
+				const updates: Record<string, unknown> = {}
+				if (narration !== undefined) updates.narration = narration
+				if (audio_file !== undefined) updates.audioFile = audio_file
+				if (duration !== undefined) updates.duration = duration
 
 				const existing = playback.slides.findIndex((s) => s.slideIndex === slide_index)
+				let entry: (typeof playback.slides)[number]
 				if (existing >= 0) {
+					const prev = playback.slides[existing]
+					entry = { ...prev, ...updates } as (typeof playback.slides)[number]
 					playback.slides[existing] = entry
 				} else {
+					entry = { slideIndex: slide_index, ...updates } as (typeof playback.slides)[number]
 					playback.slides.push(entry)
 				}
 
