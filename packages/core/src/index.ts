@@ -9,6 +9,7 @@ export type {
 	ChartSeries,
 	ChartStyle,
 	ChartType,
+	ChildStagger,
 	ColorSet,
 	ColorSetColors,
 	Gradient,

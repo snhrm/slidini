@@ -42,7 +42,7 @@ export function buildFFmpegArgs(
 		"-f",
 		"image2pipe",
 		"-c:v",
-		"png",
+		"mjpeg",
 		"-i",
 		"-", // stdin: frame images
 	]
@@ -124,7 +124,18 @@ export function buildFFmpegArgs(
 		args.push("-c:a", "aac", "-b:a", "192k")
 	}
 
-	args.push("-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-shortest", outputPath)
+	args.push(
+		"-c:v",
+		"libx264",
+		"-preset",
+		"veryfast",
+		"-pix_fmt",
+		"yuv420p",
+		"-crf",
+		"18",
+		"-shortest",
+		outputPath,
+	)
 
 	return args
 }

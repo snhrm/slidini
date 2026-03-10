@@ -116,9 +116,10 @@ type PresentationStore = {
 	mediaUrlMap: Map<string, string>
 	setMediaUrlMap: (map: Map<string, string>) => void
 
-	// 再生エンジン連携
-	playbackSeekToSlide: ((slideIndex: number) => void) | null
-	setPlaybackSeekToSlide: (fn: ((slideIndex: number) => void) | null) => void
+	// 再生エンジン連携（スライドクリック → エンジン seek）
+	pendingSeekSlide: { index: number; version: number } | null
+	requestSeekToSlide: (slideIndex: number) => void
+	consumeSeekRequest: () => void
 
 	// 通知
 	notification: string | null
@@ -603,8 +604,16 @@ export const usePresentationStore = create<PresentationStore>((set, get) => ({
 		set({ mediaUrlMap: map })
 	},
 
-	playbackSeekToSlide: null,
-	setPlaybackSeekToSlide: (fn) => set({ playbackSeekToSlide: fn }),
+	pendingSeekSlide: null,
+	requestSeekToSlide: (slideIndex) => {
+		set((s) => ({
+			pendingSeekSlide: {
+				index: slideIndex,
+				version: (s.pendingSeekSlide?.version ?? 0) + 1,
+			},
+		}))
+	},
+	consumeSeekRequest: () => set({ pendingSeekSlide: null }),
 
 	notification: null,
 

@@ -1,4 +1,5 @@
 import fs from "node:fs"
+import path from "node:path"
 import { parsePresentation } from "@slidini/core"
 import type { PlayerConfig } from "@slidini/core"
 import { z } from "zod"
@@ -98,7 +99,7 @@ export function loadVideoConfig(filePath: string): VideoConfig {
 	if (filePath.endsWith(".slide.json")) {
 		const presResult = parsePresentation(raw)
 		if (presResult.success && presResult.data.playback) {
-			return playerConfigToVideoConfig(presResult.data.playback, filePath)
+			return playerConfigToVideoConfig(presResult.data.playback, path.resolve(filePath))
 		}
 		console.error("No playback config found in .slide.json")
 		process.exit(1)

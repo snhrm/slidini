@@ -133,9 +133,11 @@ export type TextStyle = {
 	fontStyle: "normal" | "italic"
 	textDecoration: "none" | "underline" | "line-through"
 	textAlign: "left" | "center" | "right"
+	verticalAlign?: "top" | "center" | "bottom"
 	lineHeight: number
 	backgroundColor: string | null
 	padding: number
+	autoHeight?: boolean
 }
 
 export type ImageElement = BaseElement & {
@@ -162,6 +164,11 @@ export type ChartElement = BaseElement & {
 
 // ===== 要素アニメーション =====
 
+export type ChildStagger = {
+	type: AnimationType
+	delay: number // seconds between each child item
+}
+
 export type Animation = {
 	type: AnimationType
 	duration: number // seconds
@@ -169,6 +176,7 @@ export type Animation = {
 	easing: string // CSS easing function
 	trigger: "onEnter" | "onExit" | "onClick"
 	stepIndex: number // Fragment: 同じstepIndexの要素が同時に表示 (0 = 常に表示)
+	childStagger?: ChildStagger
 }
 
 export type AnimationType =

@@ -10,6 +10,8 @@ type SlideTiming = {
 type ExportConfig = {
 	presentation: PresentationType
 	slideTiming: SlideTiming[]
+	startSlide?: number
+	endSlide?: number
 }
 
 declare global {
@@ -29,8 +31,10 @@ export function ExportPlayer() {
 
 	const { presentation, slideTiming } = config
 	const { meta } = presentation
+	const startSlide = config.startSlide ?? 0
+	const endSlide = config.endSlide ?? slideTiming.length - 1
 
-	const [currentSlide, setCurrentSlide] = useState(0)
+	const [currentSlide, setCurrentSlide] = useState(startSlide)
 	const [currentStep, setCurrentStep] = useState(0)
 
 	// Expose current slide index for pipeline transition detection
@@ -63,8 +67,8 @@ export function ExportPlayer() {
 		})
 	}, [])
 
-	// Notify when all slides are done
-	if (currentSlide >= slideTiming.length) {
+	// Notify when chunk is done (past endSlide)
+	if (currentSlide > endSlide) {
 		window.__EXPORT_DONE__ = true
 		return null
 	}

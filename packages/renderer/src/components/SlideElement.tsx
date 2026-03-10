@@ -148,10 +148,11 @@ export const SlideElement = memo(function SlideElement({
 				left: element.position.x,
 				top: element.position.y,
 				width: element.size.width,
-				height: element.size.height,
+				height: element.type === "text" && element.style.autoHeight ? "auto" : element.size.height,
 				transform: element.rotation !== 0 ? `rotate(${element.rotation}deg)` : undefined,
 				opacity: element.opacity,
 				zIndex: element.zIndex,
+				overflow: "hidden",
 				outline: mode === "edit" && isSelected ? "2px solid #3b82f6" : undefined,
 				outlineOffset: mode === "edit" && isSelected ? 2 : undefined,
 			}}

@@ -18,10 +18,15 @@ export type AudioPlan = {
 	configUpdated: boolean // whether config was mutated with new audioFile paths
 }
 
+export type PrepareAudioOptions = {
+	forceRegenerate?: boolean
+}
+
 export async function prepareAudio(
 	presentation: Presentation,
 	config: VideoConfig,
 	configDir: string,
+	options?: PrepareAudioOptions,
 ): Promise<AudioPlan> {
 	const slideAudios: SlideAudio[] = []
 	const slideDurations: number[] = []
@@ -31,8 +36,10 @@ export async function prepareAudio(
 	// Build a map of slideIndex -> slideConfig for quick lookup
 	const slideConfigMap = new Map(config.slides.map((s) => [s.slideIndex, s]))
 
-	// Check if any slides need VOICEVOX (have narration but no audioFile yet)
-	const needsVoicevox = config.slides.some((s) => s.narration && !s.audioFile)
+	const forceRegenerate = options?.forceRegenerate ?? false
+
+	// Check if any slides need VOICEVOX (have narration but no audioFile, or force regenerate)
+	const needsVoicevox = config.slides.some((s) => s.narration && (!s.audioFile || forceRegenerate))
 	let voicevoxClient: ReturnType<typeof createVoicevoxClient> | null = null
 
 	if (needsVoicevox) {
@@ -55,7 +62,7 @@ export async function prepareAudio(
 	for (let i = 0; i < presentation.slides.length; i++) {
 		const slideConfig = slideConfigMap.get(i)
 
-		if (slideConfig?.audioFile) {
+		if (slideConfig?.audioFile && !(forceRegenerate && slideConfig.narration && voicevoxClient)) {
 			// Use existing audio file (pre-recorded or previously generated)
 			const audioPath = path.resolve(configDir, slideConfig.audioFile)
 			if (!fs.existsSync(audioPath)) {

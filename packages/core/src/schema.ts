@@ -75,6 +75,11 @@ const slideTransitionSchema = z.object({
 
 const animationTypeSchema = z.enum(ANIMATION_TYPES)
 
+const childStaggerSchema = z.object({
+	type: animationTypeSchema,
+	delay: z.number().min(0),
+})
+
 const animationSchema = z.object({
 	type: animationTypeSchema,
 	duration: z.number().min(0),
@@ -82,6 +87,7 @@ const animationSchema = z.object({
 	easing: z.string(),
 	trigger: z.enum(["onEnter", "onExit", "onClick"]),
 	stepIndex: z.number().int().min(0),
+	childStagger: childStaggerSchema.optional(),
 })
 
 // ===== 要素 =====
@@ -104,9 +110,11 @@ const textStyleSchema = z.object({
 	fontStyle: z.enum(["normal", "italic"]),
 	textDecoration: z.enum(["none", "underline", "line-through"]),
 	textAlign: z.enum(["left", "center", "right"]),
+	verticalAlign: z.enum(["top", "center", "bottom"]).optional(),
 	lineHeight: z.number().min(0),
 	backgroundColor: z.string().nullable(),
 	padding: z.number().min(0),
+	autoHeight: z.boolean().optional(),
 })
 
 const textElementSchema = baseElementSchema.extend({

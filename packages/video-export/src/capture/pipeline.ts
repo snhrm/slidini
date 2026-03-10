@@ -33,15 +33,31 @@ async function waitForReact(page: Page, ticks = 10): Promise<void> {
 }
 
 // Call timeweb.goTo(ms) to advance virtual time, fire timers and rAF callbacks.
-// Returns the current slide index from the ExportPlayer.
-async function advanceTime(page: Page, ms: number): Promise<number> {
+// Returns the current slide index and done flag from the ExportPlayer.
+async function advanceTime(
+	page: Page,
+	ms: number,
+): Promise<{ slideIndex: number; isDone: boolean }> {
 	return await page.evaluate(async (ms: number) => {
 		const tw = (globalThis as Record<string, unknown>).timeweb as
 			| { goTo(ms: number): Promise<void> }
 			| undefined
 		await tw?.goTo(ms)
-		// Return current slide index for transition detection
-		return (window as unknown as Record<string, number>).__EXPORT_SLIDE_INDEX__ ?? -1
+		const w = window as unknown as Record<string, unknown>
+		return {
+			slideIndex: (w.__EXPORT_SLIDE_INDEX__ as number) ?? -1,
+			isDone: w.__EXPORT_DONE__ === true,
+		}
+	}, ms)
+}
+
+// Simplified advanceTime that only advances time (for transition re-fire)
+async function advanceTimeOnly(page: Page, ms: number): Promise<void> {
+	await page.evaluate(async (ms: number) => {
+		const tw = (globalThis as Record<string, unknown>).timeweb as
+			| { goTo(ms: number): Promise<void> }
+			| undefined
+		await tw?.goTo(ms)
 	}, ms)
 }
 
@@ -51,48 +67,48 @@ export async function captureFrames(
 	fps: number,
 	totalDurationMs: number,
 	onProgress?: (progress: CaptureProgress) => void,
-): Promise<void> {
+): Promise<number> {
 	const frameDurationMs = 1000 / fps
 	const totalFrames = Math.ceil(totalDurationMs / frameDurationMs)
 	let currentTimeMs = 0
 	let prevSlideIndex = -1
+	let capturedFrames = 0
 
 	for (let frame = 0; frame < totalFrames; frame++) {
-		// Step 1: Advance virtual time.
-		// timeweb.goTo(T) processes timers up to T, then fires rAF callbacks
-		// that were registered BEFORE this call.
-		const slideIndex = await advanceTime(page, currentTimeMs)
+		// Step 1: Advance virtual time and get state in one CDP call.
+		const { slideIndex, isDone } = await advanceTime(page, currentTimeMs)
+		if (isDone) break
 
 		// Step 2: Let React settle.
-		// goTo may have fired setTimeout callbacks that call setState.
-		// React 18 schedules renders via MessageChannel.
-		await waitForReact(page)
+		const isTransition = slideIndex !== prevSlideIndex && prevSlideIndex !== -1
+		await waitForReact(page, isTransition ? 10 : 2)
 
 		// Step 3: If a slide change occurred, fire newly registered rAF callbacks.
-		// After React re-renders for a slide change, newly mounted motion.div
-		// components (Framer Motion) register rAF callbacks that were NOT fired
-		// by Step 1. We call goTo again to fire them.
-		if (slideIndex !== prevSlideIndex && prevSlideIndex !== -1) {
-			await advanceTime(page, currentTimeMs)
+		if (isTransition) {
+			await advanceTimeOnly(page, currentTimeMs)
 			await waitForReact(page, 5)
 		}
 		prevSlideIndex = slideIndex
 
-		// Check if export is done (all slides finished)
-		const isDone = await page.evaluate(
-			() => (window as unknown as Record<string, unknown>).__EXPORT_DONE__ === true,
-		)
-		if (isDone) break
-
 		// Screenshot and pipe to FFmpeg
-		const buffer = await page.screenshot({ type: "png", omitBackground: false })
+		const buffer = await page.screenshot({ type: "jpeg", quality: 90, omitBackground: false })
 		const writeOk = ffmpegStdin.write(buffer)
 		if (!writeOk) {
 			await new Promise<void>((resolve) => ffmpegStdin.once("drain", resolve))
 		}
 
+		capturedFrames++
+
+		// Periodic GC every 300 frames to prevent memory buildup
+		if (capturedFrames % 300 === 0) {
+			await page.evaluate(() => {
+				const gc = (globalThis as Record<string, unknown>).gc as (() => void) | undefined
+				gc?.()
+			})
+		}
+
 		onProgress?.({
-			frame: frame + 1,
+			frame: capturedFrames,
 			totalFrames,
 			timeMs: currentTimeMs,
 			totalTimeMs: totalDurationMs,
@@ -100,4 +116,6 @@ export async function captureFrames(
 
 		currentTimeMs += frameDurationMs
 	}
+
+	return capturedFrames
 }

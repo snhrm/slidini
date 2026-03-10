@@ -14,16 +14,18 @@ export function PlaybackBar() {
 	const {
 		presentation,
 		mediaUrlMap,
+		pendingSeekSlide,
 		setCurrentSlideIndex,
 		setCurrentStep,
-		setPlaybackSeekToSlide,
+		consumeSeekRequest,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			presentation: s.presentation,
 			mediaUrlMap: s.mediaUrlMap,
+			pendingSeekSlide: s.pendingSeekSlide,
 			setCurrentSlideIndex: s.setCurrentSlideIndex,
 			setCurrentStep: s.setCurrentStep,
-			setPlaybackSeekToSlide: s.setPlaybackSeekToSlide,
+			consumeSeekRequest: s.consumeSeekRequest,
 		})),
 	)
 
@@ -41,13 +43,13 @@ export function PlaybackBar() {
 
 	useAudioPlayback(audioTracks, engine.currentTimeMs, engine.isPlaying)
 
-	// Register seekToSlide so SlideList can call it during playback
+	// React to seek requests from SlideList clicks
 	useEffect(() => {
-		setPlaybackSeekToSlide((slideIndex: number) => {
-			engine.seekToSlide(slideIndex)
-		})
-		return () => setPlaybackSeekToSlide(null)
-	}, [engine.seekToSlide, setPlaybackSeekToSlide])
+		if (pendingSeekSlide !== null) {
+			engine.seekToSlide(pendingSeekSlide.index)
+			consumeSeekRequest()
+		}
+	}, [pendingSeekSlide, engine.seekToSlide, consumeSeekRequest])
 
 	// Wrap togglePlayPause to unlock audio autoplay in user gesture context
 	const handleTogglePlayPause = useCallback(() => {

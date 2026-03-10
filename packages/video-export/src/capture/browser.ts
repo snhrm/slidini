@@ -15,6 +15,7 @@ export async function launchBrowser(
 	exportConfig: unknown,
 	width: number,
 	height: number,
+	deviceScaleFactor = 1,
 ): Promise<ExportBrowser> {
 	const browser = await puppeteer.launch({
 		headless: true,
@@ -24,11 +25,15 @@ export async function launchBrowser(
 			"--disable-setuid-sandbox",
 			"--disable-gpu",
 			"--font-render-hinting=none",
+			"--js-flags=--expose-gc",
+			"--disable-dev-shm-usage",
+			"--disable-extensions",
+			"--disable-background-networking",
 		],
 	})
 
 	const page = await browser.newPage()
-	await page.setViewport({ width, height, deviceScaleFactor: 1 })
+	await page.setViewport({ width, height, deviceScaleFactor })
 
 	// Inject timeweb to virtualize all time APIs
 	const timewebScript = fs.readFileSync(TIMEWEB_PATH, "utf-8")

@@ -11,7 +11,7 @@ export function SlideList() {
 		openTemplatePicker,
 		setCurrentSlideIndex,
 		removeSlide,
-		playbackSeekToSlide,
+		requestSeekToSlide,
 	} = usePresentationStore(
 		useShallow((s) => ({
 			slides: s.presentation.slides,
@@ -20,16 +20,16 @@ export function SlideList() {
 			openTemplatePicker: s.openTemplatePicker,
 			setCurrentSlideIndex: s.setCurrentSlideIndex,
 			removeSlide: s.removeSlide,
-			playbackSeekToSlide: s.playbackSeekToSlide,
+			requestSeekToSlide: s.requestSeekToSlide,
 		})),
 	)
 
 	const handleSlideClick = useCallback(
 		(index: number) => {
 			setCurrentSlideIndex(index)
-			playbackSeekToSlide?.(index)
+			requestSeekToSlide(index)
 		},
-		[setCurrentSlideIndex, playbackSeekToSlide],
+		[setCurrentSlideIndex, requestSeekToSlide],
 	)
 
 	const THUMB_HEIGHT = 72

@@ -1,11 +1,13 @@
 import type { TextElement as TextElementType } from "@slidini/core"
+import type { Variants } from "framer-motion"
 import { motion } from "framer-motion"
 import type { CSSProperties, ComponentPropsWithoutRef } from "react"
+import { useMemo } from "react"
 import Markdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 import remarkGfm from "remark-gfm"
-import { useAnimation } from "../hooks/useAnimation"
+import { useAnimation, useChildStagger } from "../hooks/useAnimation"
 
 type Props = {
 	element: TextElementType
@@ -69,6 +71,35 @@ function CodeBlock({
 	)
 }
 
+const liStyle: CSSProperties = {
+	display: "flex",
+	alignItems: "center",
+	gap: "0.6em",
+	lineHeight: 1.6,
+	backgroundColor: "rgba(59, 130, 246, 0.08)",
+	borderRadius: "0.3em",
+	padding: "0.4em 0.7em",
+	borderLeft: "0.2em solid rgba(59, 130, 246, 0.5)",
+}
+
+const liBulletStyle: CSSProperties = {
+	flexShrink: 0,
+	width: "0.4em",
+	height: "0.4em",
+	borderRadius: "50%",
+	backgroundColor: "#3b82f6",
+	opacity: 0.6,
+}
+
+function StaggeredLi({ children, variants }: { children: React.ReactNode; variants: Variants }) {
+	return (
+		<motion.li style={liStyle} variants={variants}>
+			<span style={liBulletStyle} />
+			<span style={{ flex: 1 }}>{children}</span>
+		</motion.li>
+	)
+}
+
 const headingBase: CSSProperties = {
 	fontSize: "inherit",
 	fontWeight: "inherit",
@@ -84,7 +115,7 @@ const markdownComponents = {
 		<h3
 			style={{
 				...headingBase,
-				fontSize: "0.85em",
+				fontSize: "1em",
 				fontWeight: "bold",
 				paddingBottom: "0.3em",
 				marginBottom: "0.2em",
@@ -140,28 +171,8 @@ const markdownComponents = {
 		</ol>
 	),
 	li: ({ children }: ComponentPropsWithoutRef<"li">) => (
-		<li
-			style={{
-				display: "flex",
-				alignItems: "center",
-				gap: "0.6em",
-				lineHeight: 1.6,
-				backgroundColor: "rgba(59, 130, 246, 0.08)",
-				borderRadius: "0.3em",
-				padding: "0.4em 0.7em",
-				borderLeft: "0.2em solid rgba(59, 130, 246, 0.5)",
-			}}
-		>
-			<span
-				style={{
-					flexShrink: 0,
-					width: "0.4em",
-					height: "0.4em",
-					borderRadius: "50%",
-					backgroundColor: "#3b82f6",
-					opacity: 0.6,
-				}}
-			/>
+		<li style={liStyle}>
+			<span style={liBulletStyle} />
 			<span style={{ flex: 1 }}>{children}</span>
 		</li>
 	),
@@ -269,7 +280,18 @@ const markdownComponents = {
 
 export function TextElement({ element, currentStep, isExiting }: Props) {
 	const animationProps = useAnimation(element.animations, currentStep, isExiting)
+	const childStagger = useChildStagger(element.animations)
 	const { style } = element
+
+	const components = useMemo(() => {
+		if (!childStagger) return markdownComponents
+		return {
+			...markdownComponents,
+			li: ({ children }: ComponentPropsWithoutRef<"li">) => (
+				<StaggeredLi variants={childStagger.childVariants}>{children}</StaggeredLi>
+			),
+		}
+	}, [childStagger])
 
 	return (
 		<motion.div
@@ -286,15 +308,20 @@ export function TextElement({ element, currentStep, isExiting }: Props) {
 				backgroundColor: style.backgroundColor ?? undefined,
 				padding: style.padding,
 				width: "100%",
-				height: "100%",
-				overflow: "hidden",
+				height: style.autoHeight ? "auto" : "100%",
+				overflow: style.autoHeight ? "visible" : "hidden",
 				wordBreak: "break-word",
 				display: "flex",
 				flexDirection: "column",
-				justifyContent: "center",
+				justifyContent:
+					style.verticalAlign === "top"
+						? "flex-start"
+						: style.verticalAlign === "bottom"
+							? "flex-end"
+							: "center",
 			}}
 		>
-			<Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+			<Markdown remarkPlugins={[remarkGfm]} components={components}>
 				{element.content}
 			</Markdown>
 		</motion.div>

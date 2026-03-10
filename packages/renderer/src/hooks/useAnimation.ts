@@ -132,6 +132,12 @@ type AnimationProps = {
 	transition: { duration: number; delay: number; ease: Easing }
 }
 
+export type ChildStaggerProps = {
+	childVariants: Variants
+	staggerDelay: number
+	delayChildren: number
+} | null
+
 const EMPTY: Record<string, never> = {}
 
 export function useAnimation(
@@ -149,6 +155,33 @@ export function useAnimation(
 		const variants = variantMap[enterAnimation.type]
 		if (!variants) return EMPTY
 
+		// When childStagger is set, use container variants with staggerChildren
+		if (enterAnimation.childStagger) {
+			const containerVariants: Variants = {
+				hidden: variants.hidden ?? {},
+				visible: {
+					...(typeof variants.visible === "object" ? variants.visible : {}),
+					transition: {
+						duration: enterAnimation.duration,
+						delay: enterAnimation.delay,
+						ease: toFramerEasing(enterAnimation.easing),
+						staggerChildren: enterAnimation.childStagger.delay,
+						delayChildren: enterAnimation.delay + enterAnimation.duration * 0.3,
+					},
+				},
+			}
+			return {
+				initial: "hidden",
+				animate: isVisible ? "visible" : "hidden",
+				variants: containerVariants,
+				transition: {
+					duration: enterAnimation.duration,
+					delay: enterAnimation.delay,
+					ease: toFramerEasing(enterAnimation.easing),
+				},
+			}
+		}
+
 		return {
 			initial: "hidden",
 			animate: isVisible ? "visible" : "hidden",
@@ -160,6 +193,34 @@ export function useAnimation(
 			},
 		}
 	}, [animations, currentStep, skipAnimation])
+}
+
+export function useChildStagger(animations: Animation[]): ChildStaggerProps {
+	return useMemo(() => {
+		const enterAnimation = animations.find((a) => a.trigger === "onEnter")
+		if (!enterAnimation?.childStagger) return null
+
+		const baseVariants = variantMap[enterAnimation.childStagger.type]
+		if (!baseVariants) return null
+
+		// Ensure hidden state includes opacity: 0 so items are fully invisible before animating
+		const childVariants: Variants = {
+			hidden: {
+				...(typeof baseVariants.hidden === "object" ? baseVariants.hidden : {}),
+				opacity: 0,
+			},
+			visible: {
+				...(typeof baseVariants.visible === "object" ? baseVariants.visible : {}),
+				opacity: 1,
+			},
+		}
+
+		return {
+			childVariants,
+			staggerDelay: enterAnimation.childStagger.delay,
+			delayChildren: enterAnimation.delay + enterAnimation.duration * 0.3,
+		}
+	}, [animations])
 }
 
 export function getMaxStepIndex(animations: Animation[]): number {

@@ -946,6 +946,8 @@ Args:
   - easing (string, optional): CSS easing function (default: "ease-out")
   - trigger (string, optional): "onEnter" | "onExit" | "onClick" (default: "onEnter")
   - step_index (number, optional): Fragment step index. 0 = always visible (default: 0)
+  - child_stagger_type (string, optional): Animation type for child list items (e.g., 'slide-in-left', 'fade-in')
+  - child_stagger_delay (number, optional): Delay in seconds between each child list item
 
 Returns: Confirmation of the added animation.`,
 			inputSchema: {
@@ -980,6 +982,25 @@ Returns: Confirmation of the added animation.`,
 					.min(0)
 					.optional()
 					.describe("Fragment step index (0 = always visible)"),
+				child_stagger_type: z
+					.enum([
+						"fade-in",
+						"slide-in-left",
+						"slide-in-right",
+						"slide-in-top",
+						"slide-in-bottom",
+						"scale-in",
+						"bounce-in",
+						"drop-in",
+					])
+					.optional()
+					.describe("Animation type for child list items"),
+				child_stagger_delay: z
+					.number()
+					.min(0)
+					.max(2)
+					.optional()
+					.describe("Delay between child list items in seconds"),
 			},
 			annotations: {
 				readOnlyHint: false,
@@ -998,6 +1019,8 @@ Returns: Confirmation of the added animation.`,
 			easing,
 			trigger,
 			step_index,
+			child_stagger_type,
+			child_stagger_delay,
 		}) => {
 			try {
 				const presentation = readPresentation(file_path)
@@ -1006,15 +1029,21 @@ Returns: Confirmation of the added animation.`,
 				if (!element) {
 					return err(`Element not found: ${element_id}`)
 				}
-				const animation = {
+				const animation: Record<string, unknown> = {
 					type: animation_type,
 					duration: duration ?? 0.5,
 					delay: delay ?? 0,
 					easing: easing ?? "ease-out",
-					trigger: trigger ?? ("onEnter" as const),
+					trigger: trigger ?? "onEnter",
 					stepIndex: step_index ?? 0,
 				}
-				element.animations.push(animation)
+				if (child_stagger_type && child_stagger_delay != null) {
+					animation.childStagger = {
+						type: child_stagger_type,
+						delay: child_stagger_delay,
+					}
+				}
+				element.animations.push(animation as (typeof element.animations)[number])
 				writePresentation(file_path, presentation)
 				return ok(JSON.stringify({ elementId: element_id, animation }, null, 2))
 			} catch (e) {

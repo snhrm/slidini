@@ -13,6 +13,10 @@ if (cli.fpsOverride != null) {
 
 const configPath = path.resolve(cli.configPath)
 const configDir = path.dirname(configPath)
-const outputPath = cli.output ?? cli.configPath.replace(/\.video\.json$/, ".mp4")
+const outputPath = cli.output ?? cli.configPath.replace(/\.(slide|video)\.json$/, ".mp4")
 
-await renderVideo(config, configDir, configPath, outputPath)
+await renderVideo(config, configDir, configPath, outputPath, {
+	forceRegenerateAudio: cli.forceRegenerateAudio,
+	scaleFactor: cli.scaleFactor,
+	workers: cli.workers,
+})

@@ -23,8 +23,7 @@ export async function writeAutoSave(
 	presentation: Presentation,
 	previousMediaHashes: Map<string, string>,
 ): Promise<Map<string, string>> {
-	const title = presentation.meta.title || "presentation"
-	const filename = `${title}.slide.json`
+	const filename = `${dirHandle.name}.slide.json`
 	const { cleanedPresentation, mediaFiles } = extractMediaFiles(presentation)
 
 	const jsonContent = JSON.stringify(cleanedPresentation, null, 2)
