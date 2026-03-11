@@ -277,9 +277,117 @@ padding:40  fontSize:30  backgroundColor:#ffffff
 プログレスバー: position(0, 1070) size(1920, 10) backgroundColor:#2dd4bf（全幅）
 ```
 
+### アニメーション
+
+| 対象 | タイプ | duration | delay | easing |
+|------|--------|----------|-------|--------|
+| タイトル（コンテンツ） | なし | — | — | — |
+| 白カード本文 | fade-in | 0.5s | 0.15s | ease-out |
+| ロゴアイコン | scale-in | 0.5s | 0.15s | ease-out |
+| バッジ | fade-in | 0.4s | 0.1s | ease-out |
+| カバータイトル | fade-in | 0.5s | 0.2s | ease-out |
+| カバーサブタイトル | fade-in | 0.5s | 0.5s | ease-out |
+| 箇条書きリスト | **childStagger** | 0.5s | 0.15s | ease-out |
+
+**childStagger 設定（リスト要素）:**
+```json
+{ "type": "slide-in-right", "delay": 0.25 }
+```
+親アニメーション: `{ "type": "fade-in", "duration": 0.6, "delay": 0.15 }`
+
+### ロゴアイコン配置
+
+フレームワーク/言語の紹介スライドではタイトル右にロゴアイコンを配置:
+
+```
+position(1022, 80) size(60, 70) fit:contain
+animation: scale-in, delay:0.15, duration:0.5
+```
+
+画像は Base64 SVG データ URI で埋め込み。
+
+### 画像+テキストレイアウト
+
+```
+背景: color #f0f2f5
+タイトル: position(100, 60) size(820, 100) fontSize:56 bold left color:#003265
+ロゴ: position(1022, 80) size(60, 70) fit:contain
+本文カード: position(95, 264) size(1720, 750) backgroundColor:#ffffff padding:44 fontSize:38
+  lineHeight:1.8 color:#1e293b
+プログレスバー: position(0, 1070) size(barWidth, 10) backgroundColor:#2dd4bf
+```
+
+### 引用スライド
+
+```
+背景: color #f0f2f5
+タイトル: position(100, 60) size(1720, 100) fontSize:56 bold left color:#003265
+引用カード: position(95, 200) size(1720, 340) backgroundColor:#ffffff padding:44 fontSize:34
+  lineHeight:1.8 color:#1e293b fontStyle:normal
+  → Markdown blockquote (> ...) を使用
+補足テキスト: position(95, 580) size(1720, 400) backgroundColor:#ffffff padding:44 fontSize:36
+  lineHeight:1.8 color:#1e293b
+プログレスバー: position(0, 1070) size(barWidth, 10) backgroundColor:#2dd4bf
+```
+
+### コード比較（2カラム）
+
+```
+背景: color #f0f2f5
+タイトル: position(100, 60) size(1720, 100) fontSize:56 bold left color:#003265
+左カード: position(100, 210) size(820, 620) backgroundColor:#ffffff padding:36 fontSize:32
+  → コードブロック付き（```言語名）
+右カード: position(1000, 210) size(820, 620) backgroundColor:#ffffff padding:36 fontSize:32
+結論テキスト: position(100, 880) size(1720, 120) fontSize:34 left color:#1e293b
+プログレスバー: position(0, 1070) size(barWidth, 10) backgroundColor:#2dd4bf
+```
+
+### 推奨まとめ（4カード）
+
+おすすめスタック等を4つのカードで並べるレイアウト:
+
+```
+背景: color #f0f2f5
+タイトル: position(100, 60) size(1720, 100) fontSize:56 bold left color:#003265
+行1左: position(100, 210) size(820, 380) backgroundColor:#ffffff padding:40 fontSize:32
+行1右: position(1000, 210) size(820, 380) backgroundColor:#ffffff padding:40 fontSize:32
+行2左: position(100, 640) size(820, 380) backgroundColor:#ffffff padding:40 fontSize:32
+行2右: position(1000, 640) size(820, 380) backgroundColor:#ffffff padding:40 fontSize:32
+プログレスバー: position(0, 1070) size(barWidth, 10) backgroundColor:#2dd4bf
+```
+
+### トランジション
+
+| スライド種別 | タイプ | duration | easing |
+|-------------|--------|----------|--------|
+| カバー（1枚目） | `none` | — | — |
+| セクション区切り | `fade` | 0.3s | ease-in-out |
+| コンテンツ間 | `slide-left` | 0.4s | ease-in-out |
+| クロージング | `fade` | 0.3s | ease-in-out |
+
 ### 推奨カラーセット
 
 `ocean-breeze` との相性が良い。カスタムカラー（colorSetId: null）での使用を推奨。
+
+### ゴールデンデッキ（品質基準）
+
+`projects/ai-agent-frameworks/ai-agent-frameworks.slide.json` を品質基準として参照。
+新しいプレゼンを speakerdeck スタイルで作成した際は、このデッキと見た目を比較して品質を確認する。
+
+---
+
+## スタイル共通: 品質チェックリスト
+
+生成後に以下を確認:
+
+1. **タイトルスライドのトランジション**: `none` であること（サムネイルが黒くなる防止）
+2. **テキストはみ出し**: autoHeight 未使用の要素で文字が見切れていないか
+3. **余白の一貫性**: 左マージン（95-100px）が全スライドで揃っているか
+4. **プログレスバー**: スライドインデックスに応じて幅が正しく計算されているか
+5. **フォントサイズと height の整合**: `height = 行数 × fontSize × lineHeight + padding × 2`
+6. **アニメーション delay の順序**: タイトル → アイコン → 本文の順に delay が増加しているか
+7. **白カードの padding**: 36-48px の範囲内か
+8. **コントラスト比**: 背景色とテキスト色の組み合わせが十分な可読性を持つか
 
 ---
 
@@ -287,7 +395,10 @@ padding:40  fontSize:30  backgroundColor:#ffffff
 
 1. このファイルに新セクションを追加
 2. 以下を定義:
-   - カラーパレット
-   - 各スライドタイプのレイヤー構造
+   - カラーパレット（tokens）
+   - 各スライドタイプのレイヤー構造（recipes）
    - レイアウトパターンの座標
+   - アニメーション・トランジションパターン（motion）
+   - 装飾要素（components: バー、バッジ、カード等）
 3. SKILL.md の `--style` オプションに追加
+4. 可能であればゴールデンデッキ（品質基準となる実績プレゼン）を指定

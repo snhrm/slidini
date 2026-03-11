@@ -77,6 +77,8 @@ video-export ──> renderer ──> core
 - `noUncheckedIndexedAccess: true` — 配列アクセスは `T | undefined` を返す
 - 全ての位置・サイズは絶対ピクセル（デフォルトキャンバス 1920x1080）
 - プレゼンテーションデータは `.slide.json` ファイルとして保存、画像・動画は Base64 データ URI で埋め込み
+- **`.slide.json` の編集は MCP ツール（`slide_*`）または Write/Edit ツールで行うこと。Python/bash スクリプトで直接編集してはならない**
+- **一時スクリプトでもリポジトリの既存ユーティリティを使うこと** — WAV の長さ計測は `getWavDurationMs`（`@slidini/video-export/src/voicevox/client.ts`）を使う。自前パーサーを書かない。音声の長さは `ffprobe` でも可
 - 再生・動画エクスポート設定は `.slide.json` 内の `playback` フィールドに統合（FPS、ナレーション、BGM 等）
 - `updatedAt` はミューテーションごとに `new Date().toISOString()` で設定すること
 - MCP ツール名は `slide_` プレフィックス + `snake_case`
