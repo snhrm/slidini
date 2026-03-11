@@ -180,9 +180,43 @@ export async function renderVideo(
 	})
 	console.log(`  Total duration: ${(audioPlan.totalDurationMs / 1000).toFixed(1)}s`)
 
-	// Write back config if audioFile paths were added
+	// Write back config if audioFile paths or durations were updated
 	if (audioPlan.configUpdated) {
-		fs.writeFileSync(configPath, `${JSON.stringify(config, null, "\t")}\n`, "utf-8")
+		if (configPath.endsWith(".slide.json")) {
+			// For .slide.json, update only the playback section
+			const rawPresentation = JSON.parse(fs.readFileSync(configPath, "utf-8"))
+			if (!rawPresentation.playback) {
+				rawPresentation.playback = {
+					defaultSlideDuration: 5,
+					defaultStepDelay: 1,
+					slides: [],
+					bgm: [],
+				}
+			}
+			// Sync audioFile paths and durations from VideoConfig back to playback
+			for (const sc of config.slides) {
+				const existing = rawPresentation.playback.slides.find(
+					(s: { slideIndex: number }) => s.slideIndex === sc.slideIndex,
+				)
+				if (existing) {
+					if (sc.audioFile) existing.audioFile = sc.audioFile
+					if (sc.duration != null) existing.duration = sc.duration
+				}
+			}
+			// Update durations from audioPlan
+			for (let i = 0; i < audioPlan.slideDurations.length; i++) {
+				const playbackSlide = rawPresentation.playback.slides.find(
+					(s: { slideIndex: number }) => s.slideIndex === i,
+				)
+				if (playbackSlide) {
+					playbackSlide.duration = Math.round((audioPlan.slideDurations[i] ?? 5000) / 100) / 10
+				}
+			}
+			rawPresentation.meta.updatedAt = new Date().toISOString()
+			fs.writeFileSync(configPath, `${JSON.stringify(rawPresentation, null, "\t")}\n`, "utf-8")
+		} else {
+			fs.writeFileSync(configPath, `${JSON.stringify(config, null, "\t")}\n`, "utf-8")
+		}
 		console.log(`  Updated config: ${configPath}`)
 	}
 

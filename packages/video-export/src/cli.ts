@@ -7,6 +7,7 @@ export type CliOptions = {
 	forceRegenerateAudio: boolean
 	scaleFactor: number
 	workers: number | undefined
+	speed: number | undefined
 }
 
 export function parseCli(args: string[]): CliOptions {
@@ -16,6 +17,7 @@ export function parseCli(args: string[]): CliOptions {
 			output: { type: "string", short: "o" },
 			fps: { type: "string" },
 			workers: { type: "string", short: "w" },
+			speed: { type: "string" },
 			"regenerate-audio": { type: "boolean" },
 			"4k": { type: "boolean" },
 			scale: { type: "string" },
@@ -50,6 +52,7 @@ export function parseCli(args: string[]): CliOptions {
 		forceRegenerateAudio: values["regenerate-audio"] ?? false,
 		scaleFactor,
 		workers: values.workers ? Number(values.workers) : undefined,
+		speed: values.speed ? Number(values.speed) : undefined,
 	}
 }
 
@@ -63,6 +66,7 @@ Options:
   -w, --workers <num>   並列ワーカー数 (デフォルト: 自動判定)
   --4k                  4K解像度 (3840x2160) で書き出し
   --scale <number>      解像度倍率 (デフォルト: 2)
+  --speed <number>      VOICEVOX 読み上げ速度 (デフォルト: 1.0)
   --regenerate-audio    ナレーション音声を強制再生成
   -h, --help            ヘルプを表示
 `)

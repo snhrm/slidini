@@ -102,8 +102,8 @@ export async function prepareAudio(
 			configUpdated = true
 
 			const durationMs = getWavDurationMs(wavBuffer)
-			const slideDurationMs =
-				slideConfig.duration != null ? slideConfig.duration * 1000 : durationMs + 1000
+			// Always recalculate duration from audio length when regenerating
+			const slideDurationMs = durationMs + 1000
 
 			slideAudios.push({
 				slideIndex: i,
