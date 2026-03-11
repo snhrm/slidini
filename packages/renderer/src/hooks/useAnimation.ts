@@ -204,6 +204,7 @@ export function useChildStagger(animations: Animation[]): ChildStaggerProps {
 		if (!baseVariants) return null
 
 		// Ensure hidden state includes opacity: 0 so items are fully invisible before animating
+		// Use tween transition to prevent spring bounce on slide-in
 		const childVariants: Variants = {
 			hidden: {
 				...(typeof baseVariants.hidden === "object" ? baseVariants.hidden : {}),
@@ -212,6 +213,11 @@ export function useChildStagger(animations: Animation[]): ChildStaggerProps {
 			visible: {
 				...(typeof baseVariants.visible === "object" ? baseVariants.visible : {}),
 				opacity: 1,
+				transition: {
+					type: "tween",
+					duration: 0.4,
+					ease: [0.25, 0.1, 0.25, 1],
+				},
 			},
 		}
 

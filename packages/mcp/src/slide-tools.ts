@@ -519,6 +519,8 @@ Args:
   - font_weight (string, optional): Font weight (text only)
   - font_family (string, optional): Font family name (text only)
   - src (string, optional): Image/video source URL or data URI
+  - child_stagger_type (string, optional): Set childStagger animation type on first animation (e.g., 'slide-in-right')
+  - child_stagger_delay (number, optional): Set childStagger delay between child items in seconds
 
 Returns: Confirmation of the update.`,
 			inputSchema: {
@@ -542,6 +544,25 @@ Returns: Confirmation of the update.`,
 				font_weight: z.enum(["normal", "bold"]).optional().describe("Font weight (text only)"),
 				font_family: z.string().optional().describe("Font family name (text only)"),
 				src: z.string().optional().describe("Image/video source URL or data URI"),
+				child_stagger_type: z
+					.enum([
+						"fade-in",
+						"slide-in-left",
+						"slide-in-right",
+						"slide-in-top",
+						"slide-in-bottom",
+						"scale-in",
+						"bounce-in",
+						"drop-in",
+					])
+					.optional()
+					.describe("Animation type for child list items (set on first animation)"),
+				child_stagger_delay: z
+					.number()
+					.min(0)
+					.max(2)
+					.optional()
+					.describe("Delay between child list items in seconds"),
 			},
 			annotations: {
 				readOnlyHint: false,
@@ -592,6 +613,25 @@ Returns: Confirmation of the update.`,
 				// Image/Video source
 				if ((element.type === "image" || element.type === "video") && params.src !== undefined) {
 					element.src = params.src
+				}
+
+				// childStagger on first animation
+				if (params.child_stagger_type !== undefined) {
+					if (element.animations.length === 0) {
+						element.animations.push({
+							type: "fade-in",
+							duration: 0.4,
+							delay: 0.1,
+							easing: "ease-out",
+							trigger: "onEnter",
+							stepIndex: 0,
+						} as (typeof element.animations)[number])
+					}
+					const firstAnim = element.animations[0] as Record<string, unknown>
+					firstAnim.childStagger = {
+						type: params.child_stagger_type,
+						delay: params.child_stagger_delay ?? 0.25,
+					}
 				}
 
 				writePresentation(params.file_path, presentation)
