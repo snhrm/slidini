@@ -156,6 +156,7 @@ export async function renderVideo(
 
 	const workers = getOptimalWorkers(options?.workers)
 
+	const renderStartTime = Date.now()
 	console.log("\nSlidini Video Export")
 	console.log(`  Input:  ${inputPath}`)
 	console.log(`  Output: ${outputPath}`)
@@ -270,7 +271,13 @@ export async function renderVideo(
 	}
 
 	const outputSize = fs.statSync(outputPath).size
-	console.log(`\nDone! Output: ${outputPath} (${(outputSize / 1024 / 1024).toFixed(1)} MB)`)
+	const totalElapsed = (Date.now() - renderStartTime) / 1000
+	const minutes = Math.floor(totalElapsed / 60)
+	const seconds = Math.round(totalElapsed % 60)
+	const timeStr = minutes > 0 ? `${minutes}分${seconds}秒` : `${seconds}秒`
+	console.log(
+		`\nDone! Output: ${outputPath} (${(outputSize / 1024 / 1024).toFixed(1)} MB) — ${timeStr}`,
+	)
 }
 
 /** Single-worker render (original pipeline) */

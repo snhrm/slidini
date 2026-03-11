@@ -130,12 +130,13 @@ class ParallelProgress {
 		const overallPct = ((totalDone / this.totalFramesAll) * 100).toFixed(1)
 		const elapsed = (Date.now() - this.startTime) / 1000
 		const fps = totalDone > 0 ? (totalDone / elapsed).toFixed(1) : "—"
-		const eta =
+		const elapsedStr = this.formatTime(elapsed)
+		const etaStr =
 			totalDone > 0
-				? `${(((this.totalFramesAll - totalDone) / totalDone) * elapsed).toFixed(0)}s`
+				? this.formatTime(((this.totalFramesAll - totalDone) / totalDone) * elapsed)
 				: "—"
 		lines.push(
-			`  Overall: ${totalDone}/${this.totalFramesAll} (${overallPct}%) | ${fps} fps | ETA ${eta}`,
+			`  Overall: ${totalDone}/${this.totalFramesAll} (${overallPct}%) | ${fps} fps | 経過 ${elapsedStr} | 残り ${etaStr}`,
 		)
 
 		// Per-chunk progress bars
@@ -159,10 +160,16 @@ class ParallelProgress {
 		this.lineCount = lines.length
 	}
 
+	private formatTime(seconds: number): string {
+		const m = Math.floor(seconds / 60)
+		const s = Math.round(seconds % 60)
+		return m > 0 ? `${m}分${s}秒` : `${s}秒`
+	}
+
 	finish() {
-		const elapsed = ((Date.now() - this.startTime) / 1000).toFixed(1)
+		const elapsed = (Date.now() - this.startTime) / 1000
 		const totalDone = this.states.reduce((sum, s) => sum + s.frame, 0)
-		console.log(`  Captured ${totalDone} frames in ${elapsed}s`)
+		console.log(`  Captured ${totalDone} frames in ${this.formatTime(elapsed)}`)
 	}
 }
 
