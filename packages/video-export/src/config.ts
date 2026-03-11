@@ -9,7 +9,7 @@ import { z } from "zod"
 const voicevoxConfigSchema = z.object({
 	url: z.string().default("http://localhost:50021"),
 	speaker: z.number().int().min(0).default(8),
-	speed: z.number().min(0.1).max(5).default(1.0),
+	speed: z.number().min(0.1).max(5).default(1.1),
 })
 
 const slideConfigSchema = z.object({
@@ -72,6 +72,7 @@ export function parseVideoConfig(data: unknown): VideoConfigParseResult {
 export function playerConfigToVideoConfig(playback: PlayerConfig, input: string): VideoConfig {
 	return {
 		input,
+		voicevox: { url: "http://localhost:50021", speaker: 8, speed: 1.1 },
 		fps: 30,
 		defaultSlideDuration: playback.defaultSlideDuration,
 		slides: playback.slides.map((s) => ({
