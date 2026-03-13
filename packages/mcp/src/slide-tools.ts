@@ -1,5 +1,6 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import {
+	ANIMATION_TYPES,
 	type Background,
 	type Presentation,
 	createDefaultChartElement,
@@ -176,6 +177,70 @@ Returns: Array of slide summaries with id, index, elementCount, and background t
 				)
 			} catch (e) {
 				return err(`Error listing slides: ${e instanceof Error ? e.message : String(e)}`)
+			}
+		},
+	)
+
+	// ----- slide_read_slide -----
+
+	server.registerTool(
+		"slide_read_slide",
+		{
+			title: "Read Slide",
+			description: `Read a single slide's full data including all elements, animations, background, and transition.
+Specify either slide_id or slide_index (0-based). If both are provided, slide_id takes precedence.
+
+Returns: Full slide JSON with all elements and their properties.`,
+			inputSchema: {
+				file_path: z.string().describe("Path to the .slide.json file"),
+				slide_id: z.string().optional().describe("ID of the slide"),
+				slide_index: z.number().int().min(0).optional().describe("Index of the slide (0-based)"),
+			},
+			annotations: {
+				readOnlyHint: true,
+				destructiveHint: false,
+				idempotentHint: true,
+				openWorldHint: false,
+			},
+		},
+		async ({ file_path, slide_id, slide_index }) => {
+			try {
+				if (slide_id === undefined && slide_index === undefined) {
+					return err("Either slide_id or slide_index must be provided")
+				}
+				const presentation = readPresentation(file_path)
+				let slide: Presentation["slides"][number] | undefined
+				let index: number
+				if (slide_id !== undefined) {
+					index = presentation.slides.findIndex((s) => s.id === slide_id)
+					if (index === -1) {
+						return err(
+							`Slide not found: ${slide_id}. Available: ${presentation.slides.map((s) => s.id).join(", ")}`,
+						)
+					}
+					slide = presentation.slides[index]
+				} else {
+					index = slide_index as number
+					slide = presentation.slides[index]
+					if (!slide) {
+						return err(
+							`Slide index ${index} out of range (presentation has ${presentation.slides.length} slides)`,
+						)
+					}
+				}
+				return ok(
+					JSON.stringify(
+						{
+							index,
+							totalSlides: presentation.slides.length,
+							slide,
+						},
+						null,
+						2,
+					),
+				)
+			} catch (e) {
+				return err(`Error reading slide: ${e instanceof Error ? e.message : String(e)}`)
 			}
 		},
 	)
@@ -500,33 +565,14 @@ Returns: The new element's id and slideId.`,
 		{
 			title: "Update Element",
 			description: `Update properties of an existing element. Only provided fields are updated.
-
-Args:
-  - file_path (string): Path to the .slide.json file
-  - slide_id (string): ID of the slide containing the element
-  - element_id (string): ID of the element to update
-  - content (string, optional): New text content (text elements only)
-  - x (number, optional): New X position
-  - y (number, optional): New Y position
-  - width (number, optional): New width
-  - height (number, optional): New height
-  - rotation (number, optional): Rotation in degrees
-  - opacity (number, optional): Opacity 0-1
-  - z_index (number, optional): Z-index for stacking order
-  - font_size (number, optional): Font size (text only)
-  - color (string, optional): Text color (text only)
-  - text_align (string, optional): Text alignment (text only)
-  - font_weight (string, optional): Font weight (text only)
-  - font_family (string, optional): Font family name (text only)
-  - src (string, optional): Image/video source URL or data URI
-  - child_stagger_type (string, optional): Set childStagger animation type on first animation (e.g., 'slide-in-right')
-  - child_stagger_delay (number, optional): Set childStagger delay between child items in seconds
+Supports: common props (position, size, rotation, opacity, zIndex), text style props, image/video props, chart props.
 
 Returns: Confirmation of the update.`,
 			inputSchema: {
 				file_path: z.string().describe("Path to the .slide.json file"),
 				slide_id: z.string().describe("ID of the slide containing the element"),
 				element_id: z.string().describe("ID of the element to update"),
+				// Common
 				content: z.string().optional().describe("New text content (text elements only)"),
 				x: z.number().optional().describe("New X position in px"),
 				y: z.number().optional().describe("New Y position in px"),
@@ -535,6 +581,7 @@ Returns: Confirmation of the update.`,
 				rotation: z.number().optional().describe("Rotation in degrees"),
 				opacity: z.number().min(0).max(1).optional().describe("Opacity (0-1)"),
 				z_index: z.number().int().optional().describe("Z-index for stacking order"),
+				// Text style
 				font_size: z.number().min(1).optional().describe("Font size in px (text only)"),
 				color: z.string().optional().describe("Text color hex (text only)"),
 				text_align: z
@@ -543,18 +590,79 @@ Returns: Confirmation of the update.`,
 					.describe("Text alignment (text only)"),
 				font_weight: z.enum(["normal", "bold"]).optional().describe("Font weight (text only)"),
 				font_family: z.string().optional().describe("Font family name (text only)"),
+				font_style: z.enum(["normal", "italic"]).optional().describe("Font style (text only)"),
+				text_decoration: z
+					.enum(["none", "underline", "line-through"])
+					.optional()
+					.describe("Text decoration (text only)"),
+				vertical_align: z
+					.enum(["top", "center", "bottom"])
+					.optional()
+					.describe("Vertical alignment (text only)"),
+				line_height: z.number().min(0).optional().describe("Line height multiplier (text only)"),
+				background_color: z
+					.string()
+					.nullable()
+					.optional()
+					.describe("Background color hex or null (text only)"),
+				padding: z.number().min(0).optional().describe("Padding in px (text only)"),
+				auto_height: z.boolean().optional().describe("Auto-fit height to content (text only)"),
+				// Image
 				src: z.string().optional().describe("Image/video source URL or data URI"),
+				fit: z
+					.enum(["cover", "contain", "fill"])
+					.optional()
+					.describe("Image fit mode (image only)"),
+				// Video
+				autoplay: z.boolean().optional().describe("Autoplay (video only)"),
+				loop: z.boolean().optional().describe("Loop playback (video only)"),
+				muted: z.boolean().optional().describe("Muted (video only)"),
+				// Chart
+				chart_type: z
+					.enum(["bar", "line", "pie", "donut", "area", "radar"])
+					.optional()
+					.describe("Chart type (chart only)"),
+				categories: z.array(z.string()).optional().describe("Chart category labels (chart only)"),
+				series: z
+					.array(
+						z.object({
+							name: z.string(),
+							data: z.array(z.number()),
+							color: z.string(),
+						}),
+					)
+					.optional()
+					.describe("Chart data series (chart only)"),
+				show_legend: z.boolean().optional().describe("Show legend (chart only)"),
+				stacked: z.boolean().optional().describe("Stacked bars/areas (chart only)"),
+				inner_radius: z
+					.number()
+					.min(0)
+					.max(100)
+					.optional()
+					.describe("Inner radius for donut (chart only)"),
+				legend_position: z
+					.enum(["top", "bottom", "left", "right"])
+					.optional()
+					.describe("Legend position (chart only)"),
+				show_grid: z.boolean().optional().describe("Show grid lines (chart only)"),
+				category_colors: z
+					.array(z.string())
+					.optional()
+					.describe("Category colors array (chart only)"),
+				chart_background_color: z
+					.string()
+					.nullable()
+					.optional()
+					.describe("Chart background color (chart only)"),
+				chart_font_size: z.number().min(1).optional().describe("Chart font size (chart only)"),
+				chart_font_family: z.string().optional().describe("Chart font family (chart only)"),
+				chart_text_color: z.string().optional().describe("Chart text/label color (chart only)"),
+				chart_grid_color: z.string().optional().describe("Chart grid line color (chart only)"),
+				start_angle: z.number().optional().describe("Start angle for pie/donut (chart only)"),
+				// childStagger
 				child_stagger_type: z
-					.enum([
-						"fade-in",
-						"slide-in-left",
-						"slide-in-right",
-						"slide-in-top",
-						"slide-in-bottom",
-						"scale-in",
-						"bounce-in",
-						"drop-in",
-					])
+					.enum(ANIMATION_TYPES)
 					.optional()
 					.describe("Animation type for child list items (set on first animation)"),
 				child_stagger_delay: z
@@ -608,11 +716,55 @@ Returns: Confirmation of the update.`,
 					if (params.text_align !== undefined) element.style.textAlign = params.text_align
 					if (params.font_weight !== undefined) element.style.fontWeight = params.font_weight
 					if (params.font_family !== undefined) element.style.fontFamily = params.font_family
+					if (params.font_style !== undefined) element.style.fontStyle = params.font_style
+					if (params.text_decoration !== undefined)
+						element.style.textDecoration = params.text_decoration
+					if (params.vertical_align !== undefined)
+						element.style.verticalAlign = params.vertical_align
+					if (params.line_height !== undefined) element.style.lineHeight = params.line_height
+					if (params.background_color !== undefined)
+						element.style.backgroundColor = params.background_color
+					if (params.padding !== undefined) element.style.padding = params.padding
+					if (params.auto_height !== undefined) element.style.autoHeight = params.auto_height
 				}
 
-				// Image/Video source
-				if ((element.type === "image" || element.type === "video") && params.src !== undefined) {
-					element.src = params.src
+				// Image-specific
+				if (element.type === "image") {
+					if (params.src !== undefined) element.src = params.src
+					if (params.fit !== undefined) element.fit = params.fit
+				}
+
+				// Video-specific
+				if (element.type === "video") {
+					if (params.src !== undefined) element.src = params.src
+					if (params.autoplay !== undefined) element.autoplay = params.autoplay
+					if (params.loop !== undefined) element.loop = params.loop
+					if (params.muted !== undefined) element.muted = params.muted
+				}
+
+				// Chart-specific
+				if (element.type === "chart") {
+					if (params.chart_type !== undefined) element.chartType = params.chart_type
+					if (params.categories !== undefined) element.categories = params.categories
+					if (params.series !== undefined) element.series = params.series
+					if (params.show_legend !== undefined) element.style.showLegend = params.show_legend
+					if (params.stacked !== undefined) element.style.stacked = params.stacked
+					if (params.inner_radius !== undefined) element.style.innerRadius = params.inner_radius
+					if (params.legend_position !== undefined)
+						element.style.legendPosition = params.legend_position
+					if (params.show_grid !== undefined) element.style.showGrid = params.show_grid
+					if (params.category_colors !== undefined)
+						element.style.categoryColors = params.category_colors
+					if (params.chart_background_color !== undefined)
+						element.style.backgroundColor = params.chart_background_color
+					if (params.chart_font_size !== undefined) element.style.fontSize = params.chart_font_size
+					if (params.chart_font_family !== undefined)
+						element.style.fontFamily = params.chart_font_family
+					if (params.chart_text_color !== undefined)
+						element.style.textColor = params.chart_text_color
+					if (params.chart_grid_color !== undefined)
+						element.style.gridColor = params.chart_grid_color
+					if (params.start_angle !== undefined) element.style.startAngle = params.start_angle
 				}
 
 				// childStagger on first animation
@@ -816,13 +968,6 @@ Returns: Confirmation of the update.`,
 			title: "Update Slide Transition",
 			description: `Update the transition effect of a slide.
 
-Args:
-  - file_path (string): Path to the .slide.json file
-  - slide_id (string): ID of the slide
-  - type (string): Transition type: "none" | "fade" | "slide-left" | "slide-right" | "slide-up" | "slide-down" | "zoom" | "flip-x" | "flip-y" | "rotate" | "scale-fade" | "wipe-left" | "wipe-right" | "wipe-up" | "wipe-down"
-  - duration (number, optional): Duration in seconds (default: 0.5)
-  - easing (string, optional): CSS easing function (default: "ease-out")
-
 Returns: Confirmation with the new transition settings.`,
 			inputSchema: {
 				file_path: z.string().describe("Path to the .slide.json file"),
@@ -844,6 +989,12 @@ Returns: Confirmation with the new transition settings.`,
 						"wipe-right",
 						"wipe-up",
 						"wipe-down",
+						"cube-left",
+						"cube-right",
+						"cube-up",
+						"cube-down",
+						"page-turn",
+						"portal",
 					])
 					.describe("Transition type"),
 				duration: z.number().min(0).optional().describe("Duration in seconds"),
@@ -976,42 +1127,12 @@ Returns: Confirmation with the new slide order.`,
 			title: "Add Element Animation",
 			description: `Add an animation to an element.
 
-Args:
-  - file_path (string): Path to the .slide.json file
-  - slide_id (string): ID of the slide
-  - element_id (string): ID of the element
-  - animation_type (string): One of: fade-in, fade-out, slide-in-left, slide-in-right, slide-in-top, slide-in-bottom, slide-out-left, slide-out-right, slide-out-top, slide-out-bottom, rotate-in, rotate-out, scale-in, scale-out
-  - duration (number, optional): Duration in seconds (default: 0.5)
-  - delay (number, optional): Delay in seconds (default: 0)
-  - easing (string, optional): CSS easing function (default: "ease-out")
-  - trigger (string, optional): "onEnter" | "onExit" | "onClick" (default: "onEnter")
-  - step_index (number, optional): Fragment step index. 0 = always visible (default: 0)
-  - child_stagger_type (string, optional): Animation type for child list items (e.g., 'slide-in-left', 'fade-in')
-  - child_stagger_delay (number, optional): Delay in seconds between each child list item
-
 Returns: Confirmation of the added animation.`,
 			inputSchema: {
 				file_path: z.string().describe("Path to the .slide.json file"),
 				slide_id: z.string().describe("ID of the slide"),
 				element_id: z.string().describe("ID of the element"),
-				animation_type: z
-					.enum([
-						"fade-in",
-						"fade-out",
-						"slide-in-left",
-						"slide-in-right",
-						"slide-in-top",
-						"slide-in-bottom",
-						"slide-out-left",
-						"slide-out-right",
-						"slide-out-top",
-						"slide-out-bottom",
-						"rotate-in",
-						"rotate-out",
-						"scale-in",
-						"scale-out",
-					])
-					.describe("Animation type"),
+				animation_type: z.enum(ANIMATION_TYPES).describe("Animation type"),
 				duration: z.number().min(0).optional().describe("Duration in seconds"),
 				delay: z.number().min(0).optional().describe("Delay in seconds"),
 				easing: z.string().optional().describe("CSS easing function (default: ease-out)"),
@@ -1023,16 +1144,7 @@ Returns: Confirmation of the added animation.`,
 					.optional()
 					.describe("Fragment step index (0 = always visible)"),
 				child_stagger_type: z
-					.enum([
-						"fade-in",
-						"slide-in-left",
-						"slide-in-right",
-						"slide-in-top",
-						"slide-in-bottom",
-						"scale-in",
-						"bounce-in",
-						"drop-in",
-					])
+					.enum(ANIMATION_TYPES)
 					.optional()
 					.describe("Animation type for child list items"),
 				child_stagger_delay: z
@@ -1088,6 +1200,159 @@ Returns: Confirmation of the added animation.`,
 				return ok(JSON.stringify({ elementId: element_id, animation }, null, 2))
 			} catch (e) {
 				return err(`Error adding animation: ${e instanceof Error ? e.message : String(e)}`)
+			}
+		},
+	)
+
+	// ----- slide_update_element_animation -----
+
+	server.registerTool(
+		"slide_update_element_animation",
+		{
+			title: "Update Element Animation",
+			description: `Update an existing animation on an element by index. Only provided fields are updated.
+
+Returns: Confirmation of the update.`,
+			inputSchema: {
+				file_path: z.string().describe("Path to the .slide.json file"),
+				slide_id: z.string().describe("ID of the slide"),
+				element_id: z.string().describe("ID of the element"),
+				animation_index: z
+					.number()
+					.int()
+					.min(0)
+					.describe("Index of the animation to update (0-based)"),
+				animation_type: z.enum(ANIMATION_TYPES).optional().describe("Animation type"),
+				duration: z.number().min(0).optional().describe("Duration in seconds"),
+				delay: z.number().min(0).optional().describe("Delay in seconds"),
+				easing: z.string().optional().describe("CSS easing function"),
+				trigger: z.enum(["onEnter", "onExit", "onClick"]).optional().describe("Trigger event"),
+				step_index: z.number().int().min(0).optional().describe("Fragment step index"),
+				child_stagger_type: z
+					.enum(ANIMATION_TYPES)
+					.optional()
+					.describe("Animation type for child list items"),
+				child_stagger_delay: z
+					.number()
+					.min(0)
+					.max(2)
+					.optional()
+					.describe("Delay between child list items in seconds"),
+				remove_child_stagger: z
+					.boolean()
+					.optional()
+					.describe("Set to true to remove childStagger from this animation"),
+			},
+			annotations: {
+				readOnlyHint: false,
+				destructiveHint: false,
+				idempotentHint: true,
+				openWorldHint: false,
+			},
+		},
+		async (params) => {
+			try {
+				const presentation = readPresentation(params.file_path)
+				const slide = findSlide(presentation, params.slide_id)
+				const element = slide.elements.find((el) => el.id === params.element_id)
+				if (!element) {
+					return err(`Element not found: ${params.element_id}`)
+				}
+				const anim = element.animations[params.animation_index]
+				if (!anim) {
+					return err(
+						`Animation index ${params.animation_index} out of range (element has ${element.animations.length} animations)`,
+					)
+				}
+				const a = anim as Record<string, unknown>
+				if (params.animation_type !== undefined) a.type = params.animation_type
+				if (params.duration !== undefined) a.duration = params.duration
+				if (params.delay !== undefined) a.delay = params.delay
+				if (params.easing !== undefined) a.easing = params.easing
+				if (params.trigger !== undefined) a.trigger = params.trigger
+				if (params.step_index !== undefined) a.stepIndex = params.step_index
+				if (params.child_stagger_type !== undefined) {
+					a.childStagger = {
+						type: params.child_stagger_type,
+						delay: params.child_stagger_delay ?? 0.25,
+					}
+				}
+				if (params.remove_child_stagger) {
+					a.childStagger = undefined
+				}
+				writePresentation(params.file_path, presentation)
+				return ok(
+					JSON.stringify(
+						{ elementId: params.element_id, animationIndex: params.animation_index, animation: a },
+						null,
+						2,
+					),
+				)
+			} catch (e) {
+				return err(`Error updating animation: ${e instanceof Error ? e.message : String(e)}`)
+			}
+		},
+	)
+
+	// ----- slide_remove_element_animation -----
+
+	server.registerTool(
+		"slide_remove_element_animation",
+		{
+			title: "Remove Element Animation",
+			description: `Remove an animation from an element by index, or remove all animations.
+
+Returns: Confirmation of the removal.`,
+			inputSchema: {
+				file_path: z.string().describe("Path to the .slide.json file"),
+				slide_id: z.string().describe("ID of the slide"),
+				element_id: z.string().describe("ID of the element"),
+				animation_index: z
+					.number()
+					.int()
+					.min(0)
+					.optional()
+					.describe("Index of the animation to remove (0-based). Omit to remove all."),
+			},
+			annotations: {
+				readOnlyHint: false,
+				destructiveHint: true,
+				idempotentHint: true,
+				openWorldHint: false,
+			},
+		},
+		async ({ file_path, slide_id, element_id, animation_index }) => {
+			try {
+				const presentation = readPresentation(file_path)
+				const slide = findSlide(presentation, slide_id)
+				const element = slide.elements.find((el) => el.id === element_id)
+				if (!element) {
+					return err(`Element not found: ${element_id}`)
+				}
+				if (animation_index !== undefined) {
+					if (animation_index >= element.animations.length) {
+						return err(
+							`Animation index ${animation_index} out of range (element has ${element.animations.length} animations)`,
+						)
+					}
+					element.animations.splice(animation_index, 1)
+				} else {
+					element.animations = []
+				}
+				writePresentation(file_path, presentation)
+				return ok(
+					JSON.stringify(
+						{
+							elementId: element_id,
+							removedIndex: animation_index ?? "all",
+							remainingAnimations: element.animations.length,
+						},
+						null,
+						2,
+					),
+				)
+			} catch (e) {
+				return err(`Error removing animation: ${e instanceof Error ? e.message : String(e)}`)
 			}
 		},
 	)
